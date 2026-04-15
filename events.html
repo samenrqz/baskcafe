@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Bask Café — Sips &amp; Stories</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg bask-nav" id="mainNav">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="index.html"><span class="brand-icon"><i class="fas fa-mug-hot"></i></span>Bask Café</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu"><span class="navbar-toggler-icon"></span></button>
+    <div class="collapse navbar-collapse justify-content-center" id="navMenu">
+      <ul class="navbar-nav gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="menu.html">Menu</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+        <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link active dropdown-toggle" href="#" data-bs-toggle="dropdown">More</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="events.html"><i class="fas fa-calendar-alt me-2 opacity-50"></i>Events &amp; Stories</a></li>
+            <li><a class="dropdown-item" href="careers.html"><i class="fas fa-briefcase me-2 opacity-50"></i>Careers</a></li>
+            <li><a class="dropdown-item" href="environment.html"><i class="fas fa-leaf me-2 opacity-50"></i>Our Environment</a></li>
+            <li><hr class="dropdown-divider"/></li>
+            <li><a class="dropdown-item" href="contact.html"><i class="fas fa-envelope me-2 opacity-50"></i>Contact Us</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div class="d-none d-lg-flex"><a href="contact.html" class="nav-link btn-nav-reserve">Reserve a Table</a></div>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero__bg" style="background-image:url('https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=1920&q=85');"></div>
+  <div class="page-hero__overlay"></div>
+  <div class="page-hero__content">
+    <p style="font-family:var(--font-ui);font-size:.72rem;letter-spacing:5px;text-transform:uppercase;color:var(--gold-400);margin-bottom:14px;">Bask Café</p>
+    <h1 class="page-hero__script" style="font-style:italic;">Sips &amp; Stories</h1>
+    <p class="page-hero__sub">A collection of articles and community updates dedicated to the craft of baristas, the stories worth telling, and the community that defines us.</p>
+  </div>
+</section>
+
+<!-- BASK EVENTS -->
+<section class="section bg-cream">
+  <div class="container">
+    <div class="section-header" data-reveal style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;margin-bottom:48px;">
+      <div>
+        <span class="eyebrow">What's On</span>
+        <h2 style="margin-top:10px;">Bask Events</h2>
+      </div>
+      <a href="contact.html" class="btn-bask btn-bask-outline-green" style="padding:10px 24px;font-size:.78rem;">Reserve a Seat</a>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-4" data-reveal data-reveal-delay="1">
+        <div class="event-card">
+          <div class="event-card__img"><img src="https://images.unsplash.com/photo-1501386761578-eaa54b6103c9?w=600&q=80" alt="Book Club"/></div>
+          <div class="event-card__body">
+            <div class="event-card__date"><i class="fas fa-calendar"></i> January 14 · 6:00 PM</div>
+            <div class="event-card__title">Book Club Night: A Brew Worth Waiting For</div>
+            <div class="event-card__desc">Join fellow book lovers over a warm cup. This month we're reading stories of journeys that begin with coffee.</div>
+            <a href="#" class="event-card__link">Read More <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4" data-reveal data-reveal-delay="2">
+        <div class="event-card">
+          <div class="event-card__img"><img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=600&q=80" alt="Open Mic"/></div>
+          <div class="event-card__body">
+            <div class="event-card__date"><i class="fas fa-calendar"></i> January 20 · 7:00 PM</div>
+            <div class="event-card__title">Open Mic Night: Voices &amp; Verses</div>
+            <div class="event-card__desc">Poetry, music, and spoken word — share your stories over good coffee in a safe, welcoming space.</div>
+            <a href="#" class="event-card__link">Read More <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4" data-reveal data-reveal-delay="3">
+        <div class="event-card">
+          <div class="event-card__img"><img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=600&q=80" alt="Brewing Workshop"/></div>
+          <div class="event-card__body">
+            <div class="event-card__date"><i class="fas fa-calendar"></i> February 1 · 10:00 AM</div>
+            <div class="event-card__title">Brewing Workshop with Carlo Mendoza</div>
+            <div class="event-card__desc">Learn the art of the perfect brew with our Head Barista. Limited slots — reserve your seat now.</div>
+            <a href="#" class="event-card__link">Read More <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4" data-reveal data-reveal-delay="1">
+        <div class="event-card">
+          <div class="event-card__img"><img src="https://images.unsplash.com/photo-1496024840928-4c417adf211d?w=600&q=80" alt="Loyalty Card"/></div>
+          <div class="event-card__body">
+            <div class="event-card__date"><i class="fas fa-calendar"></i> February 14 · All Day</div>
+            <div class="event-card__title">Bask Café Loyalty Card Launch</div>
+            <div class="event-card__desc">Earn points on every order and unlock exclusive member perks, free drinks, and priority booking.</div>
+            <a href="#" class="event-card__link">Read More <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4" data-reveal data-reveal-delay="2">
+        <div class="event-card">
+          <div class="event-card__img"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80" alt="Pastry Evening"/></div>
+          <div class="event-card__body">
+            <div class="event-card__date"><i class="fas fa-calendar"></i> February 20 · 5:00 PM</div>
+            <div class="event-card__title">Pastry &amp; Pairing Evening</div>
+            <div class="event-card__desc">Explore the art of coffee and pastry pairings with Sofia. A sweet, indulgent evening awaits.</div>
+            <a href="#" class="event-card__link">Read More <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4" data-reveal data-reveal-delay="3">
+        <div class="event-card">
+          <div class="event-card__img"><img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&q=80" alt="Sustainability"/></div>
+          <div class="event-card__body">
+            <div class="event-card__date"><i class="fas fa-calendar"></i> March 5 · 9:00 AM</div>
+            <div class="event-card__title">Sustainability Fair: A Greener Cup</div>
+            <div class="event-card__desc">Meet local eco-vendors, discover sustainable coffee practices, and learn how Bask gives back to the earth.</div>
+            <a href="#" class="event-card__link">Read More <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center mt-5" data-reveal>
+      <a href="#" class="btn-bask btn-bask-outline-green">Load More Events</a>
+    </div>
+  </div>
+</section>
+
+<!-- SHORT ARTICLES / BLOG -->
+<section class="section bg-white">
+  <div class="container">
+    <div class="section-header centered" data-reveal>
+      <span class="eyebrow">Our Blog</span>
+      <h2 style="margin-top:12px;">Short Articles</h2>
+      <div class="divider centered"></div>
+      <p style="color:var(--text-500);max-width:480px;margin:0 auto;">Stories about coffee culture, sustainability, and the world inside our café.</p>
+    </div>
+    <div class="row g-4 mt-2">
+      <div class="col-md-6 col-lg-4" data-reveal data-reveal-delay="1">
+        <div class="article-card">
+          <div class="article-card__img"><img src="https://images.unsplash.com/photo-1485808191679-5f86510bd9d4?w=600&q=80" alt="Article"/></div>
+          <div class="article-card__body">
+            <div class="article-card__tag">Coffee Culture</div>
+            <div class="article-card__title">Why Your Morning Ritual Matters More Than You Think</div>
+            <div class="article-card__excerpt">There's neuroscience behind why a slow, intentional morning cup sets the tone for an entire day. We explore the ritual of the first brew.</div>
+            <a href="#" class="article-card__link">Read More <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4" data-reveal data-reveal-delay="2">
+        <div class="article-card">
+          <div class="article-card__img"><img src="https://images.unsplash.com/photo-1459411552884-841db9b3cc2a?w=600&q=80" alt="Article"/></div>
+          <div class="article-card__body">
+            <div class="article-card__tag">Sustainability</div>
+            <div class="article-card__title">From Farm to Cup: How Ethical Sourcing Changes Everything</div>
+            <div class="article-card__excerpt">Behind every great espresso is a farm, a farmer, and a story. We trace our beans back to the hands that grew them.</div>
+            <a href="#" class="article-card__link">Read More <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4" data-reveal data-reveal-delay="3">
+        <div class="article-card">
+          <div class="article-card__img"><img src="https://images.unsplash.com/photo-1512568400610-62da28bc8a13?w=600&q=80" alt="Article"/></div>
+          <div class="article-card__body">
+            <div class="article-card__tag">Community</div>
+            <div class="article-card__title">How Bask Became More Than a Café to Valenzuela City</div>
+            <div class="article-card__excerpt">Three years in, we look back at the book clubs, open mics, and quiet afternoons that turned customers into community.</div>
+            <a href="#" class="article-card__link">Read More <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CUSTOMER REVIEWS -->
+<section class="section bg-cream">
+  <div class="container">
+    <div class="section-header centered" data-reveal>
+      <span class="eyebrow">Testimonials</span>
+      <h2 style="margin-top:12px;">What Our Customers Say</h2>
+      <div class="divider centered"></div>
+    </div>
+    <div class="mt-5" style="display:flex;align-items:center;gap:16px;max-width:800px;margin:0 auto;">
+      <button class="review-nav" onclick="changeReview(-1)"><i class="fas fa-chevron-left"></i></button>
+      <div class="review-card" style="flex:1;">
+        <div class="review-card__stars" id="reviewStars">★★★★★</div>
+        <p class="review-card__text" id="reviewText">"Bask Café is my absolute go-to spot in the city. The Vienna Latte here is unlike anything I've ever tasted — smooth, perfectly layered, and made with so much care. The space feels like a warm hug."</p>
+        <div class="review-card__name" id="reviewName">— Maria Santos</div>
+        <div class="review-card__counter" id="reviewNum">01</div>
+      </div>
+      <button class="review-nav" onclick="changeReview(1)"><i class="fas fa-chevron-right"></i></button>
+    </div>
+  </div>
+</section>
+
+<footer class="bask-footer">
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-4"><div class="footer__brand"><span class="footer__brand-icon"><i class="fas fa-mug-hot"></i></span>Bask Café</div><p class="footer__desc">A community café dedicated to the art of coffee, the warmth of community, and the joy of slowing down.</p><div class="footer__socials mt-4"><a href="#" class="footer__social-btn"><i class="fab fa-facebook-f"></i></a><a href="#" class="footer__social-btn"><i class="fab fa-instagram"></i></a><a href="#" class="footer__social-btn"><i class="fab fa-tiktok"></i></a></div></div>
+      <div class="col-6 col-lg-2"><h6 class="footer__heading">Navigate</h6><ul class="footer__links"><li><a href="index.html">Home</a></li><li><a href="menu.html">Menu</a></li><li><a href="about.html">About Us</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="events.html">Events</a></li><li><a href="careers.html">Careers</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div class="col-lg-6"><h6 class="footer__heading">Contact Us</h6><div class="footer__contact-item"><i class="fas fa-map-marker-alt"></i><span>4B Little Baguio Street, Marulas, Valenzuela City, Philippines</span></div><div class="footer__contact-item"><i class="fas fa-phone"></i><span>+63 (02) 8XXX-XXXX</span></div><div class="footer__contact-item"><i class="fas fa-envelope"></i><span>hello@baskcafe.com</span></div></div>
+    </div>
+    <div class="footer__bottom"><p>© 2025 Bask Café. All rights reserved.</p></div>
+  </div>
+</footer>
+<button class="back-to-top" id="backToTop"><i class="fas fa-chevron-up"></i></button>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="main.js"></script>
+</body>
+</html>

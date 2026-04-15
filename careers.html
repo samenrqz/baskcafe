@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Bask Café — Careers</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    /* ── Careers-specific styles ── */
+    .job-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 28px 32px;
+      box-shadow: var(--shadow-sm);
+      border-left: 4px solid var(--green-400);
+      transition: all var(--t-mid) var(--ease);
+      margin-bottom: 16px;
+    }
+    .job-card:hover {
+      transform: translateX(6px);
+      box-shadow: var(--shadow-md);
+      border-left-color: var(--gold-500);
+    }
+    .job-card__title {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      color: var(--green-800);
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .job-card__meta {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+    .job-card__meta span {
+      font-family: var(--font-ui);
+      font-size: .8rem;
+      color: var(--text-500);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .job-card__meta span i { color: var(--green-400); }
+    .job-card__desc {
+      font-family: var(--font-ui);
+      font-size: .92rem;
+      color: var(--text-500);
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+    .job-card__reqs {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 20px;
+    }
+    .job-card__reqs li {
+      font-family: var(--font-ui);
+      font-size: .88rem;
+      color: var(--text-700);
+      padding: 4px 0 4px 20px;
+      position: relative;
+      line-height: 1.6;
+    }
+    .job-card__reqs li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 12px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--green-400);
+    }
+    .job-tag {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-family: var(--font-ui);
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .6px;
+      text-transform: uppercase;
+      margin-right: 6px;
+    }
+    .tag-fulltime  { background: var(--green-100); color: var(--green-700); }
+    .tag-parttime  { background: #fff3cd; color: #856404; }
+    .tag-urgent    { background: #f8d7da; color: #721c24; }
+    .tag-open      { background: var(--green-100); color: var(--green-600); }
+
+    /* Benefit cards */
+    .benefit-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 32px 24px;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      height: 100%;
+      transition: all var(--t-mid) var(--ease);
+    }
+    .benefit-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); }
+    .benefit-card__icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 16px;
+      background: var(--green-800);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 18px;
+      font-size: 1.4rem;
+      color: var(--gold-400);
+    }
+    .benefit-card__title {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      color: var(--green-800);
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .benefit-card__desc {
+      font-family: var(--font-ui);
+      font-size: .88rem;
+      color: var(--text-500);
+      line-height: 1.7;
+    }
+
+    /* Application form accordion */
+    .apply-accordion .accordion-button {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--green-800);
+      background: var(--cream-200);
+      box-shadow: none;
+    }
+    .apply-accordion .accordion-button:not(.collapsed) {
+      background: var(--green-800);
+      color: var(--gold-400);
+    }
+    .apply-accordion .accordion-button::after {
+      filter: none;
+    }
+    .apply-accordion .accordion-button:not(.collapsed)::after {
+      filter: invert(1);
+    }
+    .apply-accordion .accordion-body {
+      background: var(--white);
+      padding: 32px;
+    }
+    .apply-accordion .accordion-item {
+      border: 1px solid var(--cream-300);
+      border-radius: var(--radius-md) !important;
+      overflow: hidden;
+      margin-bottom: 12px;
+    }
+
+    /* Steps */
+    .step-item {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 32px;
+      align-items: flex-start;
+    }
+    .step-num {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--green-800);
+      color: var(--gold-400);
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .step-body h4 {
+      font-family: var(--font-display);
+      color: var(--green-800);
+      font-size: 1.15rem;
+      margin-bottom: 6px;
+    }
+    .step-body p {
+      font-family: var(--font-ui);
+      font-size: .9rem;
+      color: var(--text-500);
+      line-height: 1.7;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════ NAVBAR ══════════════ -->
+<nav class="navbar navbar-expand-lg bask-nav" id="mainNav">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="index.html">
+      <span class="brand-icon"><i class="fas fa-mug-hot"></i></span>
+      Bask Café
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-center" id="navMenu">
+      <ul class="navbar-nav gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="menu.html">Menu</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+        <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link active dropdown-toggle" href="#" data-bs-toggle="dropdown">More</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="events.html"><i class="fas fa-calendar-alt me-2 opacity-50"></i>Events &amp; Stories</a></li>
+            <li><a class="dropdown-item" href="careers.html"><i class="fas fa-briefcase me-2 opacity-50"></i>Careers</a></li>
+            <li><a class="dropdown-item" href="environment.html"><i class="fas fa-leaf me-2 opacity-50"></i>Our Environment</a></li>
+            <li><hr class="dropdown-divider"/></li>
+            <li><a class="dropdown-item" href="contact.html"><i class="fas fa-envelope me-2 opacity-50"></i>Contact Us</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div class="d-none d-lg-flex align-items-center gap-3">
+      <a href="contact.html" class="nav-link btn-nav-reserve">Reserve a Table</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════════ HERO ══════════════ -->
+<section class="page-hero">
+  <div class="page-hero__bg" style="background-image:url('https://images.unsplash.com/photo-1445116572660-236099ec97a0?w=1920&q=85');"></div>
+  <div class="page-hero__overlay"></div>
+  <div class="page-hero__content">
+    <p style="font-family:var(--font-ui);font-size:.72rem;letter-spacing:5px;text-transform:uppercase;color:var(--gold-400);margin-bottom:14px;">Work With Us</p>
+    <h1 class="page-hero__script">Careers</h1>
+    <p class="page-hero__sub">Join a team that wakes up every morning excited to make something truly great — one cup at a time.</p>
+  </div>
+</section>
+
+<!-- ══════════════ WHY WORK HERE ══════════════ -->
+<section class="section bg-white">
+  <div class="container">
+    <div class="section-header centered" data-reveal>
+      <span class="eyebrow">Life at Bask</span>
+      <h2 style="margin-top:12px;">Why Work at Bask Café?</h2>
+      <div class="divider centered"></div>
+      <p style="color:var(--text-500);max-width:560px;margin:0 auto;">We don't just hire baristas — we grow people. At Bask, every team member is valued, trained, and given room to flourish.</p>
+    </div>
+    <div class="row g-4 mt-2">
+      <div class="col-6 col-md-4 col-lg-3" data-reveal data-reveal-delay="1">
+        <div class="benefit-card">
+          <div class="benefit-card__icon"><i class="fas fa-graduation-cap"></i></div>
+          <div class="benefit-card__title">Free Barista Training</div>
+          <div class="benefit-card__desc">All new hires receive structured barista training through our Bask Barista Program.</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-3" data-reveal data-reveal-delay="2">
+        <div class="benefit-card">
+          <div class="benefit-card__icon"><i class="fas fa-mug-hot"></i></div>
+          <div class="benefit-card__title">Free Daily Coffee</div>
+          <div class="benefit-card__desc">One complimentary drink per shift — because you deserve great coffee too.</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-3" data-reveal data-reveal-delay="3">
+        <div class="benefit-card">
+          <div class="benefit-card__icon"><i class="fas fa-chart-line"></i></div>
+          <div class="benefit-card__title">Growth Path</div>
+          <div class="benefit-card__desc">Clear promotion tracks from Barista → Senior Barista → Trainer → Manager.</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-3" data-reveal data-reveal-delay="4">
+        <div class="benefit-card">
+          <div class="benefit-card__icon"><i class="fas fa-users"></i></div>
+          <div class="benefit-card__title">Tight-Knit Team</div>
+          <div class="benefit-card__desc">We're a small, close team that celebrates each other — work feels less like work here.</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-3" data-reveal data-reveal-delay="1">
+        <div class="benefit-card">
+          <div class="benefit-card__icon"><i class="fas fa-clock"></i></div>
+          <div class="benefit-card__title">Flexible Scheduling</div>
+          <div class="benefit-card__desc">We work with your schedule — especially helpful for students and part-timers.</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-3" data-reveal data-reveal-delay="2">
+        <div class="benefit-card">
+          <div class="benefit-card__icon"><i class="fas fa-leaf"></i></div>
+          <div class="benefit-card__title">Values-Aligned Work</div>
+          <div class="benefit-card__desc">We source ethically and operate sustainably — work for a brand you're proud of.</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-3" data-reveal data-reveal-delay="3">
+        <div class="benefit-card">
+          <div class="benefit-card__icon"><i class="fas fa-percent"></i></div>
+          <div class="benefit-card__title">Staff Discounts</div>
+          <div class="benefit-card__desc">20% off all menu items — including food, drinks, and special menu additions.</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-3" data-reveal data-reveal-delay="4">
+        <div class="benefit-card">
+          <div class="benefit-card__icon"><i class="fas fa-award"></i></div>
+          <div class="benefit-card__title">Recognition Programs</div>
+          <div class="benefit-card__desc">Monthly "Barista of the Month" awards with bonuses and social media spotlights.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ OPEN POSITIONS ══════════════ -->
+<section class="section bg-cream" id="openings">
+  <div class="container">
+    <div class="section-header centered" data-reveal>
+      <span class="eyebrow">Now Hiring</span>
+      <h2 style="margin-top:12px;">Open Positions</h2>
+      <div class="divider centered"></div>
+      <p style="color:var(--text-500);max-width:500px;margin:0 auto;">We're growing and looking for passionate, hardworking people to join our family.</p>
+    </div>
+
+    <div class="mt-5">
+
+      <!-- BARISTA -->
+      <div class="job-card" data-reveal>
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;margin-bottom:12px;">
+          <div class="job-card__title">Barista</div>
+          <div>
+            <span class="job-tag tag-fulltime">Full-time</span>
+            <span class="job-tag tag-open">Hiring Open</span>
+          </div>
+        </div>
+        <div class="job-card__meta">
+          <span><i class="fas fa-map-marker-alt"></i> Marulas, Valenzuela City</span>
+          <span><i class="fas fa-money-bill-wave"></i> ₱18,000 – ₱22,000 / mo</span>
+          <span><i class="fas fa-clock"></i> Full-time</span>
+        </div>
+        <div class="job-card__desc">
+          We're looking for passionate baristas who love coffee and love people. You'll be the face of Bask Café — crafting beverages, engaging with customers, and maintaining our high standards for quality and service.
+        </div>
+        <div style="font-family:var(--font-ui);font-size:.78rem;font-weight:700;color:var(--green-700);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;">Requirements</div>
+        <ul class="job-card__reqs">
+          <li>At least 6 months of barista or food service experience preferred (but not required — we train!)</li>
+          <li>Strong customer service skills and a warm, welcoming personality</li>
+          <li>Ability to work in a fast-paced environment, including weekends</li>
+          <li>Basic knowledge of espresso-based drinks is a plus</li>
+          <li>Willingness to learn and grow within the Bask team</li>
+          <li>18 years old and above</li>
+        </ul>
+        <a href="#applyNow" class="btn-bask btn-bask-green" style="padding:10px 24px;font-size:.8rem;">Apply Now <i class="fas fa-arrow-right ms-1"></i></a>
+      </div>
+
+      <!-- PASTRY ASSISTANT -->
+      <div class="job-card" data-reveal data-reveal-delay="1">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;margin-bottom:12px;">
+          <div class="job-card__title">Pastry Kitchen Assistant</div>
+          <div>
+            <span class="job-tag tag-fulltime">Full-time</span>
+            <span class="job-tag tag-urgent">Urgent</span>
+          </div>
+        </div>
+        <div class="job-card__meta">
+          <span><i class="fas fa-map-marker-alt"></i> Marulas, Valenzuela City</span>
+          <span><i class="fas fa-money-bill-wave"></i> ₱17,000 – ₱20,000 / mo</span>
+          <span><i class="fas fa-clock"></i> Full-time · 6AM–2PM shift</span>
+        </div>
+        <div class="job-card__desc">
+          Support our Pastry Chef in daily production of croissants, cinnamon rolls, and baked goods. You'll help maintain Bask's culinary standards while learning from an experienced pastry kitchen.
+        </div>
+        <div style="font-family:var(--font-ui);font-size:.78rem;font-weight:700;color:var(--green-700);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;">Requirements</div>
+        <ul class="job-card__reqs">
+          <li>Experience in a kitchen or bakery setting (at least 1 year preferred)</li>
+          <li>TESDA certification in Bread and Pastry Production is a strong advantage</li>
+          <li>Ability to follow recipes consistently and maintain quality</li>
+          <li>High attention to cleanliness and food safety standards</li>
+          <li>Physically able to work standing for extended periods and handle early shifts</li>
+        </ul>
+        <a href="#applyNow" class="btn-bask btn-bask-green" style="padding:10px 24px;font-size:.8rem;">Apply Now <i class="fas fa-arrow-right ms-1"></i></a>
+      </div>
+
+      <!-- CASHIER / SERVICE CREW -->
+      <div class="job-card" data-reveal data-reveal-delay="2">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;margin-bottom:12px;">
+          <div class="job-card__title">Cashier / Service Crew</div>
+          <div>
+            <span class="job-tag tag-parttime">Part-time</span>
+            <span class="job-tag tag-open">Hiring Open</span>
+          </div>
+        </div>
+        <div class="job-card__meta">
+          <span><i class="fas fa-map-marker-alt"></i> Marulas, Valenzuela City</span>
+          <span><i class="fas fa-money-bill-wave"></i> ₱9,000 – ₱12,000 / mo (part-time)</span>
+          <span><i class="fas fa-clock"></i> Part-time · Flexible shifts</span>
+        </div>
+        <div class="job-card__desc">
+          Handle customer orders, process transactions, and ensure the front-of-house runs smoothly. Great for students looking for flexible work experience in a professional café environment.
+        </div>
+        <ul class="job-card__reqs">
+          <li>Senior High School graduate or currently enrolled college student</li>
+          <li>Basic math and POS system operation skills</li>
+          <li>Cheerful, presentable, and customer-oriented</li>
+          <li>Willing to work weekends and holidays</li>
+        </ul>
+        <a href="#applyNow" class="btn-bask btn-bask-green" style="padding:10px 24px;font-size:.8rem;">Apply Now <i class="fas fa-arrow-right ms-1"></i></a>
+      </div>
+
+      <!-- SHIFT SUPERVISOR -->
+      <div class="job-card" data-reveal data-reveal-delay="3">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;margin-bottom:12px;">
+          <div class="job-card__title">Shift Supervisor</div>
+          <div>
+            <span class="job-tag tag-fulltime">Full-time</span>
+            <span class="job-tag tag-open">Hiring Open</span>
+          </div>
+        </div>
+        <div class="job-card__meta">
+          <span><i class="fas fa-map-marker-alt"></i> Marulas, Valenzuela City</span>
+          <span><i class="fas fa-money-bill-wave"></i> ₱22,000 – ₱28,000 / mo</span>
+          <span><i class="fas fa-clock"></i> Full-time · Rotating shifts</span>
+        </div>
+        <div class="job-card__desc">
+          Lead and support the team during your shift — ensuring quality, customer satisfaction, and smooth daily operations. This role is ideal for an experienced barista ready to step into leadership.
+        </div>
+        <ul class="job-card__reqs">
+          <li>Minimum 2 years experience in a café or food service setting</li>
+          <li>Demonstrated leadership skills and team management experience</li>
+          <li>Strong problem-solving ability and composure under pressure</li>
+          <li>Basic inventory and cash management knowledge</li>
+          <li>College graduate preferred (HRM or related course is a plus)</li>
+        </ul>
+        <a href="#applyNow" class="btn-bask btn-bask-green" style="padding:10px 24px;font-size:.8rem;">Apply Now <i class="fas fa-arrow-right ms-1"></i></a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ HOW TO APPLY ══════════════ -->
+<section class="section bg-white">
+  <div class="container">
+    <div class="row g-5 align-items-start">
+      <div class="col-lg-5" data-reveal>
+        <span class="eyebrow">Application Process</span>
+        <h2 style="margin-top:12px;">How to Apply</h2>
+        <div class="divider"></div>
+        <p style="color:var(--text-500);margin-bottom:36px;">Our hiring process is straightforward and respectful of your time. Here's what to expect:</p>
+
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <h4>Submit Your Application</h4>
+            <p>Fill in the application form on this page or email your resume to <strong style="color:var(--green-700);">careers@baskcafe.com</strong> with the subject line: <em>Position — Your Name</em></p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <h4>Initial Review</h4>
+            <p>Our manager reviews all applications within 3–5 business days. Shortlisted candidates will be contacted via email or phone.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <h4>Interview &amp; Skills Assessment</h4>
+            <p>A brief in-person interview at the café. For barista roles, you'll do a short practical assessment — don't worry, we make it comfortable.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">4</div>
+          <div class="step-body">
+            <h4>Job Offer &amp; Onboarding</h4>
+            <p>Successful candidates receive a written offer, followed by a structured 3-day onboarding with our Bask Barista Training Program.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- APPLICATION FORM -->
+      <div class="col-lg-7" data-reveal data-reveal-delay="2" id="applyNow">
+        <div class="form-card">
+          <h3 style="font-family:var(--font-display);color:var(--green-800);font-size:1.6rem;margin-bottom:6px;">Apply for a Position</h3>
+          <p style="font-family:var(--font-ui);font-size:.9rem;color:var(--text-500);margin-bottom:28px;">Fill in the form below and we'll be in touch within 5 business days.</p>
+
+          <form id="careerForm" novalidate>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-lbl" for="appName">Full Name *</label>
+                <input type="text" id="appName" class="form-inp" placeholder="Your full name" required/>
+              </div>
+              <div class="col-md-6">
+                <label class="form-lbl" for="appEmail">Email Address *</label>
+                <input type="email" id="appEmail" class="form-inp" placeholder="your@email.com" required/>
+              </div>
+              <div class="col-md-6">
+                <label class="form-lbl" for="appPhone">Phone Number *</label>
+                <input type="tel" id="appPhone" class="form-inp" placeholder="+63 9XX XXX XXXX" required/>
+              </div>
+              <div class="col-md-6">
+                <label class="form-lbl" for="appPosition">Position Applying For *</label>
+                <select id="appPosition" class="form-inp" required>
+                  <option value="">Select a position</option>
+                  <option>Barista</option>
+                  <option>Pastry Kitchen Assistant</option>
+                  <option>Cashier / Service Crew</option>
+                  <option>Shift Supervisor</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-lbl" for="appType">Employment Type *</label>
+                <select id="appType" class="form-inp" required>
+                  <option value="">Select type</option>
+                  <option>Full-time</option>
+                  <option>Part-time</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-lbl" for="appExp">Years of Experience</label>
+                <select id="appExp" class="form-inp">
+                  <option value="">Select range</option>
+                  <option>No experience (willing to train)</option>
+                  <option>Less than 1 year</option>
+                  <option>1–2 years</option>
+                  <option>3–5 years</option>
+                  <option>5+ years</option>
+                </select>
+              </div>
+              <div class="col-12">
+                <label class="form-lbl" for="appCover">Cover Letter / Short Introduction *</label>
+                <textarea id="appCover" class="form-inp" rows="5" placeholder="Tell us a little about yourself — why do you want to work at Bask Café?" required style="resize:vertical;"></textarea>
+              </div>
+              <div class="col-12">
+                <div style="background:var(--cream-200);border-radius:var(--radius-md);padding:16px 20px;font-family:var(--font-ui);font-size:.85rem;color:var(--text-500);">
+                  <i class="fas fa-info-circle me-2" style="color:var(--green-400);"></i>
+                  You may also attach your resume by emailing it directly to <strong style="color:var(--green-700);">careers@baskcafe.com</strong> with subject: <em>Application — [Position] — [Your Name]</em>
+                </div>
+              </div>
+              <div class="col-12">
+                <button type="submit" class="btn-bask btn-bask-green w-100" style="justify-content:center;font-size:.9rem;">
+                  Submit Application &nbsp;<i class="fas fa-paper-plane"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+
+          <div id="careerSuccess" style="display:none;flex-direction:column;align-items:center;padding:48px 20px;text-align:center;">
+            <div style="width:72px;height:72px;background:var(--green-100);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:20px;">
+              <i class="fas fa-check" style="color:var(--green-600);font-size:1.8rem;"></i>
+            </div>
+            <h4 style="color:var(--green-800);margin-bottom:10px;font-family:var(--font-display);">Application Submitted!</h4>
+            <p style="color:var(--text-500);font-size:.95rem;font-family:var(--font-ui);max-width:360px;">Thank you for your interest in joining Bask Café. We'll review your application and reach out within 3–5 business days.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ TEAM CULTURE SECTION ══════════════ -->
+<section class="community-section">
+  <div class="community-section__bg" style="background-image:url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=1600&q=80');"></div>
+  <div class="community-section__overlay"></div>
+  <div class="container community-section__content">
+    <span class="eyebrow" style="color:var(--gold-300);" data-reveal>Our Culture</span>
+    <h2 data-reveal data-reveal-delay="1" style="margin:12px 0 16px;">More than a job.<br>A community.</h2>
+    <p style="color:rgba(255,255,255,.72);max-width:480px;margin:0 auto 36px;font-size:1.05rem;font-style:italic;" data-reveal data-reveal-delay="2">
+      At Bask, we believe the best teams are built on trust, warmth, and a shared love of good coffee. Sound like you?
+    </p>
+    <a href="#applyNow" class="btn-bask btn-bask-gold" data-reveal data-reveal-delay="3">Apply Today</a>
+  </div>
+</section>
+
+<!-- ══════════════ FOOTER ══════════════ -->
+<footer class="bask-footer">
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-4">
+        <div class="footer__brand">
+          <span class="footer__brand-icon"><i class="fas fa-mug-hot"></i></span>
+          Bask Café
+        </div>
+        <p class="footer__desc">A community café dedicated to the art of coffee, the warmth of community, and the joy of slowing down over something truly well-made.</p>
+        <div class="footer__socials mt-4">
+          <a href="#" class="footer__social-btn"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="footer__social-btn"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="footer__social-btn"><i class="fab fa-tiktok"></i></a>
+          <a href="#" class="footer__social-btn"><i class="fab fa-twitter"></i></a>
+        </div>
+      </div>
+      <div class="col-6 col-lg-2">
+        <h6 class="footer__heading">Navigate</h6>
+        <ul class="footer__links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="careers.html">Careers</a></li>
+          <li><a href="environment.html">Environment</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-lg-2">
+        <h6 class="footer__heading">Careers</h6>
+        <ul class="footer__links">
+          <li><a href="careers.html#openings">Open Positions</a></li>
+          <li><a href="careers.html#applyNow">Apply Now</a></li>
+          <li><a href="careers.html">Benefits</a></li>
+          <li><a href="about.html">Meet the Team</a></li>
+          <li><a href="contact.html">HR Contact</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-4">
+        <h6 class="footer__heading">Contact Us</h6>
+        <div class="footer__contact-item"><i class="fas fa-map-marker-alt"></i><span>4B Little Baguio Street, Marulas, Valenzuela City, Philippines</span></div>
+        <div class="footer__contact-item"><i class="fas fa-phone"></i><span>+63 (02) 8XXX-XXXX</span></div>
+        <div class="footer__contact-item"><i class="fas fa-envelope"></i><span>hello@baskcafe.com</span></div>
+        <div class="footer__contact-item"><i class="fas fa-briefcase"></i><span>careers@baskcafe.com</span></div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>© 2025 Bask Café. All rights reserved. Crafted with <i class="fas fa-heart" style="color:#c0392b;"></i> in Valenzuela City.</p>
+      <p style="font-size:.75rem;">Built for <span style="color:rgba(255,255,255,.3);">baskcafe.infinityfreeapp.com</span></p>
+    </div>
+  </div>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+  <i class="fas fa-chevron-up"></i>
+</button>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="main.js"></script>
+<script>
+  // Career form validation
+  document.getElementById('careerForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const required = ['appName','appEmail','appPhone','appPosition','appType','appCover'];
+    let valid = true;
+    required.forEach(id => {
+      const el = document.getElementById(id);
+      if (!el.value.trim()) {
+        el.classList.add('error');
+        valid = false;
+      } else {
+        el.classList.remove('error');
+      }
+    });
+    if (valid) {
+      this.style.display = 'none';
+      document.getElementById('careerSuccess').style.display = 'flex';
+      window.scrollTo({ top: document.getElementById('applyNow').offsetTop - 100, behavior: 'smooth' });
+    }
+  });
+  document.querySelectorAll('#careerForm .form-inp').forEach(el => {
+    el.addEventListener('input', () => el.classList.remove('error'));
+  });
+</script>
+</body>
+</html>
