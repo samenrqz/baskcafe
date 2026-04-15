@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Bask Café — Home</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<!-- ══════════════ NAVBAR ══════════════ -->
+<nav class="navbar navbar-expand-lg bask-nav" id="mainNav">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="index.html">
+      <span class="brand-icon"><i class="fas fa-mug-hot"></i></span>
+      Bask Café
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-center" id="navMenu">
+      <ul class="navbar-nav gap-1">
+        <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="menu.html">Menu</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+        <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">More</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="events.html"><i class="fas fa-calendar-alt me-2 opacity-50"></i>Events &amp; Stories</a></li>
+            <li><a class="dropdown-item" href="careers.html"><i class="fas fa-briefcase me-2 opacity-50"></i>Careers</a></li>
+            <li><a class="dropdown-item" href="environment.html"><i class="fas fa-leaf me-2 opacity-50"></i>Our Environment</a></li>
+            <li><hr class="dropdown-divider"/></li>
+            <li><a class="dropdown-item" href="contact.html"><i class="fas fa-envelope me-2 opacity-50"></i>Contact Us</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div class="d-none d-lg-flex align-items-center gap-3">
+      <a href="contact.html" class="nav-link btn-nav-reserve">Reserve a Table</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════════ HERO ══════════════ -->
+<section class="hero">
+  <div class="hero__bg" style="background-image:url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1920&q=85');"></div>
+  <div class="hero__overlay" style="background:linear-gradient(160deg,rgba(10,22,16,.8) 0%,rgba(30,55,40,.6) 50%,rgba(10,22,16,.85) 100%);"></div>
+  <div class="hero__content">
+    <p class="hero__tagline" style="animation:fadeSlideUp .8s ease .2s both;">Welcome to Bask Café</p>
+    <h1 class="hero__script" style="animation:fadeSlideUp 1s ease .4s both;">Coffee</h1>
+    <p class="hero__sub" style="animation:fadeSlideUp .9s ease .7s both;">
+      Elevate your daily ritual with the finest brews, crafted with care and served with warmth — a commitment to what coffee truly can be.
+    </p>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;animation:fadeSlideUp .8s ease 1s both;">
+      <a href="menu.html" class="btn-bask btn-bask-gold">Explore Our Menu</a>
+      <a href="about.html" class="btn-bask btn-bask-outline-white">Our Story</a>
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    <div class="scroll-indicator__line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+<style>
+@keyframes fadeSlideUp {
+  from { opacity:0; transform:translateY(28px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+</style>
+
+<!-- ══════════════ WHERE IT ALL STARTED ══════════════ -->
+<section class="section bg-white">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6" data-reveal>
+        <span class="eyebrow">Our Roots</span>
+        <h2 style="margin:12px 0 20px;">Where it all started</h2>
+        <p style="color:var(--text-500);margin-bottom:16px;">
+          Born from a genuine love for the art of coffee, Bask Café opened its doors with a single promise: to create a space where every cup tells a story. From humble beginnings in a cozy corner of the city, we've grown into a community institution — a place for creatives, dreamers, and anyone who believes a great cup of coffee can change a day.
+        </p>
+        <p style="color:var(--text-500);margin-bottom:32px;">
+          Every blend we serve is sourced with intention, every drink crafted with precision. We believe that coffee is more than a beverage — it's an experience, a ritual, and above all, an invitation to slow down and savor.
+        </p>
+        <a href="about.html" class="btn-bask btn-bask-green">Learn More</a>
+      </div>
+      <div class="col-lg-6" data-reveal data-reveal-delay="2">
+        <div style="border-radius:var(--radius-xl);overflow:hidden;box-shadow:var(--shadow-lg);position:relative;">
+          <img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=900&q=85" alt="Bask Café Origin Story" style="width:100%;height:420px;object-fit:cover;"/>
+          <div style="position:absolute;bottom:24px;left:24px;background:var(--white);border-radius:var(--radius-md);padding:14px 20px;box-shadow:var(--shadow-md);">
+            <p style="font-family:var(--font-ui);font-size:.72rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--green-400);margin:0 0 2px;">Est. 2019</p>
+            <p style="font-family:var(--font-display);font-size:1rem;font-weight:700;color:var(--green-800);margin:0;">General Santos City, PH</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ OPENING HOURS ══════════════ -->
+<section class="section bg-cream">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6" data-reveal>
+        <span class="eyebrow">Visit Us</span>
+        <h2 style="margin:12px 0 16px;">A great place to<br>start your day</h2>
+        <p style="color:var(--text-500);margin-bottom:16px;">
+          There's nothing quite like stepping into Bask on a quiet morning — the aroma of fresh espresso, the sound of gentle conversation, and the warmth of a community that genuinely cares.
+        </p>
+        <p style="color:var(--text-500);margin-bottom:32px;">
+          Whether you're starting your day with a cappuccino, meeting a friend over a Vienna Latte, or unwinding with a Matcha Frappuccino — there's always a reason to come back.
+        </p>
+        <a href="contact.html" class="btn-bask btn-bask-outline-green">Find Us</a>
+      </div>
+      <div class="col-lg-6" data-reveal data-reveal-delay="2">
+        <div class="hours-card">
+          <h3 class="hours-card__title">Opening Hours</h3>
+          <p class="hours-card__sub">A great way to start your day. Welcome and enjoy.</p>
+          <div class="hours-row">
+            <span class="hours-row__day">Monday – Thursday</span>
+            <span class="hours-row__time">9:00 AM – 12:00 AM</span>
+          </div>
+          <div class="hours-row">
+            <span class="hours-row__day">Friday – Saturday</span>
+            <span class="hours-row__time">10:00 AM – 12:00 AM</span>
+          </div>
+          <div class="hours-row">
+            <span class="hours-row__day">Sunday</span>
+            <span class="hours-row__time">Closed</span>
+          </div>
+          <div style="margin-top:28px;padding-top:24px;border-top:1px solid rgba(255,255,255,.08);">
+            <p style="font-family:var(--font-ui);font-size:.82rem;color:rgba(255,255,255,.5);margin:0;"><i class="fas fa-map-marker-alt me-2" style="color:var(--gold-400);"></i>4B Little Baguio St, Marulas, Valenzuela City</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ MENU PREVIEW ══════════════ -->
+<section class="section bg-white">
+  <div class="container">
+    <div class="section-header centered" data-reveal>
+      <span class="eyebrow">Our Signature Drinks</span>
+      <h2 style="margin-top:12px;">Enjoy a new blend<br>of coffee style</h2>
+      <div class="divider centered"></div>
+      <p style="color:var(--text-500);max-width:520px;margin:0 auto;">Discover our handcrafted selection, made daily with premium ingredients and a deep love for the craft.</p>
+    </div>
+
+    <div class="row g-4 mt-2">
+      <div class="col-6 col-md-3" data-reveal data-reveal-delay="1">
+        <div class="card-bask">
+          <div class="card-bask__img">
+            <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=500&q=80" alt="Cappuccino"/>
+          </div>
+          <div class="card-bask__body">
+            <div class="card-bask__title">Cappuccino</div>
+            <div class="card-bask__price">₱80.00</div>
+            <div class="card-bask__desc">Rich espresso with silky steamed milk foam</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3" data-reveal data-reveal-delay="2">
+        <div class="card-bask">
+          <div class="card-bask__img">
+            <img src="https://images.unsplash.com/photo-1561882468-9110e03e0f78?w=500&q=80" alt="Iced Latte"/>
+          </div>
+          <div class="card-bask__body">
+            <div class="card-bask__title">Iced Latte</div>
+            <div class="card-bask__price">₱85.00</div>
+            <div class="card-bask__desc">Smooth double espresso over chilled milk</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3" data-reveal data-reveal-delay="3">
+        <div class="card-bask">
+          <div class="card-bask__img">
+            <img src="https://images.unsplash.com/photo-1515823662972-da6a2e4d3002?w=500&q=80" alt="Matcha Latte"/>
+          </div>
+          <div class="card-bask__body">
+            <div class="card-bask__title">Matcha Latte</div>
+            <div class="card-bask__price">₱155.00</div>
+            <div class="card-bask__desc">Ceremonial matcha blended with steamed oat milk</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3" data-reveal data-reveal-delay="4">
+        <div class="card-bask">
+          <div class="card-bask__img">
+            <img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=500&q=80" alt="Frappuccino"/>
+          </div>
+          <div class="card-bask__body">
+            <div class="card-bask__title">Java Chip Frappe</div>
+            <div class="card-bask__price">₱250.00</div>
+            <div class="card-bask__desc">Blended coffee with chocolate chips &amp; cream</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center mt-5" data-reveal>
+      <a href="menu.html" class="btn-bask btn-bask-green">View Full Menu</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ COMMUNITY ══════════════ -->
+<section class="community-section">
+  <div class="community-section__bg" style="background-image:url('https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=1600&q=80');"></div>
+  <div class="community-section__overlay"></div>
+  <div class="container community-section__content">
+    <span class="eyebrow" style="color:var(--gold-300);" data-reveal>Join Us</span>
+    <h2 data-reveal data-reveal-delay="1" style="margin:12px 0 16px;">Be part of our amazing<br>community</h2>
+    <p style="color:rgba(255,255,255,.72);max-width:440px;margin:0 auto 36px;font-size:1.05rem;font-style:italic;" data-reveal data-reveal-delay="2">
+      A gathering of coffee lovers, storytellers, and dreamers — you're always welcome here.
+    </p>
+    <a href="events.html" class="btn-bask btn-bask-gold" data-reveal data-reveal-delay="3">Explore Events</a>
+  </div>
+</section>
+
+<!-- ══════════════ QUICK LINKS ══════════════ -->
+<section class="section bg-white">
+  <div class="container">
+    <div class="section-header centered" data-reveal>
+      <span class="eyebrow">Discover More</span>
+      <h2 style="margin-top:12px;">Everything Bask</h2>
+      <div class="divider centered"></div>
+    </div>
+    <div class="row g-4 mt-2">
+      <div class="col-6 col-md-4 col-lg-2" data-reveal data-reveal-delay="1">
+        <a href="menu.html" style="display:flex;flex-direction:column;align-items:center;text-align:center;padding:28px 16px;background:var(--cream-200);border-radius:var(--radius-lg);transition:all var(--t-mid) var(--ease);text-decoration:none;" onmouseover="this.style.background='var(--green-800)';this.querySelector('i').style.color='var(--gold-400)';this.querySelector('.ql-lbl').style.color='white';" onmouseout="this.style.background='var(--cream-200)';this.querySelector('i').style.color='var(--green-500)';this.querySelector('.ql-lbl').style.color='var(--green-800)';">
+          <i class="fas fa-coffee" style="font-size:1.8rem;color:var(--green-500);margin-bottom:12px;transition:color var(--t-mid);"></i>
+          <span class="ql-lbl" style="font-family:var(--font-ui);font-size:.84rem;font-weight:600;color:var(--green-800);transition:color var(--t-mid);">Menu</span>
+        </a>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2" data-reveal data-reveal-delay="2">
+        <a href="about.html" style="display:flex;flex-direction:column;align-items:center;text-align:center;padding:28px 16px;background:var(--cream-200);border-radius:var(--radius-lg);transition:all var(--t-mid) var(--ease);text-decoration:none;" onmouseover="this.style.background='var(--green-800)';this.querySelector('i').style.color='var(--gold-400)';this.querySelector('.ql-lbl').style.color='white';" onmouseout="this.style.background='var(--cream-200)';this.querySelector('i').style.color='var(--green-500)';this.querySelector('.ql-lbl').style.color='var(--green-800)';">
+          <i class="fas fa-users" style="font-size:1.8rem;color:var(--green-500);margin-bottom:12px;transition:color var(--t-mid);"></i>
+          <span class="ql-lbl" style="font-family:var(--font-ui);font-size:.84rem;font-weight:600;color:var(--green-800);transition:color var(--t-mid);">About Us</span>
+        </a>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2" data-reveal data-reveal-delay="3">
+        <a href="gallery.html" style="display:flex;flex-direction:column;align-items:center;text-align:center;padding:28px 16px;background:var(--cream-200);border-radius:var(--radius-lg);transition:all var(--t-mid) var(--ease);text-decoration:none;" onmouseover="this.style.background='var(--green-800)';this.querySelector('i').style.color='var(--gold-400)';this.querySelector('.ql-lbl').style.color='white';" onmouseout="this.style.background='var(--cream-200)';this.querySelector('i').style.color='var(--green-500)';this.querySelector('.ql-lbl').style.color='var(--green-800)';">
+          <i class="fas fa-images" style="font-size:1.8rem;color:var(--green-500);margin-bottom:12px;transition:color var(--t-mid);"></i>
+          <span class="ql-lbl" style="font-family:var(--font-ui);font-size:.84rem;font-weight:600;color:var(--green-800);transition:color var(--t-mid);">Gallery</span>
+        </a>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2" data-reveal data-reveal-delay="4">
+        <a href="events.html" style="display:flex;flex-direction:column;align-items:center;text-align:center;padding:28px 16px;background:var(--cream-200);border-radius:var(--radius-lg);transition:all var(--t-mid) var(--ease);text-decoration:none;" onmouseover="this.style.background='var(--green-800)';this.querySelector('i').style.color='var(--gold-400)';this.querySelector('.ql-lbl').style.color='white';" onmouseout="this.style.background='var(--cream-200)';this.querySelector('i').style.color='var(--green-500)';this.querySelector('.ql-lbl').style.color='var(--green-800)';">
+          <i class="fas fa-calendar-alt" style="font-size:1.8rem;color:var(--green-500);margin-bottom:12px;transition:color var(--t-mid);"></i>
+          <span class="ql-lbl" style="font-family:var(--font-ui);font-size:.84rem;font-weight:600;color:var(--green-800);transition:color var(--t-mid);">Events</span>
+        </a>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2" data-reveal data-reveal-delay="5">
+        <a href="careers.html" style="display:flex;flex-direction:column;align-items:center;text-align:center;padding:28px 16px;background:var(--cream-200);border-radius:var(--radius-lg);transition:all var(--t-mid) var(--ease);text-decoration:none;" onmouseover="this.style.background='var(--green-800)';this.querySelector('i').style.color='var(--gold-400)';this.querySelector('.ql-lbl').style.color='white';" onmouseout="this.style.background='var(--cream-200)';this.querySelector('i').style.color='var(--green-500)';this.querySelector('.ql-lbl').style.color='var(--green-800)';">
+          <i class="fas fa-briefcase" style="font-size:1.8rem;color:var(--green-500);margin-bottom:12px;transition:color var(--t-mid);"></i>
+          <span class="ql-lbl" style="font-family:var(--font-ui);font-size:.84rem;font-weight:600;color:var(--green-800);transition:color var(--t-mid);">Careers</span>
+        </a>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2" data-reveal data-reveal-delay="5">
+        <a href="contact.html" style="display:flex;flex-direction:column;align-items:center;text-align:center;padding:28px 16px;background:var(--cream-200);border-radius:var(--radius-lg);transition:all var(--t-mid) var(--ease);text-decoration:none;" onmouseover="this.style.background='var(--green-800)';this.querySelector('i').style.color='var(--gold-400)';this.querySelector('.ql-lbl').style.color='white';" onmouseout="this.style.background='var(--cream-200)';this.querySelector('i').style.color='var(--green-500)';this.querySelector('.ql-lbl').style.color='var(--green-800)';">
+          <i class="fas fa-map-marker-alt" style="font-size:1.8rem;color:var(--green-500);margin-bottom:12px;transition:color var(--t-mid);"></i>
+          <span class="ql-lbl" style="font-family:var(--font-ui);font-size:.84rem;font-weight:600;color:var(--green-800);transition:color var(--t-mid);">Find Us</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ REVIEWS ══════════════ -->
+<section class="section bg-cream">
+  <div class="container">
+    <div class="section-header centered" data-reveal>
+      <span class="eyebrow">What They Say</span>
+      <h2 style="margin-top:12px;">Customers' Review</h2>
+      <div class="divider centered"></div>
+      <p style="color:var(--text-500);max-width:440px;margin:0 auto;">Real stories from the people who make Bask what it is.</p>
+    </div>
+    <div class="mt-5" style="display:flex;align-items:center;gap:16px;max-width:800px;margin:0 auto;">
+      <button class="review-nav" onclick="changeReview(-1)" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
+      <div class="review-card" style="flex:1;">
+        <div class="review-card__stars" id="reviewStars">★★★★★</div>
+        <p class="review-card__text" id="reviewText">"Bask Café is my absolute go-to spot in the city. The Vienna Latte here is unlike anything I've ever tasted — smooth, perfectly layered, and made with so much care. The space feels like a warm hug."</p>
+        <div class="review-card__name" id="reviewName">— Maria Santos</div>
+        <div class="review-card__counter" id="reviewNum">01</div>
+      </div>
+      <button class="review-nav" onclick="changeReview(1)" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ FOOTER ══════════════ -->
+<footer class="bask-footer">
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-4">
+        <div class="footer__brand">
+          <span class="footer__brand-icon"><i class="fas fa-mug-hot"></i></span>
+          Bask Café
+        </div>
+        <p class="footer__desc">A community café dedicated to the art of coffee, the warmth of community, and the joy of slowing down over something truly well-made.</p>
+        <div class="footer__socials mt-4">
+          <a href="#" class="footer__social-btn"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="footer__social-btn"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="footer__social-btn"><i class="fab fa-tiktok"></i></a>
+          <a href="#" class="footer__social-btn"><i class="fab fa-twitter"></i></a>
+        </div>
+      </div>
+      <div class="col-6 col-lg-2">
+        <h6 class="footer__heading">Navigate</h6>
+        <ul class="footer__links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="careers.html">Careers</a></li>
+          <li><a href="environment.html">Environment</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-lg-2">
+        <h6 class="footer__heading">Visit</h6>
+        <ul class="footer__links">
+          <li><a href="events.html">Sips &amp; Stories</a></li>
+          <li><a href="events.html">Book a Table</a></li>
+          <li><a href="careers.html">Join the Team</a></li>
+          <li><a href="environment.html">Sustainability</a></li>
+          <li><a href="contact.html">Help &amp; Support</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-4">
+        <h6 class="footer__heading">Contact Us</h6>
+        <div class="footer__contact-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>4B Little Baguio Street, Marulas, Valenzuela City, Philippines</span>
+        </div>
+        <div class="footer__contact-item">
+          <i class="fas fa-phone"></i>
+          <span>+63 (02) 8XXX-XXXX</span>
+        </div>
+        <div class="footer__contact-item">
+          <i class="fas fa-envelope"></i>
+          <span>hello@baskcafe.com</span>
+        </div>
+        <div class="footer__contact-item">
+          <i class="fas fa-globe"></i>
+          <span>baskcafe.infinityfreeapp.com</span>
+        </div>
+        <div class="footer__contact-item">
+          <i class="fas fa-clock"></i>
+          <span>Mon–Thu: 9AM–12AM &nbsp;|&nbsp; Fri–Sat: 10AM–12AM</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>© 2025 Bask Café. All rights reserved. Crafted with <i class="fas fa-heart" style="color:#c0392b;"></i> in Valenzuela City.</p>
+      <p>Built for <a href="https://baskcafe.infinityfreeapp.com" style="color:rgba(255,255,255,.35);">baskcafe.infinityfreeapp.com</a></p>
+    </div>
+  </div>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+  <i class="fas fa-chevron-up"></i>
+</button>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
