@@ -15,7 +15,7 @@
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu"><span class="navbar-toggler-icon"></span></button>
     <div class="collapse navbar-collapse justify-content-center" id="navMenu">
       <ul class="navbar-nav gap-1">
-        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
         <li class="nav-item"><a class="nav-link" href="menu.html">Menu</a></li>
         <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
         <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
@@ -36,21 +36,21 @@
 
 <!-- HERO -->
 <section class="page-hero">
-  <div class="page-hero__bg" style="background-image:url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=1920&q=85');"></div>
+  <div class="page-hero__bg page-hero__bg--contact"></div>
   <div class="page-hero__overlay"></div>
   <div class="page-hero__content">
-    <p style="font-family:var(--font-ui);font-size:.72rem;letter-spacing:5px;text-transform:uppercase;color:var(--gold-400);margin-bottom:14px;">Bask Café</p>
+    <p class="page-hero__eyebrow">Bask Café</p>
     <h1 class="page-hero__script">Join the Table</h1>
     <p class="page-hero__sub">We'd love to hear from you. Share your thoughts, make a reservation, or simply say hello.</p>
   </div>
 </section>
 
 <!-- GET IN TOUCH -->
-<section class="section" style="background:var(--green-800);">
+<section class="section bg-green">
   <div class="container">
     <div class="section-header" data-reveal>
-      <span class="eyebrow" style="color:var(--gold-300);">Reach Out</span>
-      <h2 style="margin-top:10px;color:var(--white);">Get In Touch</h2>
+      <span class="eyebrow section-eyebrow-gold">Reach Out</span>
+      <h2 class="section-title-white mt-2">Get In Touch</h2>
       <div class="divider"></div>
     </div>
     <div class="row g-4">
@@ -91,19 +91,19 @@
             </div>
           </div>
 
-          <div style="margin-top:28px;padding-top:24px;border-top:1px solid rgba(255,255,255,.1);">
-            <div class="contact-detail__label" style="margin-bottom:12px;">Opening Hours</div>
-            <div style="display:flex;justify-content:space-between;font-family:var(--font-ui);font-size:.88rem;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.07);">
-              <span style="color:rgba(255,255,255,.65);">Monday – Thursday</span>
-              <span style="color:var(--gold-400);font-weight:600;">3:00 PM – 12:00 AM</span>
+          <div class="contact-hours">
+            <div class="contact-detail__label contact-hours__title">Opening Hours</div>
+            <div class="contact-hours__row">
+              <span class="contact-hours__day">Monday – Thursday</span>
+              <span class="contact-hours__time">3:00 PM – 12:00 AM</span>
             </div>
-            <div style="display:flex;justify-content:space-between;font-family:var(--font-ui);font-size:.88rem;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.07);">
-              <span style="color:rgba(255,255,255,.65);">Friday – Sunday</span>
-              <span style="color:var(--gold-400);font-weight:600;">10:00 AM – 12:00 AM</span>
+            <div class="contact-hours__row">
+              <span class="contact-hours__day">Friday – Sunday</span>
+              <span class="contact-hours__time">10:00 AM – 12:00 AM</span>
             </div>
-            <div style="display:flex;justify-content:space-between;font-family:var(--font-ui);font-size:.88rem;padding:8px 0;">
-              <span style="color:rgba(255,255,255,.65);">Holidays</span>
-              <span style="color:rgba(255,255,255,.4);">Closed</span>
+            <div class="contact-hours__row contact-hours__row--last">
+              <span class="contact-hours__day">Holidays</span>
+              <span class="contact-hours__time contact-hours__time--muted">Closed</span>
             </div>
           </div>
         </div>
@@ -112,7 +112,7 @@
       <!-- CONTACT FORM -->
       <div class="col-lg-7" data-reveal data-reveal-delay="2">
         <div class="form-card">
-          <h3 style="font-family:var(--font-display);color:var(--green-800);margin-bottom:24px;">Send Us a Message</h3>
+          <h3 class="form-card__title">Send Us a Message</h3>
           <form id="contactForm" novalidate>
             <div class="row g-3">
               <div class="col-md-6">
@@ -136,22 +136,22 @@
               </div>
               <div class="col-12">
                 <label class="form-lbl" for="contactMessage">Message *</label>
-                <textarea id="contactMessage" class="form-inp" rows="5" placeholder="Write your message here..." required style="resize:vertical;"></textarea>
+                <textarea id="contactMessage" class="form-inp form-textarea" rows="5" placeholder="Write your message here..." required></textarea>
                 <div class="field-error" id="contactMessageError">Please write your message.</div>
               </div>
               <div class="col-12">
-                <button type="submit" class="btn-bask btn-bask-green w-100" style="justify-content:center;">
+                <button type="submit" class="btn-bask btn-bask-green w-100 btn-center-content">
                   Send Message &nbsp;<i class="fas fa-paper-plane"></i>
                 </button>
               </div>
             </div>
           </form>
-          <div id="formSuccess" style="display:none;flex-direction:column;align-items:center;padding:40px 20px;text-align:center;">
-            <div style="width:64px;height:64px;background:var(--green-100);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:20px;">
-              <i class="fas fa-check" style="color:var(--green-600);font-size:1.6rem;"></i>
+          <div id="formSuccess" class="form-success">
+            <div class="form-success__icon-wrap">
+              <i class="fas fa-check form-success__icon"></i>
             </div>
-            <h4 style="color:var(--green-800);margin-bottom:10px;">Message Sent!</h4>
-            <p style="color:var(--text-500);font-size:.95rem;">Thank you for reaching out. We'll get back to you within 24 hours.</p>
+            <h4 class="form-success__title">Message Sent!</h4>
+            <p class="form-success__copy">Thank you for reaching out. We'll get back to you within 24 hours.</p>
           </div>
         </div>
       </div>
@@ -164,16 +164,16 @@
   <div class="container">
     <div class="section-header centered" data-reveal>
       <span class="eyebrow">Find Us</span>
-      <h2 style="margin-top:12px;">Visit Bask Café</h2>
+      <h2 class="section-title-top">Visit Bask Café</h2>
       <div class="divider centered"></div>
-      <p style="color:var(--text-500);max-width:440px;margin:0 auto;">We're at 4B Little Baguio Street, Marulas, Valenzuela City. Come find us — there's always a cup waiting.</p>
+      <p class="copy-muted copy-centered-sm">We're at 4B Little Baguio Street, Marulas, Valenzuela City. Come find us — there's always a cup waiting.</p>
     </div>
-    <div class="mt-5" style="border-radius:var(--radius-xl);overflow:hidden;box-shadow:var(--shadow-lg);" data-reveal>
+    <div class="mt-5 map-frame" data-reveal>
       <iframe
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3859.8041578899567!2d120.9764858!3d14.7164799!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397b4c5e9f73fe3%3A0x3e0b4b12a3bbde98!2sLittle%20Baguio%20St%2C%20Marulas%2C%20Valenzuela%2C%20Metro%20Manila!5e0!3m2!1sen!2sph!4v1700000000000"
         width="100%"
         height="480"
-        style="border:0;display:block;"
+        class="map-frame__iframe"
         allowfullscreen=""
         loading="lazy"
         referrerpolicy="no-referrer-when-downgrade"
@@ -181,25 +181,81 @@
       </iframe>
     </div>
     <div class="text-center mt-4">
-      <a href="https://maps.google.com/?q=Little+Baguio+Street+Marulas+Valenzuela+City" target="_blank" rel="noopener" class="btn-bask btn-bask-green" style="font-size:.8rem;">
+      <a href="https://maps.google.com/?q=Little+Baguio+Street+Marulas+Valenzuela+City" target="_blank" rel="noopener" class="btn-bask btn-bask-green btn-bask-compact">
         <i class="fas fa-directions me-1"></i> Get Directions
       </a>
     </div>
   </div>
 </section>
 
+<!-- ══════════════ FOOTER ══════════════ -->
 <footer class="bask-footer">
   <div class="container">
     <div class="row g-5">
-      <div class="col-lg-4"><div class="footer__brand"><span class="footer__brand-icon"><i class="fas fa-mug-hot"></i></span>Bask Café</div><p class="footer__desc">A community café dedicated to the art of coffee, the warmth of community, and the joy of slowing down.</p><div class="footer__socials mt-4"><a href="#" class="footer__social-btn"><i class="fab fa-facebook-f"></i></a><a href="#" class="footer__social-btn"><i class="fab fa-instagram"></i></a><a href="#" class="footer__social-btn"><i class="fab fa-tiktok"></i></a></div></div>
-      <div class="col-6 col-lg-2"><h6 class="footer__heading">Navigate</h6><ul class="footer__links"><li><a href="index.html">Home</a></li><li><a href="menu.html">Menu</a></li><li><a href="about.html">About Us</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="events.html">Events</a></li><li><a href="careers.html">Careers</a></li><li><a href="contact.html">Contact</a></li></ul></div>
-      <div class="col-6 col-lg-2"><h6 class="footer__heading">Company</h6><ul class="footer__links"><li><a href="environment.html">Sustainability</a></li><li><a href="events.html">Sips &amp; Stories</a></li><li><a href="careers.html">Join the Team</a></li><li><a href="contact.html">Help &amp; Support</a></li></ul></div>
-      <div class="col-lg-4"><h6 class="footer__heading">Contact Us</h6><div class="footer__contact-item"><i class="fas fa-map-marker-alt"></i><span>4B Little Baguio Street, Marulas, Valenzuela City, Philippines</span></div><div class="footer__contact-item"><i class="fas fa-phone"></i><span>+63 (02) 8XXX-XXXX</span></div><div class="footer__contact-item"><i class="fas fa-envelope"></i><span>hello@baskcafe.com</span></div></div>
+      <div class="col-lg-4">
+        <div class="footer__brand">
+          <span class="footer__brand-icon"><i class="fas fa-mug-hot"></i></span>
+          Bask Café
+        </div>
+        <p class="footer__desc">A community café dedicated to the art of coffee, the warmth of community, and the joy of slowing down over something truly well-made.</p>
+        <div class="footer__socials mt-4">
+          <a href="https://www.facebook.com/profile.php?id=61569599993182" class="footer__social-btn"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.instagram.com/baskcafe_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="footer__social-btn"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+      <div class="col-6 col-lg-2">
+        <h6 class="footer__heading">Navigate</h6>
+        <ul class="footer__links">
+          <li><a href="home.html">Home</a></li>
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="careers.html">Careers</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-lg-2">
+        <h6 class="footer__heading">Visit</h6>
+        <ul class="footer__links">
+          <li><a href="events.html">Sips &amp; Stories</a></li>
+          <li><a href="gallery.html">Community</a></li>
+          <li><a href="careers.html">Join the Team</a></li>
+          <li><a href="environment.html">Sustainability</a></li>
+          <li><a href="contact.html">Help &amp; Support</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-4">
+        <h6 class="footer__heading">Contact Us</h6>
+        <div class="footer__contact-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>4B Little Baguio Street, Marulas, Valenzuela City, Philippines</span>
+        </div>
+        <div class="footer__contact-item">
+          <i class="fas fa-envelope"></i>
+          <span>baskcafe@gmail.com</span>
+        </div>
+        <div class="footer__contact-item">
+          <i class="fas fa-globe"></i>
+          <span>Bask Cafe</span>
+        </div>
+        <div class="footer__contact-item">
+          <i class="fas fa-clock"></i>
+          <span>Mon–Thu: 3PM–12AM &nbsp;|&nbsp; Fri–Sun: 10AM–12AM</span>
+        </div>
+      </div>
     </div>
-    <div class="footer__bottom"><p>© 2025 Bask Café. All rights reserved.</p></div>
+    <div class="footer__bottom">
+      <p>© 2025 Bask Café. All rights reserved. Crafted with love in Valenzuela City.</p>
+      <p>Built for <a href="https://baskcafe.infinityfreeapp.com" class="footer__credit-link">Bask Cafe</a></p>
+    </div>  
   </div>
 </footer>
-<button class="back-to-top" id="backToTop"><i class="fas fa-chevron-up"></i></button>
+
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+  <i class="fas fa-chevron-up"></i>
+</button>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="main.js"></script>
 </body>

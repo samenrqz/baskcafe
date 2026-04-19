@@ -99,6 +99,13 @@ document.addEventListener('DOMContentLoaded', () => {
     setReview(currentReview);
   };
 
+  document.querySelectorAll('[data-review-dir]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const dir = Number(btn.getAttribute('data-review-dir'));
+      if (!Number.isNaN(dir)) window.changeReview(dir);
+    });
+  });
+
   /* Auto-advance reviews */
   if (reviewText) setInterval(() => window.changeReview(1), 6000);
 
@@ -118,6 +125,25 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.style.overflow = '';
   };
   if (lightbox) {
+    document.querySelectorAll('[data-lightbox-src]').forEach(item => {
+      const openFromItem = () => {
+        const src = item.getAttribute('data-lightbox-src');
+        if (src) openLightbox(src);
+      };
+
+      item.addEventListener('click', openFromItem);
+      item.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openFromItem();
+        }
+      });
+    });
+
+    document.querySelectorAll('[data-lightbox-close]').forEach(btn => {
+      btn.addEventListener('click', closeLightbox);
+    });
+
     lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
   }

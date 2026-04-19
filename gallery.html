@@ -15,7 +15,7 @@
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu"><span class="navbar-toggler-icon"></span></button>
     <div class="collapse navbar-collapse justify-content-center" id="navMenu">
       <ul class="navbar-nav gap-1">
-        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
         <li class="nav-item"><a class="nav-link" href="menu.html">Menu</a></li>
         <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
         <li class="nav-item"><a class="nav-link active" href="gallery.html">Gallery</a></li>
@@ -35,10 +35,10 @@
 </nav>
 
 <section class="page-hero">
-  <div class="page-hero__bg" style="background-image:url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1920&q=85');"></div>
+  <div class="page-hero__bg page-hero__bg--gallery"></div>
   <div class="page-hero__overlay"></div>
   <div class="page-hero__content">
-    <p style="font-family:var(--font-ui);font-size:.72rem;letter-spacing:5px;text-transform:uppercase;color:var(--gold-400);margin-bottom:14px;">Bask Café</p>
+    <p class="page-hero__eyebrow">Bask Café</p>
     <h1 class="page-hero__script">Memories</h1>
     <p class="page-hero__sub">A candid look at the grace, love, and genuine nature that defines our workspace.</p>
   </div>
@@ -48,20 +48,20 @@
   <div class="container">
     <div class="section-header centered" data-reveal>
       <span class="eyebrow">Our Gallery</span>
-      <h2 style="margin-top:12px;">Our Shared Craft</h2>
+      <h2 class="section-title-top">Our Shared Craft</h2>
       <div class="divider centered"></div>
-      <p style="color:var(--text-500);max-width:480px;margin:0 auto;">Moments from behind the bar, within the community, and all the beautiful in-betweens.</p>
+      <p class="copy-muted copy-centered-gallery">Moments from behind the bar, within the community, and all the beautiful in-betweens.</p>
     </div>
     <div class="gallery-masonry mt-5">
-      <div class="g-item" onclick="openLightbox('https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1200&q=90')"><img src="https://images.unsplash.com/photo-1501854140801-50d01698950b?w=600&q=80" alt="Gallery"/></div>
-      <div class="g-item" onclick="openLightbox('https://images.unsplash.com/photo-1446329813274-7c9036bd9a1f?w=1200&q=90')"><img src="https://images.unsplash.com/photo-1446329813274-7c9036bd9a1f?w=600&q=80" alt="Gallery"/></div>
-      <div class="g-item" onclick="openLightbox('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&q=90')"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=80" alt="Gallery"/></div>
-      <div class="g-item" onclick="openLightbox('https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=1200&q=90')"><img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=600&q=80" alt="Gallery"/></div>
-      <div class="g-item" onclick="openLightbox('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1200&q=90')"><img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600&q=80" alt="Gallery"/></div>
-      <div class="g-item" onclick="openLightbox('https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=1200&q=90')"><img src="https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=600&q=80" alt="Gallery"/></div>
-      <div class="g-item" onclick="openLightbox('https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=1200&q=90')"><img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=600&q=80" alt="Gallery"/></div>
-      <div class="g-item" onclick="openLightbox('https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=1200&q=90')"><img src="https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=600&q=80" alt="Gallery"/></div>
-      <div class="g-item" onclick="openLightbox('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1200&q=90')"><img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&q=80" alt="Gallery"/></div>
+      <div class="g-item" role="button" tabindex="0" data-lightbox-src="https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1200&q=90"><img src="https://images.unsplash.com/photo-1501854140801-50d01698950b?w=600&q=80" alt="Gallery"/></div>
+      <div class="g-item" role="button" tabindex="0" data-lightbox-src="https://images.unsplash.com/photo-1446329813274-7c9036bd9a1f?w=1200&q=90"><img src="https://images.unsplash.com/photo-1446329813274-7c9036bd9a1f?w=600&q=80" alt="Gallery"/></div>
+      <div class="g-item" role="button" tabindex="0" data-lightbox-src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&q=90"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=80" alt="Gallery"/></div>
+      <div class="g-item" role="button" tabindex="0" data-lightbox-src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=1200&q=90"><img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=600&q=80" alt="Gallery"/></div>
+      <div class="g-item" role="button" tabindex="0" data-lightbox-src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1200&q=90"><img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600&q=80" alt="Gallery"/></div>
+      <div class="g-item" role="button" tabindex="0" data-lightbox-src="https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=1200&q=90"><img src="https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=600&q=80" alt="Gallery"/></div>
+      <div class="g-item" role="button" tabindex="0" data-lightbox-src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=1200&q=90"><img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=600&q=80" alt="Gallery"/></div>
+      <div class="g-item" role="button" tabindex="0" data-lightbox-src="https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=1200&q=90"><img src="https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=600&q=80" alt="Gallery"/></div>
+      <div class="g-item" role="button" tabindex="0" data-lightbox-src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1200&q=90"><img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&q=80" alt="Gallery"/></div>
     </div>
   </div>
 </section>
@@ -70,60 +70,100 @@
   <div class="container">
     <div class="section-header centered" data-reveal>
       <span class="eyebrow">In the Moment</span>
-      <h2 style="margin-top:12px;">Caught in the Moment</h2>
+      <h2 class="section-title-top">Caught in the Moment</h2>
       <div class="divider centered"></div>
     </div>
     <div class="gallery-masonry mt-5">
-      <div class="g-item" onclick="openLightbox('https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=1200&q=90')"><img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=500&q=80" alt="Coffee"/></div>
-      <div class="g-item" onclick="openLightbox('https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=1200&q=90')"><img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=500&q=80" alt="Coffee Shop"/></div>
-      <div class="g-item" onclick="openLightbox('https://images.unsplash.com/photo-1445116572660-236099ec97a0?w=1200&q=90')"><img src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?w=500&q=80" alt="Coffee"/></div>
-      <div class="g-item" onclick="openLightbox('https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=1200&q=90')"><img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=500&q=80" alt="Café"/></div>
-      <div class="g-item" onclick="openLightbox('https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=1200&q=90')"><img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=500&q=80" alt="Espresso"/></div>
-      <div class="g-item" onclick="openLightbox('https://images.unsplash.com/photo-1515823662972-da6a2e4d3002?w=1200&q=90')"><img src="https://images.unsplash.com/photo-1515823662972-da6a2e4d3002?w=500&q=80" alt="Matcha"/></div>
-      <div class="g-item" onclick="openLightbox('https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=1200&q=90')"><img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=500&q=80" alt="Frappe"/></div>
-      <div class="g-item" onclick="openLightbox('https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=1200&q=90')"><img src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=500&q=80" alt="Coffee Beans"/></div>
-      <div class="g-item" onclick="openLightbox('https://images.unsplash.com/photo-1534687941688-651ccaafbff8?w=1200&q=90')"><img src="https://images.unsplash.com/photo-1534687941688-651ccaafbff8?w=500&q=80" alt="Coffee"/></div>
-      <div class="g-item" onclick="openLightbox('https://images.unsplash.com/photo-1567608285969-48e4bbe0d399?w=1200&q=90')"><img src="https://images.unsplash.com/photo-1567608285969-48e4bbe0d399?w=500&q=80" alt="Food"/></div>
-      <div class="g-item" onclick="openLightbox('https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=1200&q=90')"><img src="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=500&q=80" alt="Pasta"/></div>
-      <div class="g-item" onclick="openLightbox('https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=1200&q=90')"><img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=500&q=80" alt="Event"/></div>
+      <div class="g-item" role="button" tabindex="0" data-lightbox-src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=1200&q=90"><img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=500&q=80" alt="Coffee"/></div>
+      <div class="g-item" role="button" tabindex="0" data-lightbox-src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=1200&q=90"><img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=500&q=80" alt="Coffee Shop"/></div>
+      <div class="g-item" role="button" tabindex="0" data-lightbox-src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?w=1200&q=90"><img src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?w=500&q=80" alt="Coffee"/></div>
+      <div class="g-item" role="button" tabindex="0" data-lightbox-src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=1200&q=90"><img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=500&q=80" alt="Café"/></div>
+      <div class="g-item" role="button" tabindex="0" data-lightbox-src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=1200&q=90"><img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=500&q=80" alt="Espresso"/></div>
+      <div class="g-item" role="button" tabindex="0" data-lightbox-src="https://images.unsplash.com/photo-1515823662972-da6a2e4d3002?w=1200&q=90"><img src="https://images.unsplash.com/photo-1515823662972-da6a2e4d3002?w=500&q=80" alt="Matcha"/></div>
+      <div class="g-item" role="button" tabindex="0" data-lightbox-src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=1200&q=90"><img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=500&q=80" alt="Frappe"/></div>
+      <div class="g-item" role="button" tabindex="0" data-lightbox-src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=1200&q=90"><img src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=500&q=80" alt="Coffee Beans"/></div>
+      <div class="g-item" role="button" tabindex="0" data-lightbox-src="https://images.unsplash.com/photo-1534687941688-651ccaafbff8?w=1200&q=90"><img src="https://images.unsplash.com/photo-1534687941688-651ccaafbff8?w=500&q=80" alt="Coffee"/></div>
+      <div class="g-item" role="button" tabindex="0" data-lightbox-src="https://images.unsplash.com/photo-1567608285969-48e4bbe0d399?w=1200&q=90"><img src="https://images.unsplash.com/photo-1567608285969-48e4bbe0d399?w=500&q=80" alt="Food"/></div>
+      <div class="g-item" role="button" tabindex="0" data-lightbox-src="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=1200&q=90"><img src="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=500&q=80" alt="Pasta"/></div>
+      <div class="g-item" role="button" tabindex="0" data-lightbox-src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=1200&q=90"><img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=500&q=80" alt="Event"/></div>
     </div>
   </div>
 </section>
 
 <!-- Lightbox -->
 <div class="lightbox" id="lightbox">
-  <button class="lightbox__close" onclick="closeLightbox()" aria-label="Close">&times;</button>
+  <button class="lightbox__close" data-lightbox-close aria-label="Close">&times;</button>
   <img src="" alt="Gallery Image" id="lightboxImg"/>
 </div>
 
+<!-- ══════════════ FOOTER ══════════════ -->
 <footer class="bask-footer">
   <div class="container">
     <div class="row g-5">
       <div class="col-lg-4">
         <div class="footer__brand">
-          <span class="footer__brand-icon"><i class="fas fa-mug-hot"></i></span>Bask Café</div>
-        <p class="footer__desc">A community café dedicated to the art of coffee, the warmth of community, and the joy of slowing down.</p>
+          <span class="footer__brand-icon"><i class="fas fa-mug-hot"></i></span>
+          Bask Café
+        </div>
+        <p class="footer__desc">A community café dedicated to the art of coffee, the warmth of community, and the joy of slowing down over something truly well-made.</p>
         <div class="footer__socials mt-4">
           <a href="https://www.facebook.com/profile.php?id=61569599993182" class="footer__social-btn"><i class="fab fa-facebook-f"></i></a>
           <a href="https://www.instagram.com/baskcafe_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="footer__social-btn"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
       <div class="col-6 col-lg-2">
-        <h6 class="footer__heading">Navigate</h6><ul class="footer__links"><li>
-          <a href="index.html">Home</a></li><li>
-          <a href="menu.html">Menu</a></li><li>
-          <a href="about.html">About Us</a></li><li>
-          <a href="gallery.html">Gallery</a></li><li>
-          <a href="events.html">Events</a></li><li>
-          <a href="careers.html">Careers</a></li><li>
-          <a href="contact.html">Contact</a></li></ul></div>
-      <div class="col-lg-6"><h6 class="footer__heading">Contact Us</h6>
-      <div class="footer__contact-item"><i class="fas fa-map-marker-alt"></i><span>4B Little Baguio Street, Marulas, Valenzuela City, Philippines</span></div>
-      <div class="footer__contact-item"><i class="fas fa-phone"></i><span>+63 (02) 8XXX-XXXX</span></div><div class="footer__contact-item">
-      <i class="fas fa-envelope"></i><span>baskcafe@gmail.com</span></div></div>
+        <h6 class="footer__heading">Navigate</h6>
+        <ul class="footer__links">
+          <li><a href="home.html">Home</a></li>
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="careers.html">Careers</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-lg-2">
+        <h6 class="footer__heading">Visit</h6>
+        <ul class="footer__links">
+          <li><a href="events.html">Sips &amp; Stories</a></li>
+          <li><a href="gallery.html">Community</a></li>
+          <li><a href="careers.html">Join the Team</a></li>
+          <li><a href="environment.html">Sustainability</a></li>
+          <li><a href="contact.html">Help &amp; Support</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-4">
+        <h6 class="footer__heading">Contact Us</h6>
+        <div class="footer__contact-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>4B Little Baguio Street, Marulas, Valenzuela City, Philippines</span>
+        </div>
+        <div class="footer__contact-item">
+          <i class="fas fa-envelope"></i>
+          <span>baskcafe@gmail.com</span>
+        </div>
+        <div class="footer__contact-item">
+          <i class="fas fa-globe"></i>
+          <span>Bask Cafe</span>
+        </div>
+        <div class="footer__contact-item">
+          <i class="fas fa-clock"></i>
+          <span>Mon–Thu: 3PM–12AM &nbsp;|&nbsp; Fri–Sun: 10AM–12AM</span>
+        </div>
+      </div>
     </div>
-    <div class="footer__bottom"><p>© 2025 Bask Café. All rights reserved.</p></div>
+    <div class="footer__bottom">
+      <p>© 2025 Bask Café. All rights reserved. Crafted with love in Valenzuela City.</p>
+      <p>Built for <a href="https://baskcafe.infinityfreeapp.com" class="footer__credit-link">Bask Cafe</a></p>
+    </div>  
   </div>
 </footer>
-<button class="back-to-top" id="backToTop"><i class="fas fa-chevron-up"></i></button>
+
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+  <i class="fas fa-chevron-up"></i>
+</button>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="main.js"></script>
 </body>
