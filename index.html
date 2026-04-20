@@ -1,236 +1,401 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>Bask Café — Welcome</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bask Café — Welcome</title>
+    <meta name="description" content="Bask Café — A warm corner in Valenzuela City." />
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Dancing+Script:wght@500;600;700&family=Jost:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Jost:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
 
-  <!-- Your master stylesheet -->
-  <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
-  <style>
-    /* ── Page-level layout only — all design tokens come from style.css ── */
-    html, body        { height: 100%; overflow: hidden; }
-    .page-wrapper     { display: flex; height: 100vh; width: 100vw; }
-
-    /* ── LEFT PANEL ── */
-    .panel-left {
-      width: 40%;
-      flex-shrink: 0;
-      height: 100vh;
-      background-color: var(--cream-200);
-      display: flex;
-      flex-direction: column;
-      align-items: center;          /* center children horizontally */
-      position: relative;
-      border-right: 1px solid var(--cream-300);
-      overflow: hidden;
-    }
-
-    /* ── Logo: top-center, generous padding from edge ── */
-    .logo-wrap {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      padding: 2.5rem 2rem 0;
-      flex-shrink: 0;
-    }
-    .logo-wrap img {
-      width: 100%;
-      max-width: 260px;
-      height: auto;
-      display: block;
-      border: none;
-      outline: none;
-      box-shadow: none;
-      animation: floatBounce 3.2s ease-in-out infinite;
-    }
-
-    /* ── Content block: fills remaining space, shifted right ── */
-    .content-wrap {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      width: 100%;
-      /* Shift content to the right within the left panel */
-      padding: 2rem 3rem 3rem 4.5rem;
-    }
-
-    /* ── Tagline — inherits style.css Lora italic ── */
-    .splash__tagline {
-      font-family: var(--font-body);
-      font-size: clamp(.92rem, 1.4vw, 1.05rem);
-      font-style: italic;
-      color: rgba(44,31,14,.68);
-      line-height: 1.85;
-      border-left: 2px solid var(--gold-500);
-      padding-left: 1rem;
-      max-width: 320px;
-      margin-bottom: 2.5rem;
-    }
-
-    /* ── Buttons — reuse style.css btn-bask classes ── */
-    .btn-bask { border-radius: 0; }
-
-    /* ── Corner brackets from style.css corner-deco ── */
-    .bracket-tl, .bracket-br {
-      position: absolute;
-      width: 22px; height: 22px;
-      opacity: .2;
-    }
-    .bracket-tl {
-      top: 1.25rem; left: 1.25rem;
-      border-top: 1.5px solid var(--brown-700);
-      border-left: 1.5px solid var(--brown-700);
-    }
-    .bracket-br {
-      bottom: 1.25rem; right: 1.25rem;
-      border-bottom: 1.5px solid var(--brown-700);
-      border-right: 1.5px solid var(--brown-700);
-    }
-
-    /* ── RIGHT PANEL ── */
-    .panel-right {
-      flex: 1;
-      height: 100vh;
-      position: relative;
-      overflow: hidden;
-      background-color: var(--green-900);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 1.25rem;
-    }
-
-    .cafe-photo {
-      width: 100%;
-      height: calc(100vh - 2.5rem);
-      object-fit: cover;
-      object-position: center;
-      display: block;
-    }
-
-    .panel-right__watermark {
-      position: absolute;
-      bottom: 2rem; right: 1.75rem;
-      writing-mode: vertical-rl;
-      font-family: var(--font-body);
-      font-size: .6rem;
-      letter-spacing: .18em;
-      font-style: italic;
-      color: rgba(255,255,255,.3);
-      z-index: 2;
-      pointer-events: none;
-    }
-
-    /* ── Float bounce — pure CSS ── */
-    @keyframes floatBounce {
-      0%,100% { transform: translateY(0); }
-      50%      { transform: translateY(-9px); }
-    }
-
-    /* ── Stagger reveal (mirrors style.css [data-reveal]) ── */
-    .reveal     { opacity: 0; transform: translateY(18px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
-    .reveal.in  { opacity: 1; transform: translateY(0); }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 991.98px) {
-      .panel-left   { width: 48%; }
-      .content-wrap { padding: 2rem 2.5rem 3rem 3.5rem; }
-      .logo-wrap img { max-width: 220px; }
-    }
-
-    @media (max-width: 767.98px) {
-      html, body    { height: 100%; overflow: hidden; }
-      .page-wrapper { flex-direction: column; height: 100vh; }
-      .panel-left   { width: 100%; height: 100vh; }
-      .logo-wrap    { padding-top: 2rem; }
-      .logo-wrap img { max-width: 200px; }
-      .content-wrap { padding: 1.5rem 2rem 2rem 2rem; }
-      .panel-right  { display: none; }
-    }
-  </style>
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+         :root {
+            --champagne: #EDE8DC;
+            --forest: #1D3D2A;
+            --muted: #7A7260;
+            --f-ui: 'Jost', sans-serif;
+            --f-body: 'Lora', serif;
+        }
+        
+        html,
+        body {
+            height: 100%;
+            overflow: hidden;
+        }
+        /* ── WRAPPER ── */
+        
+        .splash-wrap {
+            display: flex;
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+        /* ── SEAM FADE ──────────────────────────────────────────────────────
+       Sits on the wrapper so it is NEVER clipped by child overflow:hidden.
+       Very soft — only the last ~60px of each panel fades, not a wide bar.
+    ──────────────────────────────────────────────────────────────────── */
+        
+        .splash-wrap::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: calc(50% - 60px);
+            /* 60px left of centre */
+            width: 120px;
+            /* 60px into each panel */
+            height: 100%;
+            /* champagne bleeds gently into the image, then stops */
+            background: linear-gradient( to right, rgba(237, 232, 220, 0.85) 0%, rgba(237, 232, 220, 0.0) 100%);
+            z-index: 10;
+            pointer-events: none;
+        }
+        /* ── LEFT PANEL ── */
+        
+        .panel-left {
+            width: 50%;
+            height: 100%;
+            background: var(--champagne);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            /* keeps the block centred vertically */
+            padding: 48px 52px 80px 60px;
+            /* extra bottom pad pulls block slightly up */
+            position: relative;
+            overflow: hidden;
+        }
+        /* Grain */
+        
+        .panel-left::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            background-size: 200px;
+            opacity: 0.035;
+            pointer-events: none;
+            z-index: 0;
+        }
+        /* All content above grain */
+        
+        .panel-left__inner {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* centres everything on the same axis */
+            text-align: center;
+            gap: 0;
+            width: 100%;
+            max-width: 400px;
+        }
+        /* ── LOGO ── big, no bottom gap yet — gap controlled below ── */
+        
+        .splash-logo-wrap {
+            width: 100%;
+            margin-bottom: 10px;
+            opacity: 0;
+            animation: fadeUp 0.8s ease 0.15s forwards;
+        }
+        
+        .splash-logo-img {
+            width: 100%;
+            max-width: 360px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            object-fit: contain;
+            /* minimal drop shadow — soft, not distracting */
+            filter: drop-shadow(0px 6px 14px rgba(0, 0, 0, 0.18));
+            /* bounce starts after fade-in completes (0.95s delay) */
+            animation: logoBounce 3.2s ease-in-out 0.95s infinite;
+        }
+        
+        @keyframes logoBounce {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            45% {
+                transform: translateY(-9px);
+            }
+            65% {
+                transform: translateY(-7px);
+            }
+        }
+        /* Text fallback */
+        
+        .splash-logo-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(5rem, 9vw, 7.5rem);
+            color: var(--forest);
+            line-height: 1;
+            display: block;
+        }
+        
+        .splash-estd {
+            font-family: var(--f-ui);
+            font-size: 0.62rem;
+            font-weight: 600;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--forest);
+            opacity: 0.45;
+            margin-top: 6px;
+            display: block;
+        }
+        /* ── LOCATION ── */
+        
+        .splash-location {
+            font-family: var(--f-ui);
+            font-size: 0.67rem;
+            font-weight: 500;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 8px;
+            opacity: 0;
+            animation: fadeUp 0.7s ease 0.4s forwards;
+        }
+        
+        .splash-location span {
+            margin: 0 8px;
+            opacity: 0.35;
+        }
+        /* ── RULE ── */
+        
+        .splash-rule {
+            width: 160px;
+            height: 1px;
+            background: var(--muted);
+            margin: 0 auto 12px;
+            opacity: 0;
+            animation: fadeIn 0.5s ease 0.5s forwards;
+        }
+        /* ── TAGLINE — directly after rule, aligned to logo centre ── */
+        
+        .splash-tagline {
+            font-family: var(--f-body);
+            font-style: italic;
+            font-size: clamp(0.84rem, 1.1vw, 0.95rem);
+            color: var(--forest);
+            opacity: 0;
+            line-height: 1.82;
+            max-width: 340px;
+            margin-bottom: 20px;
+            animation: fadeUp 0.8s ease 0.6s forwards;
+        }
+        /* ── BUTTONS — directly under tagline, same centre axis ── */
+        
+        .splash-cta {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeUp 0.8s ease 0.78s forwards;
+        }
+        
+        .btn-enter {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            font-family: var(--f-ui);
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            background: var(--forest);
+            color: #fff;
+            border: 2px solid var(--forest);
+            padding: 12px 24px;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: background 0.22s, color 0.22s;
+        }
+        
+        .btn-enter:hover {
+            background: transparent;
+            color: var(--forest);
+        }
+        
+        .btn-menu {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--f-ui);
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            background: transparent;
+            color: var(--forest);
+            border: 2px solid var(--forest);
+            padding: 12px 24px;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: background 0.22s, color 0.22s;
+        }
+        
+        .btn-menu:hover {
+            background: var(--forest);
+            color: #fff;
+        }
+        /* ── RIGHT PANEL ── */
+        
+        .panel-right {
+            width: 50%;
+            height: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .panel-right__img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center center;
+            display: block;
+            animation: kenBurns 24s ease-in-out infinite alternate;
+        }
+        
+        @keyframes kenBurns {
+            from {
+                transform: scale(1.00);
+            }
+            to {
+                transform: scale(1.05);
+            }
+        }
+        
+        .panel-right__caption {
+            position: absolute;
+            bottom: 14px;
+            right: 16px;
+            font-family: var(--f-body);
+            font-size: 0.58rem;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.4);
+            z-index: 2;
+        }
+        /* ── Animations ── */
+        
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(16px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 0.22;
+            }
+        }
+        /* ── Mobile ── */
+        
+        @media (max-width: 767.98px) {
+            html,
+            body {
+                overflow: auto;
+            }
+            .splash-wrap {
+                flex-direction: column;
+                height: auto;
+                min-height: 100vh;
+            }
+            .splash-wrap::after {
+                display: none;
+            }
+            .panel-left {
+                width: 100%;
+                height: auto;
+                padding: 60px 28px 44px;
+            }
+            .panel-right {
+                width: 100%;
+                height: 58vw;
+                min-height: 260px;
+            }
+        }
+    </style>
 </head>
 
-<body class="page-splash">
-<div class="page-wrapper">
+<body>
 
-  <!-- ══ LEFT PANEL ══ -->
-  <div class="panel-left">
-    <div class="bracket-tl"></div>
-    <div class="bracket-br"></div>
+    <div class="splash-wrap">
 
-    <!-- Logo: top-center -->
-    <div class="logo-wrap reveal" data-delay="80">
-      <img
-        src="images/BASKCAFELOGO.png"
-        alt="Bask Café"
-      />
+        <!-- ═══ LEFT ═══ -->
+        <div class="panel-left">
+            <div class="panel-left__inner">
+
+                <!-- Logo -->
+                <div class="splash-logo-wrap">
+                    <img src="../images/BASKCAFELOGO.png" alt="Bask Café" class="splash-logo-img" onerror="this.style.display='none';document.getElementById('logo-fb').style.display='block';" />
+                    <div id="logo-fb" style="display:none;">
+                        <span class="splash-logo-title">Bask<br>Café</span>
+                        <span class="splash-estd">ESTD 2024</span>
+                    </div>
+                </div>
+
+                <!-- Location -->
+                <p class="splash-location">
+                    Marulas <span>&middot;</span> Valenzuela
+                </p>
+
+                <!-- Rule -->
+                <div class="splash-rule"></div>
+
+                <!-- Tagline -->
+                <p class="splash-tagline">
+                    Elevate your daily ritual with the finest brews, meticulously crafted to bring warmth, depth, and a moment of pure pleasure.
+                </p>
+
+                <!-- Buttons -->
+                <div class="splash-cta">
+                    <a href="home.html" class="btn-enter">
+            Enter <i class="fas fa-arrow-right"></i>
+          </a>
+                    <a href="menu.html" class="btn-menu">
+                        <i class="fas fa-book-open"></i> View Menu
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ═══ RIGHT ═══ -->
+        <div class="panel-right">
+            <img class="panel-right__img" src="../images/bask_splash.jpg" alt="Bask Café exterior" />
+            <span class="panel-right__caption">Bask Café &mdash; Artisan Coffee</span>
+        </div>
+
     </div>
 
-    <!-- Content block: shifted right via padding-left -->
-    <div class="content-wrap">
-
-      <p class="splash__tagline reveal" data-delay="240">
-        Elevate your daily ritual with the finest brews, meticulously crafted
-        to bring warmth, depth, and a moment of pure pleasure.
-      </p>
-
-      <div class="d-flex flex-wrap gap-3 reveal" data-delay="400">
-        <a href="home.html" class="btn-bask btn-bask-green">
-          Enter &nbsp;<i class="fas fa-arrow-right fa-xs"></i>
-        </a>
-        <a href="menu.html" class="btn-bask btn-bask-outline-green">
-          <i class="fas fa-book-open fa-xs me-1"></i> View Menu
-        </a>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- ══ RIGHT PANEL ══ -->
-  <div class="panel-right">
-    <img
-      src="/baskcafe/images/baskartisan.png"
-      alt="Bask Artisan Café"
-      class="cafe-photo img-thumbnail img-fluid"
-      onerror="this.style.display='none';"
-    />
-    <span class="panel-right__watermark">Bask Café &nbsp;·&nbsp; Fine Coffee</span>
-  </div>
-
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-<script src="main.js"></script>
-<script>
-  document.querySelectorAll('.reveal').forEach(el => {
-    setTimeout(() => el.classList.add('in'),
-      parseInt(el.dataset.delay || 0) + 80);
-  });
-
-  const right = document.querySelector('.panel-right');
-  const img   = right && right.querySelector('.cafe-photo');
-  if (right && img) {
-    right.addEventListener('mousemove', e => {
-      const r = right.getBoundingClientRect();
-      const x = ((e.clientX - r.left) / r.width  - 0.5) * 10;
-      const y = ((e.clientY - r.top)  / r.height - 0.5) * 10;
-      img.style.transform  = `scale(1.03) translate(${x}px,${y}px)`;
-      img.style.transition = 'transform .08s linear';
-    });
-    right.addEventListener('mouseleave', () => {
-      img.style.transform  = 'scale(1) translate(0,0)';
-      img.style.transition = 'transform .8s ease';
-    });
-  }
-</script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
