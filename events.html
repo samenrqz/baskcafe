@@ -1,173 +1,272 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>Bask Café — Sips &amp; Stories</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-  <link rel="stylesheet" href="style.css"/>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Bask Café — Events &amp; Stories</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Marcellus&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<style>
+:root{--df:#102C26;--cr:#F7E7CE;--df-lt:#1B3A2F;--gold:#C9A24A;--gold-lt:#E4C87A;--ff-h:'Cormorant Garamond',serif;--ff-b:'Marcellus',serif;--ff-u:'Jost',sans-serif;}
+*{box-sizing:border-box;}
+body{font-family:var(--ff-b);background:var(--cr);color:var(--df);overflow-x:hidden;}
+h1,h2,h3,h4,h5,h6{font-family:var(--ff-h);font-weight:700;color:var(--df);}
+a{text-decoration:none;color:inherit;}
+img{max-width:100%;}
+.bask-nav{background:var(--df)!important;position:sticky;top:0;z-index:1050;transition:background .3s;height:72px;}
+.bask-nav.scrolled{background:rgba(16,44,38,.96)!important;backdrop-filter:blur(12px);}
+.bask-nav .navbar-brand{font-family:var(--ff-h);font-size:1.4rem;font-weight:700;color:#fff!important;display:flex;align-items:center;gap:8px;}
+.bask-nav .navbar-brand i{color:var(--gold);}
+.bask-nav .nav-link{font-family:var(--ff-u);font-size:.78rem;font-weight:500;letter-spacing:.7px;text-transform:uppercase;color:rgba(247,231,206,.78)!important;padding:8px 12px!important;transition:color .2s;}
+.bask-nav .nav-link:hover,.bask-nav .nav-link.active{color:var(--gold-lt)!important;}
+.bask-nav .dropdown-menu{background:#fff;border:none;border-top:2px solid var(--gold);border-radius:0 0 8px 8px;box-shadow:0 12px 32px rgba(0,0,0,.12);padding:8px;min-width:190px;}
+.bask-nav .dropdown-item{font-family:var(--ff-u);font-size:.82rem;color:#444;padding:9px 14px;border-radius:4px;transition:background .18s;}
+.bask-nav .dropdown-item:hover{background:var(--cr);color:var(--df);}
+.btn-reserve{font-family:var(--ff-u);font-size:.74rem;font-weight:700;letter-spacing:.7px;text-transform:uppercase;background:var(--gold);color:var(--df)!important;padding:9px 20px;border-radius:4px;border:2px solid var(--gold);transition:all .25s;white-space:nowrap;}
+.btn-reserve:hover{background:transparent;color:var(--gold)!important;border-color:var(--gold);}
+.navbar-toggler{border-color:rgba(247,231,206,.3);}
+.navbar-toggler-icon{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28247%2C231%2C206%2C.85%29' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");}
+@media(max-width:991.98px){.bask-nav .navbar-collapse{background:var(--df-lt);padding:12px;margin-top:6px;border-radius:8px;border:1px solid rgba(255,255,255,.06);}.bask-nav .nav-link{padding:10px 8px!important;border-bottom:1px solid rgba(255,255,255,.05);}.btn-reserve{margin-top:10px;display:block;text-align:center;}}
+.page-hero{background:var(--df);padding:100px 0 72px;text-align:center;position:relative;overflow:hidden;}
+.page-hero::before{content:'';position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1501386761578-eaa54b6103c9?w=1600&q=60') center/cover;opacity:.15;}
+.page-hero .container{position:relative;z-index:2;}
+.eyebrow{font-family:var(--ff-u);font-size:.66rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:8px;}
+.eyebrow-lt{color:var(--gold-lt);}
+.page-hero h1{font-family:var(--ff-h);font-size:clamp(2.8rem,7vw,5rem);color:#fff;margin-bottom:12px;font-style:italic;}
+.page-hero p{color:rgba(255,255,255,.65);font-size:.97rem;max-width:520px;margin:0 auto;}
+.s-rule{width:48px;height:2px;background:var(--gold);border-radius:1px;margin:12px auto 20px;}
+.section-title{font-family:var(--ff-h);font-size:clamp(2rem,4vw,3rem);color:var(--df);}
+.copy-muted{font-family:var(--ff-u);font-size:.9rem;color:#666;max-width:560px;margin:0 auto;}
+.event-card{background:#fff;border-radius:0;overflow:hidden;transition:transform .3s,box-shadow .3s;display:flex;flex-direction:column;height:100%;}
+.event-card:hover{transform:translateY(-6px);box-shadow:0 20px 48px rgba(16,44,38,.12);}
+.event-card__img{aspect-ratio:16/10;overflow:hidden;flex-shrink:0;}
+.event-card__img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .45s;}
+.event-card:hover .event-card__img img{transform:scale(1.06);}
+.event-card__body{padding:24px 22px;display:flex;flex-direction:column;flex:1;}
+.event-card__date{font-family:var(--ff-u);font-size:.7rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+.event-card__date i{margin-right:5px;}
+.event-card__title{font-family:var(--ff-h);font-size:1.15rem;font-weight:700;color:var(--df);margin-bottom:8px;line-height:1.35;}
+.event-card__desc{font-family:var(--ff-u);font-size:.82rem;color:#666;line-height:1.6;margin-bottom:16px;flex:1;}
+.event-card__link{font-family:var(--ff-u);font-size:.74rem;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--df);border-bottom:1.5px solid var(--gold);padding-bottom:2px;transition:color .2s;align-self:flex-start;margin-top:auto;}
+.event-card__link i{margin-left:5px;font-size:.65rem;transition:transform .2s;}
+.event-card__link:hover{color:var(--gold);}
+.event-card__link:hover i{transform:translateX(3px);}
+.article-card{background:var(--cr);height:100%;transition:transform .3s,box-shadow .3s;}
+.article-card:hover{transform:translateY(-6px);box-shadow:0 20px 48px rgba(16,44,38,.1);}
+.article-card__img{aspect-ratio:16/10;overflow:hidden;}
+.article-card__img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .45s;}
+.article-card:hover .article-card__img img{transform:scale(1.06);}
+.article-card__body{padding:22px 20px;}
+.article-card__tag{display:inline-block;font-family:var(--ff-u);font-size:.6rem;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;background:var(--df);color:var(--cr);padding:3px 10px;margin-bottom:10px;}
+.article-card__title{font-family:var(--ff-h);font-size:1.08rem;font-weight:700;color:var(--df);margin-bottom:8px;line-height:1.35;}
+.article-card__excerpt{font-family:var(--ff-u);font-size:.82rem;color:#666;line-height:1.6;margin-bottom:14px;}
+.article-card__link{font-family:var(--ff-u);font-size:.74rem;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--df);border-bottom:1.5px solid var(--gold);padding-bottom:2px;transition:color .2s;}
+.article-card__link:hover{color:var(--gold);}
+.testimonial-wrap{background:var(--df);border-radius:0;padding:48px 40px;max-width:780px;margin:0 auto;position:relative;}
+.testimonial-stars{color:var(--gold);font-size:1.1rem;margin-bottom:16px;letter-spacing:2px;}
+.testimonial-text{font-family:var(--ff-h);font-size:clamp(1.1rem,2.5vw,1.45rem);font-style:italic;color:rgba(247,231,206,.9);line-height:1.65;margin-bottom:20px;}
+.testimonial-name{font-family:var(--ff-u);font-size:.78rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold-lt);}
+.review-nav{background:none;border:1.5px solid rgba(247,231,206,.2);color:rgba(247,231,206,.6);width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .22s;flex-shrink:0;}
+.review-nav:hover{background:var(--gold);border-color:var(--gold);color:var(--df);}
+.btn-outline-green{font-family:var(--ff-u);font-size:.74rem;font-weight:700;letter-spacing:.8px;text-transform:uppercase;background:transparent;color:var(--df)!important;padding:10px 24px;border-radius:2px;border:1.5px solid var(--df);transition:all .25s;display:inline-block;}
+.btn-outline-green:hover{background:var(--df);color:var(--cr)!important;}
+.cta-band{background:var(--df);padding:72px 0;text-align:center;}
+.cta-band h2{font-family:var(--ff-h);font-size:clamp(1.8rem,4vw,2.8rem);color:#fff;margin-bottom:10px;}
+.cta-band p{color:rgba(255,255,255,.6);font-size:.93rem;margin-bottom:28px;max-width:400px;margin-left:auto;margin-right:auto;}
+.btn-gold{font-family:var(--ff-u);font-size:.74rem;font-weight:700;letter-spacing:.8px;text-transform:uppercase;background:var(--gold);color:var(--df)!important;padding:12px 28px;border-radius:4px;border:2px solid var(--gold);transition:all .25s;display:inline-block;}
+.btn-gold:hover{background:transparent;color:var(--gold)!important;}
+.btn-outline-cr{font-family:var(--ff-u);font-size:.74rem;font-weight:700;letter-spacing:.8px;text-transform:uppercase;background:transparent;color:var(--cr)!important;padding:12px 28px;border-radius:4px;border:2px solid rgba(247,231,206,.4);transition:all .25s;display:inline-block;}
+.btn-outline-cr:hover{border-color:var(--cr);background:rgba(247,231,206,.08);}
+.bask-footer{background:var(--df);padding:64px 0 0;}
+.f-brand{font-family:var(--ff-h);font-size:1.4rem;font-weight:700;color:#fff;margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+.f-brand i{color:var(--gold);}
+.f-desc{font-size:.86rem;color:rgba(255,255,255,.5);line-height:1.78;max-width:280px;}
+.f-head{font-family:var(--ff-u);font-size:.66rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold-lt);margin-bottom:16px;}
+.f-links{list-style:none;padding:0;margin:0;}
+.f-links li{margin-bottom:8px;}
+.f-links a{font-size:.86rem;color:rgba(255,255,255,.5);transition:color .18s,padding-left .18s;}
+.f-links a:hover{color:var(--gold-lt);padding-left:4px;}
+.f-contact{display:flex;gap:10px;align-items:flex-start;margin-bottom:9px;font-size:.85rem;color:rgba(255,255,255,.5);}
+.f-contact i{color:var(--gold-lt);margin-top:3px;flex-shrink:0;width:14px;}
+.f-bottom{border-top:1px solid rgba(255,255,255,.07);margin-top:48px;padding:18px 0;text-align:center;font-family:var(--ff-u);font-size:.76rem;color:rgba(255,255,255,.26);}
+.f-social{width:34px;height:34px;border-radius:50%;border:1px solid rgba(255,255,255,.14);display:inline-flex;align-items:center;justify-content:center;color:rgba(255,255,255,.44);font-size:.8rem;transition:all .22s;}
+.f-social:hover{background:var(--gold);border-color:var(--gold);color:var(--df);}
+.btt{position:fixed;bottom:24px;right:24px;width:42px;height:42px;background:var(--gold);color:var(--df);border:none;border-radius:50%;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;z-index:999;cursor:pointer;font-size:.95rem;}
+.btt.on{opacity:1;pointer-events:all;}
+.btt:hover{transform:translateY(-3px);}
+[data-reveal]{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease;}
+[data-reveal].revealed{opacity:1;transform:none;}
+[data-reveal-delay="1"]{transition-delay:.1s;}
+[data-reveal-delay="2"]{transition-delay:.2s;}
+[data-reveal-delay="3"]{transition-delay:.3s;}
+[data-reveal-delay="4"]{transition-delay:.42s;}
+</style>
 </head>
 <body>
+
 <nav class="navbar navbar-expand-lg bask-nav" id="mainNav">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="index.html"><span class="brand-icon"><i class="fas fa-mug-hot"></i></span>Bask Café</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu"><span class="navbar-toggler-icon"></span></button>
+  <div class="container">
+    <a class="navbar-brand" href="home.html"><i class="fas fa-mug-hot"></i>Bask Café</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
     <div class="collapse navbar-collapse justify-content-center" id="navMenu">
       <ul class="navbar-nav gap-1">
         <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
         <li class="nav-item"><a class="nav-link" href="menu.html">Menu</a></li>
         <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
-        <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+        <li class="nav-item"><a class="nav-link" href="bask-moments.html">Bask Moments</a></li>
         <li class="nav-item dropdown">
           <a class="nav-link active dropdown-toggle" href="#" data-bs-toggle="dropdown">More</a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="events.html"><i class="fas fa-calendar-alt me-2 opacity-50"></i>Events &amp; Stories</a></li>
-            <li><a class="dropdown-item" href="careers.html"><i class="fas fa-briefcase me-2 opacity-50"></i>Careers</a></li>
+            <li><a class="dropdown-item" href="opportunities.html"><i class="fas fa-briefcase me-2 opacity-50"></i>Opportunities</a></li>
             <li><hr class="dropdown-divider"/></li>
             <li><a class="dropdown-item" href="contact.html"><i class="fas fa-envelope me-2 opacity-50"></i>Contact Us</a></li>
           </ul>
         </li>
       </ul>
     </div>
-    <div class="d-none d-lg-flex"><a href="contact.html" class="nav-link btn-nav-reserve">Reserve a Table</a></div>
+    <div class="d-none d-lg-flex align-items-center">
+      <a href="contact.html" class="btn-reserve">Reserve a Table</a>
+    </div>
   </div>
 </nav>
 
 <section class="page-hero">
-  <div class="page-hero__bg page-hero__bg--events"></div>
-  <div class="page-hero__overlay"></div>
-  <div class="page-hero__content">
-    <p class="page-hero__eyebrow">Bask Café</p>
-    <h1 class="page-hero__script fst-italic">Sips &amp; Stories</h1>
-    <p class="page-hero__sub">A collection of articles and community updates dedicated to the craft of baristas, the stories worth telling, and the community that defines us.</p>
+  <div class="container" data-reveal>
+    <span class="eyebrow eyebrow-lt">Bask Café</span>
+    <h1>Sips &amp; Stories</h1>
+    <p>A collection of events, articles, and community updates — celebrating the craft, culture, and community that define us.</p>
   </div>
 </section>
 
-<!-- BASK EVENTS -->
-<section class="section bg-cream">
+<section class="py-5" style="background:var(--cr);">
   <div class="container">
-    <div class="section-header d-flex justify-content-between align-items-end flex-wrap gap-3 mb-5" data-reveal>
+    <div class="d-flex justify-content-between align-items-end flex-wrap gap-3 mb-5" data-reveal>
       <div>
         <span class="eyebrow">What's On</span>
-        <h2 class="mt-2">Bask Events</h2>
+        <h2 class="section-title mt-2">Bask Events</h2>
+        <div class="s-rule" style="margin-left:0;margin-right:0;"></div>
       </div>
-      <a href="contact.html" class="btn-bask btn-bask-outline-green btn-bask-compact">Reserve a Seat</a>
+      <a href="contact.html" class="btn-outline-green">Reserve a Seat</a>
     </div>
     <div class="row g-4">
-      <div class="col-md-6 col-lg-4" data-reveal data-reveal-delay="1">
-        <div class="event-card">
-          <div class="event-card__img"><img src="https://images.unsplash.com/photo-1501386761578-eaa54b6103c9?w=600&q=80" alt="Book Club"/></div>
+      <div class="col-md-6 col-lg-4 d-flex" data-reveal data-reveal-delay="1">
+        <div class="event-card w-100">
+          <div class="event-card__img"><img src="images/loyalCard.jpg"/></div>
           <div class="event-card__body">
-            <div class="event-card__date"><i class="fas fa-calendar"></i> March 11, 2026</div>
-            <div class="event-card__title">Loyalty Cards for the Slow Coffee Club </div>
+            <div class="event-card__date"><i class="fas fa-calendar"></i>March 11, 2026</div>
+            <div class="event-card__title">Loyalty Cards for the Slow Coffee Club</div>
             <div class="event-card__desc">Free cup hits different! Our loyalty cards are back, bask fam!</div>
-            <a href="#" class="event-card__link">Read More <i class="fas fa-arrow-right"></i></a>
+            <a href="https://www.facebook.com/share/p/1CK4Yug5eq/" class="event-card__link">Read More <i class="fas fa-arrow-right"></i></a>
           </div>
         </div>
       </div>
-      <div class="col-md-6 col-lg-4" data-reveal data-reveal-delay="2">
-        <div class="event-card">
-          <div class="event-card__img"><img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=600&q=80" alt="Open Mic"/></div>
+      <div class="col-md-6 col-lg-4 d-flex" data-reveal data-reveal-delay="2">
+        <div class="event-card w-100">
+          <div class="event-card__img"><img src="images/inked.jpg"/></div>
           <div class="event-card__body">
-            <div class="event-card__date"><i class="fas fa-calendar"></i> September 18, 2025</div>
-            <div class="event-card__title">Inked &amp; Piercings by Chen will join us for a special pop-up! </div>
-            <div class="event-card__desc">Roses are red, violets are blue, Valentine's plans? Coffee & new tattoo</div>
-            <a href="#" class="event-card__link">Read More <i class="fas fa-arrow-right"></i></a>
+            <div class="event-card__date"><i class="fas fa-calendar"></i>September 18, 2025</div>
+            <div class="event-card__title">Inked &amp; Piercings by Chen — Special Pop-up</div>
+            <div class="event-card__desc">Roses are red, violets are blue, Valentine's plans? Coffee &amp; new tattoo.</div>
+            <a href="https://www.facebook.com/share/p/1GxPGBo9kF/" class="event-card__link">Read More <i class="fas fa-arrow-right"></i></a>
           </div>
         </div>
       </div>
-      <div class="col-md-6 col-lg-4" data-reveal data-reveal-delay="3">
-        <div class="event-card">
-          <div class="event-card__img"><img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=600&q=80" alt="Brewing Workshop"/></div>
+      <div class="col-md-6 col-lg-4 d-flex" data-reveal data-reveal-delay="3">
+        <div class="event-card w-100">
+          <div class="event-card__img"><img src="images/bazaar.jpg"/></div>
           <div class="event-card__body">
-            <div class="event-card__date"><i class="fas fa-calendar"></i> August 26, 2025</div>
+            <div class="event-card__date"><i class="fas fa-calendar"></i>August 26, 2025</div>
             <div class="event-card__title">Our First-ever Karuhatan Grand Bazaar</div>
-            <div class="event-card__desc">Our Grand Bazaar has officially wrapped up after five amazing days!</div>
-            <a href="#" class="event-card__link">Read More <i class="fas fa-arrow-right"></i></a>
+            <div class="event-card__desc">Our Grand Bazaar wrapped up after five amazing days of community, crafts, and coffee.</div>
+            <a href="https://www.facebook.com/share/p/1AwjyfqDsj/" class="event-card__link">Read More <i class="fas fa-arrow-right"></i></a>
           </div>
         </div>
       </div>
-      <div class="col-md-6 col-lg-4" data-reveal data-reveal-delay="1">
-        <div class="event-card">
-          <div class="event-card__img"><img src="https://images.unsplash.com/photo-1496024840928-4c417adf211d?w=600&q=80" alt="Loyalty Card"/></div>
+      <div class="col-md-6 col-lg-4 d-flex" data-reveal data-reveal-delay="1">
+        <div class="event-card w-100">
+          <div class="event-card__img"><img src="images/inkBudStud.jpg" alt="Collab"/></div>
           <div class="event-card__body">
-            <div class="event-card__date"><i class="fas fa-calendar"></i> August 19, 2025 </div>
+            <div class="event-card__date"><i class="fas fa-calendar"></i>August 19, 2025</div>
             <div class="event-card__title">Wanna Get Inked? Ink Bud Studio Collab with Bask Cafe</div>
-            <div class="event-card__desc"> It was the perfect mix of coffee, art, stories, and laughter.</div>
-            <a href="#" class="event-card__link">Read More <i class="fas fa-arrow-right"></i></a>
+            <div class="event-card__desc">The perfect mix of coffee, art, stories, and laughter.</div>
+            <a href="https://www.facebook.com/share/p/1R2QD8kvmd/" class="event-card__link">Read More <i class="fas fa-arrow-right"></i></a>
           </div>
         </div>
       </div>
-      <div class="col-md-6 col-lg-4" data-reveal data-reveal-delay="2">
-        <div class="event-card">
-          <div class="event-card__img"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80" alt="Pastry Evening"/></div>
+      <div class="col-md-6 col-lg-4 d-flex" data-reveal data-reveal-delay="2">
+        <div class="event-card w-100">
+          <div class="event-card__img"><img src="images/lia.ttle.jpg"/></div>
           <div class="event-card__body">
-            <div class="event-card__date"><i class="fas fa-calendar"></i> February 11, 2025 </div>
-            <div class="event-card__title">Weekend Pop-up with a Lia.ttle Love at Bask Cafe</div>
-            <div class="event-card__desc">We’re bringing you a DIY Flower Bar, while sipping your favorite drinks. A sweet, indulgent evening awaits.</div>
-            <a href="#" class="event-card__link">Read More <i class="fas fa-arrow-right"></i></a>
+            <div class="event-card__date"><i class="fas fa-calendar"></i>February 11, 2025</div>
+            <div class="event-card__title">Weekend Pop-up with Lia.ttle Love at Bask Cafe</div>
+            <div class="event-card__desc">A DIY Flower Bar while sipping your favourite drinks — a sweet, indulgent evening.</div>
+            <a href="https://www.facebook.com/share/p/1Dw2323tcc/" class="event-card__link">Read More <i class="fas fa-arrow-right"></i></a>
           </div>
         </div>
       </div>
-      <div class="col-md-6 col-lg-4" data-reveal data-reveal-delay="3">
-        <div class="event-card">
-          <div class="event-card__img"><img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&q=80" alt="Sustainability"/></div>
+      <div class="col-md-6 col-lg-4 d-flex" data-reveal data-reveal-delay="3">
+        <div class="event-card w-100">
+          <div class="event-card__img"><img src="images/handcrafeh.jpg"/></div>
           <div class="event-card__body">
-            <div class="event-card__date"><i class="fas fa-calendar"></i> February 11, 2025 </div>
+            <div class="event-card__date"><i class="fas fa-calendar"></i>February 11, 2025</div>
             <div class="event-card__title">Local Pop-up Booth with HandCrafteh? Online Shop</div>
-            <div class="event-card__desc">Handmade bracelets, keychains, and charms  Each piece made with love.</div>
-            <a href="#" class="event-card__link">Read More <i class="fas fa-arrow-right"></i></a>
+            <div class="event-card__desc">Handmade bracelets, keychains, and charms — each piece made with love.</div>
+            <a href="https://www.facebook.com/share/p/16o6LAp3Fi/" class="event-card__link">Read More <i class="fas fa-arrow-right"></i></a>
           </div>
         </div>
       </div>
     </div>
     <div class="text-center mt-5" data-reveal>
-      <a href="#" class="btn-bask btn-bask-outline-green">Load More Events</a>
+      <a href="contact.html" class="btn-outline-green">Reserve a Seat for Upcoming Events</a>
     </div>
   </div>
 </section>
 
-<!-- SHORT ARTICLES / BLOG -->
-<section class="section bg-white">
+<section class="py-5" style="background:#fff;">
   <div class="container">
-    <div class="section-header centered" data-reveal>
+    <div class="text-center mb-2" data-reveal>
       <span class="eyebrow">Our Blog</span>
-      <h2 class="section-title-top">Short Articles</h2>
-      <div class="divider centered"></div>
-      <p class="copy-muted copy-centered-gallery">Stories about coffee culture, sustainability, and the world inside our café.</p>
+      <h2 class="section-title mt-2">Short Articles</h2>
+      <div class="s-rule"></div>
+      <p class="copy-muted mb-5">Stories about coffee culture, community celebrations, and the world inside our café.</p>
     </div>
-    <div class="row g-4 mt-2">
+    <div class="row g-4">
       <div class="col-md-6 col-lg-4" data-reveal data-reveal-delay="1">
         <div class="article-card">
-          <div class="article-card__img"><img src="https://images.unsplash.com/photo-1485808191679-5f86510bd9d4?w=600&q=80" alt="Article"/></div>
+          <div class="article-card__img"><img src="images/oneyearatbask.jpg"/></div>
           <div class="article-card__body">
-            <div class="article-card__tag">Anniversary </div>
-            <div class="article-card__title">A huge congratulations to JM and Carl on their one-year anniversary with the Bask Cafe Family.</div>
+            <div class="article-card__tag">Anniversary</div>
+            <div class="article-card__title">Congratulations to JM and Carl on Their One-Year Anniversary with the Bask Cafe Family</div>
             <div class="article-card__excerpt">Building a community and a brand over the course of a year is no small feat. Here is to many more years of great coffee and success.</div>
-            <a href="#" class="article-card__link">Read More <i class="fas fa-arrow-right"></i></a>
+            <a href="https://www.facebook.com/share/p/1B3EJNBVBf/" class="article-card__link">Read More <i class="fas fa-arrow-right"></i></a>
           </div>
         </div>
       </div>
       <div class="col-md-6 col-lg-4" data-reveal data-reveal-delay="2">
         <div class="article-card">
-          <div class="article-card__img"><img src="https://images.unsplash.com/photo-1459411552884-841db9b3cc2a?w=600&q=80" alt="Article"/></div>
+          <div class="article-card__img"><img src="images/houserules.jpg"/></div>
           <div class="article-card__body">
             <div class="article-card__tag">House Rules</div>
             <div class="article-card__title">Small Steps for Big Comfort: Gentle Reminders to Help Everyone Bask in the Cozy</div>
-            <div class="article-card__excerpt">Welcome to our home away from home! To ensure that every guest can enjoy the warmth, aroma, and community of Bask Cafe.</div>
-            <a href="#" class="article-card__link">Read More <i class="fas fa-arrow-right"></i></a>
+            <div class="article-card__excerpt">Welcome to our home away from home! To ensure every guest can enjoy the warmth and community of Bask Cafe.</div>
+            <a href="https://www.facebook.com/share/p/1ERovMLHdc/" class="article-card__link">Read More <i class="fas fa-arrow-right"></i></a>
           </div>
         </div>
       </div>
       <div class="col-md-6 col-lg-4" data-reveal data-reveal-delay="3">
         <div class="article-card">
-          <div class="article-card__img"><img src="https://images.unsplash.com/photo-1512568400610-62da28bc8a13?w=600&q=80" alt="Article"/></div>
+          <div class="article-card__img"><img src="images/halloween.jpg"/></div>
           <div class="article-card__body">
             <div class="article-card__tag">Coffee Party</div>
-            <div class="article-card__title">Bask Cafe’s Coffee Party is happening on October 31 at Myth Studio</div>
-            <div class="article-card__excerpt">The caffeine’s free, the music’s loud, and the night’s all yours. Bask Cafe’s Coffee Rave 2025 — happening this October 31.</div>
-            <a href="#" class="article-card__link">Read More <i class="fas fa-arrow-right"></i></a>
+            <div class="article-card__title">Bask Cafe's Coffee Party is Happening on October 31 at Myth Studio</div>
+            <div class="article-card__excerpt">The caffeine's free, the music's loud, and the night's all yours. Bask Cafe's Coffee Rave 2025.</div>
+            <a href="https://www.facebook.com/share/p/18aK2RRz92/" class="article-card__link">Read More <i class="fas fa-arrow-right"></i></a>
           </div>
         </div>
       </div>
@@ -175,96 +274,102 @@
   </div>
 </section>
 
-<!-- CUSTOMER REVIEWS -->
-<section class="section bg-cream">
+<section class="py-5" style="background:var(--df);">
   <div class="container">
-    <div class="section-header centered" data-reveal>
-      <span class="eyebrow">Testimonials</span>
-      <h2 class="section-title-top">What Our Customers Say</h2>
-      <div class="divider centered"></div>
+    <div class="text-center mb-5" data-reveal>
+      <span class="eyebrow eyebrow-lt">Testimonials</span>
+      <h2 class="mt-2" style="color:#fff;">What Our Customers Say</h2>
+      <div class="s-rule"></div>
     </div>
-    <div class="mt-5 review-wrap">
-      <button class="review-nav" data-review-dir="-1"><i class="fas fa-chevron-left"></i></button>
-      <div class="review-card review-card--fill">
-        <div class="review-card__stars" id="reviewStars">★★★★★</div>
-        <p class="review-card__text" id="reviewText">"Bask Café is my absolute go-to spot in the city. The Vienna Latte here is unlike anything I've ever tasted — smooth, perfectly layered, and made with so much care. The space feels like a warm hug."</p>
-        <div class="review-card__name" id="reviewName">— Maria Santos</div>
-        <div class="review-card__counter" id="reviewNum">01</div>
+    <div class="d-flex align-items-center justify-content-center gap-4" data-reveal data-reveal-delay="1">
+      <button class="review-nav" id="reviewPrev"><i class="fas fa-chevron-left"></i></button>
+      <div class="testimonial-wrap flex-grow-1" style="max-width:680px;">
+        <div class="testimonial-stars" id="revStars">★★★★★</div>
+        <p class="testimonial-text" id="revText">"Bask Café is my absolute go-to spot in the city. The Vienna Latte here is unlike anything I've ever tasted — smooth, perfectly layered, and made with so much care. The space feels like a warm hug."</p>
+        <div class="testimonial-name" id="revName">— Maria Santos</div>
       </div>
-      <button class="review-nav" data-review-dir="1"><i class="fas fa-chevron-right"></i></button>
+      <button class="review-nav" id="reviewNext"><i class="fas fa-chevron-right"></i></button>
     </div>
   </div>
 </section>
 
-<!-- ══════════════ FOOTER ══════════════ -->
-<footer class="bask-footer">
+<div class="cta-band">
+  <div class="container" data-reveal>
+    <span class="eyebrow eyebrow-lt">Ready to Visit?</span>
+    <h2>Reserve your seat at Bask</h2>
+    <p>Walk in or reserve a table — we always have a spot for you.</p>
+    <div class="d-flex gap-3 justify-content-center flex-wrap">
+      <a href="contact.html" class="btn-gold">Reserve a Table</a>
+      <a href="contact.html" class="btn-outline-cr">Find Us</a>
+    </div>
+  </div>
+</div>
+
+<footer class="bask-footer" data-reveal>
   <div class="container">
-    <div class="row g-5">
-      <div class="col-lg-4">
-        <div class="footer__brand">
-          <span class="footer__brand-icon"><i class="fas fa-mug-hot"></i></span>
-          Bask Café
-        </div>
-        <p class="footer__desc">A community café dedicated to the art of coffee, the warmth of community, and the joy of slowing down over something truly well-made.</p>
-        <div class="footer__socials mt-4">
-          <a href="https://www.facebook.com/profile.php?id=61569599993182" class="footer__social-btn"><i class="fab fa-facebook-f"></i></a>
-          <a href="https://www.instagram.com/baskcafe_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="footer__social-btn"><i class="fab fa-instagram"></i></a>
+    <div class="row g-4 g-lg-5 pb-5">
+      <div class="col-12 col-sm-6 col-lg-4">
+        <div class="f-brand"><i class="fas fa-mug-hot"></i>Bask Café</div>
+        <p class="f-desc">A community café rooted in Valenzuela — dedicated to slow coffee, community, and the joy of slowing down over something truly well-made.</p>
+        <div class="d-flex gap-2 mt-4">
+          <a href="https://www.facebook.com/profile.php?id=61569599993182" class="f-social" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.instagram.com/baskcafe_" class="f-social" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
         </div>
       </div>
-      <div class="col-6 col-lg-2">
-        <h6 class="footer__heading">Navigate</h6>
-        <ul class="footer__links">
-          <li><a href="home.html">Home</a></li>
+      <div class="col-6 col-sm-3 col-lg-2">
+        <h6 class="f-head">About</h6>
+        <ul class="f-links">
           <li><a href="menu.html">Menu</a></li>
-          <li><a href="about.html">About Us</a></li>
-          <li><a href="gallery.html">Gallery</a></li>
-          <li><a href="events.html">Events</a></li>
-          <li><a href="careers.html">Careers</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </div>
-      <div class="col-6 col-lg-2">
-        <h6 class="footer__heading">Visit</h6>
-        <ul class="footer__links">
-          <li><a href="events.html">Sips &amp; Stories</a></li>
-          <li><a href="gallery.html">Community</a></li>
-          <li><a href="careers.html">Join the Team</a></li>
-          <li><a href="environment.html">Sustainability</a></li>
+          <li><a href="events.html">Events &amp; Stories</a></li>
+          <li><a href="bask-moments.html">Bask Moments</a></li>
           <li><a href="contact.html">Help &amp; Support</a></li>
         </ul>
       </div>
-      <div class="col-lg-4">
-        <h6 class="footer__heading">Contact Us</h6>
-        <div class="footer__contact-item">
-          <i class="fas fa-map-marker-alt"></i>
-          <span>4B Little Baguio Street, Marulas, Valenzuela City, Philippines</span>
-        </div>
-        <div class="footer__contact-item">
-          <i class="fas fa-envelope"></i>
-          <span>baskcafe@gmail.com</span>
-        </div>
-        <div class="footer__contact-item">
-          <i class="fas fa-globe"></i>
-          <span>Bask Cafe</span>
-        </div>
-        <div class="footer__contact-item">
-          <i class="fas fa-clock"></i>
-          <span>Mon–Thu: 3PM–12AM &nbsp;|&nbsp; Fri–Sun: 10AM–12AM</span>
-        </div>
+      <div class="col-6 col-sm-3 col-lg-2">
+        <h6 class="f-head">Navigate</h6>
+        <ul class="f-links">
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="bask-moments.html">Bask Moments</a></li>
+          <li><a href="opportunities.html">Opportunities</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="col-12 col-sm-6 col-lg-4">
+        <h6 class="f-head">Contact Us</h6>
+        <div class="f-contact"><i class="fas fa-map-marker-alt"></i><span>4B Little Baguio Street, Marulas, Valenzuela City, Philippines</span></div>
+        <div class="f-contact"><i class="fas fa-phone"></i><span>+63 (02) 8XXX-XXXX</span></div>
+        <div class="f-contact"><i class="fas fa-envelope"></i><span>baskcafe@gmail.com</span></div>
+        <div class="f-contact"><i class="fas fa-clock"></i><span>Mon–Thu: 3PM–12AM &nbsp;·&nbsp; Fri–Sun: 10AM–12AM</span></div>
       </div>
     </div>
-    <div class="footer__bottom">
-      <p>© 2025 Bask Café. All rights reserved. Crafted with love in Valenzuela City.</p>
-      <p>Built for <a href="https://baskcafe.infinityfreeapp.com" class="footer__credit-link">Bask Cafe</a></p>
-    </div>  
+    <div class="f-bottom">
+      <p class="mb-0">&copy; 2025 Bask Café &middot; 4B Little Baguio Street, Marulas, Valenzuela City &middot; Made with <i class="fas fa-heart text-danger"></i> in the Philippines</p>
+    </div>
   </div>
 </footer>
 
-<button class="back-to-top" id="backToTop" aria-label="Back to top">
-  <i class="fas fa-chevron-up"></i>
-</button>
+<button class="btt" id="btt" aria-label="Back to top"><i class="fas fa-chevron-up"></i></button>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-<script src="main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const nav=document.getElementById('mainNav'),btt=document.getElementById('btt');
+window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>50);btt.classList.toggle('on',window.scrollY>400);},{passive:true});
+btt.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+const io=new IntersectionObserver((es,o)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('revealed');o.unobserve(e.target);}});},{threshold:.08,rootMargin:'0px 0px -36px 0px'});
+document.querySelectorAll('[data-reveal]').forEach(el=>io.observe(el));
+const reviews=[
+  {stars:'★★★★★',text:'"Bask Café is my absolute go-to spot in the city. The Vienna Latte here is unlike anything I\'ve ever tasted — smooth, perfectly layered, and made with so much care. The space feels like a warm hug."',name:'— Maria Santos'},
+  {stars:'★★★★★',text:'"The community here is unlike any other café I\'ve been to. The baristas know your name, your order, and somehow always know exactly what you need. It\'s more than a café — it\'s a third place."',name:'— Gio Reyes'},
+  {stars:'★★★★☆',text:'"Every single visit is a delight. The matcha latte is silky perfection and the interiors are so thoughtfully designed. Bask is where I write, work, and decompress. Highly recommend."',name:'— Camille Yap'}
+];
+let ri=0;
+function setReview(i){
+  document.getElementById('revStars').textContent=reviews[i].stars;
+  document.getElementById('revText').textContent=reviews[i].text;
+  document.getElementById('revName').textContent=reviews[i].name;
+}
+document.getElementById('reviewPrev').addEventListener('click',()=>{ri=(ri-1+reviews.length)%reviews.length;setReview(ri);});
+document.getElementById('reviewNext').addEventListener('click',()=>{ri=(ri+1)%reviews.length;setReview(ri);});
+</script>
 </body>
 </html>

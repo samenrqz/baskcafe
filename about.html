@@ -63,7 +63,8 @@ img{max-width:100%;}
 .about-body{font-family:var(--ff-u);font-size:.93rem;line-height:1.85;color:rgba(247,231,206,.72);margin-bottom:14px;}
 .about-body:last-child{margin-bottom:0;}
 
-.value-card{background:#fff;border-radius:4px;padding:36px 28px;height:100%;}
+.value-card{background:#fff;border-radius:4px;padding:36px 28px;height:100%;border-top:3px solid transparent;transition:transform .3s,box-shadow .3s,border-top-color .3s;}
+.value-card:hover{transform:translateY(-6px);box-shadow:0 20px 48px rgba(16,44,38,.1);border-top-color:var(--gold);}
 .value-card--dark{background:var(--df);}
 .value-card__icon{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:20px;font-size:1.1rem;}
 .value-card__icon--gold{background:rgba(201,162,74,.18);color:var(--gold);}
@@ -85,8 +86,10 @@ img{max-width:100%;}
 .timeline-title{font-family:var(--ff-h);font-size:1.2rem;color:var(--df);margin-bottom:6px;}
 .timeline-copy{font-family:var(--ff-u);font-size:.87rem;color:#666;line-height:1.75;margin:0;}
 
-.team-card{background:#fff;border-radius:4px;overflow:hidden;height:100%;}
-.team-photo{width:100%;aspect-ratio:1/1;object-fit:cover;object-position:top;}
+.team-card{background:#fff;border-radius:4px;overflow:hidden;height:100%;transition:transform .3s,box-shadow .3s;}
+.team-card:hover{transform:translateY(-6px);box-shadow:0 20px 48px rgba(16,44,38,.12);}
+.team-photo{width:100%;aspect-ratio:1/1;object-fit:cover;object-position:top;transition:transform .45s;}
+.team-card:hover .team-photo{transform:scale(1.04);}
 .team-body{padding:20px 18px 22px;}
 .team-name{font-family:var(--ff-h);font-size:1.12rem;font-weight:700;color:var(--df);margin-bottom:2px;}
 .team-role{font-family:var(--ff-u);font-size:.68rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
@@ -119,6 +122,12 @@ img{max-width:100%;}
 .btt{position:fixed;bottom:24px;right:24px;width:42px;height:42px;background:var(--gold);color:var(--df);border:none;border-radius:50%;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;z-index:999;cursor:pointer;font-size:.95rem;}
 .btt.on{opacity:1;pointer-events:all;}
 .btt:hover{transform:translateY(-3px);}
+[data-reveal]{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease;}
+[data-reveal].revealed{opacity:1;transform:none;}
+[data-reveal-delay="1"]{transition-delay:.1s;}
+[data-reveal-delay="2"]{transition-delay:.2s;}
+[data-reveal-delay="3"]{transition-delay:.3s;}
+[data-reveal-delay="4"]{transition-delay:.42s;}
 </style>
 </head>
 <body>
@@ -153,7 +162,7 @@ img{max-width:100%;}
 </nav>
 
 <div class="page-hero">
-  <div class="container">
+  <div class="container" data-reveal>
     <span class="eyebrow">Bask Café &middot; Est. 2024</span>
     <h1>Our Story</h1>
     <p>It all began with a single cup and the quiet promise of a place that felt like home.</p>
@@ -163,7 +172,7 @@ img{max-width:100%;}
 <section class="about-section" style="background:var(--df);">
   <div class="container">
     <div class="row align-items-center g-5">
-      <div class="col-lg-7">
+      <div class="col-lg-7" data-reveal>
         <span class="eyebrow" style="color:var(--gold-lt);">Our Beginning</span>
         <h2 class="about-heading about-heading-gold">The Bean's Journey</h2>
         <div class="s-rule"></div>
@@ -171,7 +180,7 @@ img{max-width:100%;}
         <p class="about-body">It was founded by a couple who deeply loves coffee and shared a habit of going on café dates. Through these experiences, they developed a deeper appreciation not just for the drinks, but for the craft, creativity, and stories behind every cup. Eventually turning this passion into something they could share with others.</p>
         <p class="about-body">Today, Bask Café stands as proof that with the right intention, a cup of coffee can be more than a drink — it can be a feeling, a ritual, and above all, an invitation to stay a while longer.</p>
       </div>
-      <div class="col-lg-5">
+      <div class="col-lg-5" data-reveal data-reveal-delay="1">
         <img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=700&q=85" alt="Our Story" class="about-img"/>
       </div>
     </div>
@@ -181,10 +190,10 @@ img{max-width:100%;}
 <section class="about-section" style="background:var(--cr);">
   <div class="container">
     <div class="row align-items-center g-5">
-      <div class="col-lg-5 order-lg-1">
+      <div class="col-lg-5 order-lg-1" data-reveal>
         <img src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?w=700&q=85" alt="Coffee Love" class="about-img"/>
       </div>
-      <div class="col-lg-7 order-lg-2">
+      <div class="col-lg-7 order-lg-2" data-reveal data-reveal-delay="1">
         <span class="eyebrow">Our Philosophy</span>
         <h2 class="about-heading">Spreading love through<br>a perfect brew</h2>
         <div class="s-rule"></div>
@@ -197,13 +206,13 @@ img{max-width:100%;}
 
 <section class="about-section" style="background:#fff;">
   <div class="container">
-    <div class="text-center mb-5">
+    <div class="text-center mb-5" data-reveal>
       <span class="eyebrow">What Drives Us</span>
       <h2 class="section-title">Mission, Vision &amp; Brand Philosophy</h2>
       <div class="s-rule mx-auto"></div>
     </div>
     <div class="row g-4 mt-2">
-      <div class="col-md-4">
+      <div class="col-md-4" data-reveal data-reveal-delay="1">
         <div class="value-card h-100">
           <div class="value-card__icon value-card__icon--light">
             <i class="fas fa-bullseye"></i>
@@ -212,7 +221,7 @@ img{max-width:100%;}
           <p class="value-card__copy value-card__copy--muted">To create memorable drink experiences through quality ingredients, skilled craftsmanship, and genuine customer connection, embracing the philosophy of slowing down and savoring each moment.</p>
         </div>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-4" data-reveal data-reveal-delay="2">
         <div class="value-card value-card--dark h-100">
           <div class="value-card__icon value-card__icon--gold">
             <i class="fas fa-eye"></i>
@@ -221,7 +230,7 @@ img{max-width:100%;}
           <p class="value-card__copy value-card__copy--dim">To become a recognized lifestyle coffee brand known for innovation and meaningful community engagement. Building a space where people experience coffee beyond the rush of everyday life.</p>
         </div>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-4" data-reveal data-reveal-delay="3">
         <div class="value-card h-100">
           <div class="value-card__icon value-card__icon--light">
             <i class="fas fa-star"></i>
@@ -237,13 +246,13 @@ img{max-width:100%;}
 <section class="about-section" style="background:var(--cr);">
   <div class="container">
     <div class="row g-5">
-      <div class="col-lg-5">
+      <div class="col-lg-5" data-reveal>
         <span class="eyebrow">Our Journey</span>
         <h2 class="section-title">Milestones</h2>
         <div class="s-rule"></div>
         <p style="font-family:var(--ff-u);font-size:.9rem;color:#5a5a4a;line-height:1.85;">Every great café is shaped by the moments that define it — the first cup poured, the first door opened, and every loyal guest in between.</p>
       </div>
-      <div class="col-lg-7 d-flex align-items-center">
+      <div class="col-lg-7 d-flex align-items-center" data-reveal data-reveal-delay="1">
         <div class="timeline-wrap w-100">
           <div class="timeline-item">
             <div class="timeline-dot"></div>
@@ -271,16 +280,16 @@ img{max-width:100%;}
 
 <section class="about-section" style="background:#fff;">
   <div class="container">
-    <div class="text-center mb-5">
+    <div class="text-center mb-5" data-reveal>
       <span class="eyebrow">The Woman Behind Bask Café</span>
       <h2 class="section-title">Meet the Owner</h2>
       <div class="s-rule mx-auto"></div>
       <p style="font-family:var(--ff-u);font-size:.9rem;color:#666;max-width:480px;margin:0 auto;">The heart and soul behind every cup.</p>
     </div>
     <div class="row g-4 justify-content-center mt-2">
-      <div class="col-6 col-md-4 col-lg-3">
+      <div class="col-6 col-md-4 col-lg-3" data-reveal data-reveal-delay="1">
         <div class="team-card">
-          <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=300&q=80" alt="Ruth Dominguez" class="team-photo"/>
+          <img src="images/Ruth_Owner.jpg" alt="Ruth Dominguez" class="team-photo"/>
           <div class="team-body">
             <div class="team-name">Ruth Dominguez</div>
             <div class="team-role">Founder</div>
@@ -294,16 +303,16 @@ img{max-width:100%;}
 
 <section class="about-section" style="background:var(--cr);">
   <div class="container">
-    <div class="text-center mb-5">
+    <div class="text-center mb-5" data-reveal>
       <span class="eyebrow">Our People</span>
       <h2 class="section-title">Meet the Team</h2>
       <div class="s-rule mx-auto"></div>
       <p style="font-family:var(--ff-u);font-size:.9rem;color:#5a5a4a;max-width:520px;margin:0 auto;">Every great café is only as good as the people who show up every day with passion, care, and genuine warmth.</p>
     </div>
-    <div class="row g-4 justify-content-center mt-2">
-      <div class="col-6 col-md-4 col-lg-3">
+    <div class="row g-4 mt-2">
+      <div class="col-12 col-md-6 col-lg-3" data-reveal data-reveal-delay="1">
         <div class="team-card">
-          <img src="https://images.unsplash.com/photo-1488161628813-04466f872be2?w=300&q=80" alt="Echo Canovas III" class="team-photo"/>
+          <img src="images/Echo.jpg" alt="Echo Canovas III" class="team-photo"/>
           <div class="team-body">
             <div class="team-name">Echo Canovas III</div>
             <div class="team-role">Operations Manager</div>
@@ -311,9 +320,9 @@ img{max-width:100%;}
           </div>
         </div>
       </div>
-      <div class="col-6 col-md-4 col-lg-3">
+      <div class="col-12 col-md-6 col-lg-3" data-reveal data-reveal-delay="2">
         <div class="team-card">
-          <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=300&q=80" alt="Janmark Decena" class="team-photo"/>
+          <img src="images/Janmark.jpg" alt="Janmark Decena" class="team-photo"/>
           <div class="team-body">
             <div class="team-name">Janmark Decena</div>
             <div class="team-role">Head Barista</div>
@@ -321,9 +330,9 @@ img{max-width:100%;}
           </div>
         </div>
       </div>
-      <div class="col-6 col-md-4 col-lg-3">
+      <div class="col-12 col-md-6 col-lg-3" data-reveal data-reveal-delay="3">
         <div class="team-card">
-          <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&q=80" alt="Carl Taborda" class="team-photo"/>
+          <img src="images/Carl.jpg" alt="Carl Taborda" class="team-photo"/>
           <div class="team-body">
             <div class="team-name">Carl Taborda</div>
             <div class="team-role">Cashier</div>
@@ -331,25 +340,57 @@ img{max-width:100%;}
           </div>
         </div>
       </div>
-      <div class="col-6 col-md-4 col-lg-3">
+      <div class="col-12 col-md-6 col-lg-3" data-reveal data-reveal-delay="4">
         <div class="team-card">
-          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&q=80" alt="Jan Kerby Rodriguez" class="team-photo"/>
+          <img src="images/Kerby.jpg" alt="Jan Kerby Rodriguez" class="team-photo"/>
           <div class="team-body">
             <div class="team-name">Jan Kerby Rodriguez</div>
-            <div class="team-role">Barista &amp; Trainer</div>
+            <div class="team-role">Barista</div>
             <p class="team-bio">Responsible for preparing and serving Bask Café's specialty coffee, matcha, and non-coffee beverages with precision and consistency.</p>
           </div>
         </div>
       </div>
     </div>
-    <div class="text-center mt-5">
+    <div class="row g-4 justify-content-center mt-1">
+      <div class="col-12 col-md-6 col-lg-3" data-reveal data-reveal-delay="1">
+        <div class="team-card">
+          <img src="images/khaled.jpg" alt="Khaled Hassan Roy" class="team-photo"/>
+          <div class="team-body">
+            <div class="team-name">Khaled Hassan Roy</div>
+            <div class="team-role">Barista</div>
+            <p class="team-bio">Ensures every guest interaction feels warm, personal, and aligned with Bask Café's service standards from welcome to checkout.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-6 col-lg-3" data-reveal data-reveal-delay="2">
+        <div class="team-card">
+          <img src="images/sai.jpg" alt="Marco Villanueva" class="team-photo"/>
+          <div class="team-body">
+            <div class="team-name">Marco Villanueva</div>
+            <div class="team-role">Kitchen Staff</div>
+            <p class="team-bio">Prepares in-store food, maintains kitchen cleanliness and safety, and coordinates with the front team for smooth, timely service.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-6 col-lg-3" data-reveal data-reveal-delay="3">
+        <div class="team-card">
+          <img src="images/winnie.jpg" alt="Winnie Dominguez" class="team-photo"/>
+          <div class="team-body">
+            <div class="team-name">Winnie Dominguez</div>
+            <div class="team-role">Commissary Staff &amp; Back-Up Support</div>
+            <p class="team-bio">Manages commissary inventory and bulk prep of ingredients and beverage components to keep daily operations, events, and coffee cart setups consistent and efficient.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center mt-5" data-reveal>
       <a href="opportunities.html" class="btn-gold">Join Our Team</a>
     </div>
   </div>
 </section>
 
 <div class="cta-band">
-  <div class="container">
+  <div class="container" data-reveal>
     <span class="eyebrow" style="color:var(--gold-lt);">Always Welcoming</span>
     <h2>Be part of our amazing community</h2>
     <p>A gathering of coffee lovers, storytellers, and dreamers — you're always welcome here.</p>
@@ -360,7 +401,7 @@ img{max-width:100%;}
   </div>
 </div>
 
-<footer class="bask-footer" id="footer">
+<footer class="bask-footer" id="footer" data-reveal>
   <div class="container">
     <div class="row g-4 g-lg-5 pb-5">
       <div class="col-12 col-sm-6 col-lg-4">
@@ -416,6 +457,8 @@ window.addEventListener('scroll',()=>{
   btt.classList.toggle('on',window.scrollY>400);
 },{passive:true});
 btt.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+const io=new IntersectionObserver((es,o)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('revealed');o.unobserve(e.target);}});},{threshold:.08,rootMargin:'0px 0px -36px 0px'});
+document.querySelectorAll('[data-reveal]').forEach(el=>io.observe(el));
 </script>
 </body>
 </html>
