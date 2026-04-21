@@ -1,390 +1,1244 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>Bask Café — Menu</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-  <link rel="stylesheet" href="style.css"/>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Bask Café — Menu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Marcellus&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<style>
+:root{
+  --df:#102C26;--cr:#F7E7CE;--df-lt:#1B3A2F;
+  --gold:#C9A24A;--gold-lt:#E4C87A;
+  --ff-h:'Cormorant Garamond',serif;
+  --ff-b:'Marcellus',serif;
+  --ff-u:'Jost',sans-serif;
+}
+*{box-sizing:border-box;}
+body{font-family:var(--ff-b);background:var(--cr);color:var(--df);overflow-x:hidden;}
+h1,h2,h3,h4,h5,h6{font-family:var(--ff-h);font-weight:700;color:var(--df);}
+a{text-decoration:none;color:inherit;}
+img{max-width:100%;}
+
+.bask-nav{background:var(--df)!important;position:sticky;top:0;z-index:1050;transition:background .3s;height:96px;}
+.bask-nav.scrolled{background:rgba(16,44,38,.96)!important;backdrop-filter:blur(12px);}
+.bask-nav .navbar-brand img{height:auto;width:240px;}
+.bask-nav .nav-link{font-family:var(--ff-u);font-size:.78rem;font-weight:500;letter-spacing:.7px;text-transform:uppercase;color:rgba(247,231,206,.78)!important;padding:8px 12px!important;transition:color .2s;}
+.bask-nav .nav-link:hover,.bask-nav .nav-link.active{color:var(--gold-lt)!important;}
+.bask-nav .dropdown-menu{background:#fff;border:none;border-top:2px solid var(--gold);border-radius:0 0 8px 8px;box-shadow:0 12px 32px rgba(0,0,0,.12);padding:8px;min-width:190px;}
+.bask-nav .dropdown-item{font-family:var(--ff-u);font-size:.82rem;color:#444;padding:9px 14px;border-radius:4px;transition:background .18s;}
+.bask-nav .dropdown-item:hover{background:var(--cr);color:var(--df);}
+.btn-reserve{font-family:var(--ff-u);font-size:.74rem;font-weight:700;letter-spacing:.7px;text-transform:uppercase;background:var(--gold);color:var(--df)!important;padding:9px 20px;border-radius:4px;border:2px solid var(--gold);transition:all .25s;white-space:nowrap;}
+.btn-reserve:hover{background:transparent;color:var(--gold)!important;border-color:var(--gold);}
+.navbar-toggler{border-color:rgba(247,231,206,.3);}
+.navbar-toggler-icon{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28247%2C231%2C206%2C.85%29' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");}
+@media(max-width:991.98px){
+  .bask-nav .navbar-collapse{background:var(--df-lt);padding:12px;margin-top:6px;border-radius:8px;border:1px solid rgba(255,255,255,.06);}
+  .bask-nav .nav-link{padding:10px 8px!important;border-bottom:1px solid rgba(255,255,255,.05);}
+  .btn-reserve{margin-top:10px;display:block;text-align:center;}
+}
+
+.page-hero{background:var(--df);padding:80px 0 60px;text-align:center;position:relative;overflow:hidden;}
+.page-hero::before{content:'';position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=1600&q=60') center/cover;opacity:.12;}
+.page-hero .container{position:relative;z-index:2;}
+.page-hero .eyebrow{font-family:var(--ff-u);font-size:.66rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold-lt);display:block;margin-bottom:10px;}
+.page-hero h1{font-family:var(--ff-h);font-size:clamp(2.4rem,6vw,4rem);color:#fff;margin-bottom:10px;}
+.page-hero p{font-style:italic;color:rgba(255,255,255,.65);font-size:.97rem;max-width:420px;margin:0 auto;}
+
+.menu-tabs-wrap{background:var(--df-lt);position:sticky;top:96px;z-index:900;}
+.menu-tabs{display:flex;overflow-x:auto;gap:0;padding:0;scrollbar-width:none;}
+.menu-tabs::-webkit-scrollbar{display:none;}
+.menu-tab-btn{font-family:var(--ff-u);font-size:.68rem;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;color:rgba(247,231,206,.55);background:none;border:none;border-bottom:2px solid transparent;padding:16px 20px;white-space:nowrap;cursor:pointer;transition:all .22s;flex-shrink:0;}
+.menu-tab-btn:hover{color:rgba(247,231,206,.9);}
+.menu-tab-btn.active{color:var(--gold-lt);border-bottom-color:var(--gold);}
+
+.eyebrow{font-family:var(--ff-u);font-size:.66rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:8px;}
+.s-rule{width:48px;height:2px;background:var(--gold);border-radius:1px;margin:12px 0 20px;}
+
+.cat-header{padding:60px 0 32px;}
+.cat-header h2{font-family:var(--ff-h);font-size:clamp(1.9rem,4vw,2.8rem);margin-bottom:0;}
+
+.menu-item{border-bottom:1px solid rgba(16,44,38,.1);padding:18px 0;}
+.menu-item:last-child{border-bottom:none;}
+.menu-item-name{font-family:var(--ff-h);font-size:1.08rem;font-weight:700;color:var(--df);margin-bottom:3px;line-height:1.3;}
+.menu-item-desc{font-family:var(--ff-u);font-size:.8rem;color:#666;line-height:1.6;margin:0;}
+.menu-item-price{font-family:var(--ff-u);font-size:.9rem;font-weight:700;color:var(--df);white-space:nowrap;padding-top:2px;}
+.bestseller-badge{display:inline-flex;align-items:center;gap:4px;font-family:var(--ff-u);font-size:.6rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;background:var(--gold);color:var(--df);padding:2px 8px;border-radius:2px;margin-left:8px;vertical-align:middle;}
+
+.menu-section{background:#fff;margin-bottom:8px;}
+.menu-section-inner{padding:32px 32px 24px;}
+@media(max-width:575.98px){.menu-section-inner{padding:24px 16px 16px;}}
+
+.sub-cat-title{font-family:var(--ff-h);font-size:1.22rem;color:var(--df);border-left:3px solid var(--gold);padding-left:12px;margin:28px 0 4px;}
+.sub-cat-title:first-child{margin-top:0;}
+
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px;}
+.feat-card{position:relative;aspect-ratio:1/1;overflow:hidden;cursor:default;}
+.feat-card img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .45s ease;}
+.feat-card:hover img{transform:scale(1.07);}
+.feat-card .feat-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(16,44,38,.82) 0%,rgba(16,44,38,.25) 55%,transparent 100%);transition:opacity .3s;}
+.feat-card:hover .feat-overlay{opacity:.9;}
+.feat-card .feat-info{position:absolute;bottom:0;left:0;right:0;padding:16px 14px 14px;z-index:2;}
+.feat-card .feat-name{font-family:var(--ff-h);font-size:1rem;font-weight:700;color:#fff;line-height:1.2;margin-bottom:3px;}
+.feat-card .feat-price{font-family:var(--ff-u);font-size:.7rem;font-weight:700;letter-spacing:.5px;color:var(--gold-lt);}
+.feat-card .feat-tag{position:absolute;top:10px;left:10px;font-family:var(--ff-u);font-size:.55rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;background:var(--gold);color:var(--df);padding:3px 8px;border-radius:2px;}
+@media(max-width:575.98px){.feat-card .feat-name{font-size:.85rem;}.feat-card .feat-price{font-size:.62rem;}.feat-grid{gap:8px;}}
+
+.cta-band{background:var(--df);padding:60px 0;text-align:center;}
+.cta-band h2{font-family:var(--ff-h);font-size:clamp(1.8rem,4vw,2.8rem);color:#fff;margin-bottom:10px;}
+.cta-band p{color:rgba(255,255,255,.6);font-size:.93rem;margin-bottom:24px;}
+.btn-gold{font-family:var(--ff-u);font-size:.74rem;font-weight:700;letter-spacing:.8px;text-transform:uppercase;background:var(--gold);color:var(--df)!important;padding:12px 28px;border-radius:4px;border:2px solid var(--gold);transition:all .25s;display:inline-block;}
+.btn-gold:hover{background:transparent;color:var(--gold)!important;}
+.btn-outline-cr{font-family:var(--ff-u);font-size:.74rem;font-weight:700;letter-spacing:.8px;text-transform:uppercase;background:transparent;color:var(--cr)!important;padding:12px 28px;border-radius:4px;border:2px solid rgba(247,231,206,.4);transition:all .25s;display:inline-block;}
+.btn-outline-cr:hover{border-color:var(--cr);background:rgba(247,231,206,.08);}
+
+.bask-footer{background:var(--df);padding:64px 0 0;}
+.f-brand{font-family:var(--ff-h);font-size:1.4rem;font-weight:700;color:#fff;margin-bottom:10px;}
+.f-desc{font-size:.86rem;color:rgba(255,255,255,.5);line-height:1.78;max-width:260px;}
+.f-head{font-family:var(--ff-u);font-size:.66rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold-lt);margin-bottom:16px;}
+.f-links{list-style:none;padding:0;margin:0;}
+.f-links li{margin-bottom:8px;}
+.f-links a{font-size:.86rem;color:rgba(255,255,255,.5);transition:color .18s,padding-left .18s;}
+.f-links a:hover{color:var(--gold-lt);padding-left:4px;}
+.f-contact{display:flex;gap:10px;align-items:flex-start;margin-bottom:9px;font-size:.85rem;color:rgba(255,255,255,.5);}
+.f-contact i{color:var(--gold-lt);margin-top:3px;flex-shrink:0;width:14px;}
+.f-bottom{border-top:1px solid rgba(255,255,255,.07);margin-top:48px;padding:18px 0;text-align:center;font-family:var(--ff-u);font-size:.76rem;color:rgba(255,255,255,.26);}
+.f-social{width:34px;height:34px;border-radius:50%;border:1px solid rgba(255,255,255,.14);display:inline-flex;align-items:center;justify-content:center;color:rgba(255,255,255,.44);font-size:.8rem;transition:all .22s;}
+.f-social:hover{background:var(--gold);border-color:var(--gold);color:var(--df);}
+
+.btt{position:fixed;bottom:24px;right:24px;width:42px;height:42px;background:var(--gold);color:var(--df);border:none;border-radius:50%;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;z-index:999;cursor:pointer;font-size:.95rem;}
+.btt.on{opacity:1;pointer-events:all;}
+.btt:hover{transform:translateY(-3px);}
+</style>
 </head>
 <body>
+
 <nav class="navbar navbar-expand-lg bask-nav" id="mainNav">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="index.html"><span class="brand-icon"><i class="fas fa-mug-hot"></i></span>Bask Café</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu"><span class="navbar-toggler-icon"></span></button>
-    <div class="collapse navbar-collapse justify-content-center" id="navMenu">
-      <ul class="navbar-nav gap-1">
+  <div class="container">
+    <a class="navbar-brand" href="home.html">
+      <img src="../images/BASKCAFENOBG.png" alt="Bask Café"/>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav mx-auto gap-lg-1 py-3 py-lg-0 align-items-lg-center">
         <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
         <li class="nav-item"><a class="nav-link active" href="menu.html">Menu</a></li>
         <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
-        <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+        <li class="nav-item"><a class="nav-link" href="bask-moments.html">Bask Moments</a></li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">More</a>
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">More</a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="events.html"><i class="fas fa-calendar-alt me-2 opacity-50"></i>Events &amp; Stories</a></li>
-            <li><a class="dropdown-item" href="careers.html"><i class="fas fa-briefcase me-2 opacity-50"></i>Careers</a></li>
+            <li><a class="dropdown-item" href="opportunities.html"><i class="fas fa-briefcase me-2 opacity-50"></i>Opportunities</a></li>
             <li><hr class="dropdown-divider"/></li>
             <li><a class="dropdown-item" href="contact.html"><i class="fas fa-envelope me-2 opacity-50"></i>Contact Us</a></li>
           </ul>
         </li>
       </ul>
+      <a href="contact.html" class="btn-reserve ms-lg-2">Reserve a Table</a>
     </div>
-    <div class="d-none d-lg-flex"><a href="contact.html" class="nav-link btn-nav-reserve">Reserve a Table</a></div>
   </div>
 </nav>
 
-<!-- HERO -->
-<section class="page-hero">
-  <div class="page-hero__bg page-hero__bg--menu"></div>
-  <div class="page-hero__overlay"></div>
-  <div class="page-hero__content">
-    <p class="page-hero__eyebrow">Bask Café</p>
-    <h1 class="page-hero__script fst-italic">Fresh Brew</h1>
-    <p class="page-hero__sub">Start your day right with every sip.</p>
-    <div class="mt-4"><a href="#espresso" class="btn-bask btn-bask-gold btn-bask-compact">Order Now</a></div>
-  </div>
-</section>
-
-<!-- STICKY MENU NAV -->
-<div class="sticky-menu-nav">
-  <div class="sticky-menu-nav__inner">
-    <a href="#espresso"      class="menu-pill active">Espresso</a>
-    <a href="#exclusives"    class="menu-pill">Bask Exclusives</a>
-    <a href="#matcha"        class="menu-pill">Matcha Series</a>
-    <a href="#frappuccino"   class="menu-pill">Frappuccino</a>
-    <a href="#besides"       class="menu-pill">Besides Coffee</a>
-    <a href="#rice"          class="menu-pill">Rice Meals</a>
-    <a href="#dessert"       class="menu-pill">Dessert &amp; Pastries</a>
-    <a href="#picapica"      class="menu-pill">Pica Pica</a>
-    <a href="#pasta"         class="menu-pill">Pasta</a>
+<div class="page-hero">
+  <div class="container">
+    <span class="eyebrow">Bask Café &middot; Est. 2024</span>
+    <h1>Our Menu</h1>
+    <p>Every item crafted with care, every cup a slow ritual.</p>
   </div>
 </div>
 
-<!-- ══ ESPRESSO ══ -->
-<section id="espresso" class="section bg-white">
+<div class="menu-tabs-wrap">
   <div class="container">
-    <div class="section-header centered" data-reveal>
-      <span class="eyebrow">Coffee Classics</span>
-      <h2 class="mt-2">Espresso</h2>
-      <div class="divider centered"></div>
-    </div>
-    <div class="row g-4 mb-5">
-      <div class="col-md-4"><div class="card-bask"><div class="card-bask__img"><img src="images/CaramelMach.png" alt="Latte"/></div></div></div>
-      <div class="col-md-4"><div class="card-bask"><div class="card-bask__img"><img src="images/Spanish.png" alt="Espresso"/></div></div></div>
-      <div class="col-md-4"><div class="card-bask"><div class="card-bask__img"><img src="images/Vienna.png" alt="Coffee"/></div></div></div>
-    </div>
-    <div class="row g-0">
-      <div class="col-md-6">
-        <div class="menu-item"><div class="menu-item__info"><div class="menu-item__name">Caffe Latte</div><div class="menu-item__desc">Smooth espresso blended with steamed milk — mild, comforting, classic.</div></div><div class="menu-item__price">₱115</div></div>
-        <div class="menu-item"><div class="menu-item__info"><div class="menu-item__name"><span class="badge-bask badge-hot">HOT</span>Spanish Latte</div><div class="menu-item__desc">Espresso, milk, and condensed milk for a rich velvety taste.</div></div><div class="menu-item__price">₱135</div></div>
-        <div class="menu-item"><div class="menu-item__info"><div class="menu-item__name">White Chocolate Mocha</div><div class="menu-item__desc">Espresso, steamed milk, and white chocolate — creamy and indulgent.</div></div><div class="menu-item__price">₱155</div></div>
-        <div class="menu-item"><div class="menu-item__info"><div class="menu-item__name">French Vanilla</div><div class="menu-item__desc">Aromatic coffee with smooth French vanilla — sweet and fragrant.</div></div><div class="menu-item__price">₱145</div></div>
-      </div>
-      <div class="col-md-6 menu-col-offset">
-        <div class="menu-item"><div class="menu-item__info"><div class="menu-item__name">Dark Mocha</div><div class="menu-item__desc">Bold espresso with rich dark chocolate — deep, slightly bittersweet.</div></div><div class="menu-item__price">₱115</div></div>
-        <div class="menu-item"><div class="menu-item__info"><div class="menu-item__name">Caramel Macchiato</div><div class="menu-item__desc">Layered espresso, velvety milk, and caramel drizzle.</div></div><div class="menu-item__price">₱145</div></div>
-        <div class="menu-item"><div class="menu-item__info"><div class="menu-item__name"><span class="badge-bask badge-new">NEW</span>Biscoff-os Latte</div><div class="menu-item__desc">Espresso, milk, and Biscoff butter — rich, caramelized spice.</div></div><div class="menu-item__price">₱155</div></div>
-      </div>
+    <div class="menu-tabs" id="menuTabs" role="tablist">
+      <button class="menu-tab-btn active" data-target="espresso">Espresso</button>
+      <button class="menu-tab-btn" data-target="exclusives">Bask Exclusives</button>
+      <button class="menu-tab-btn" data-target="matcha">Matcha Series</button>
+      <button class="menu-tab-btn" data-target="frappuccino">Frappuccino</button>
+      <button class="menu-tab-btn" data-target="besides">Besides Coffee</button>
+      <button class="menu-tab-btn" data-target="rice">Rice Meals</button>
+      <button class="menu-tab-btn" data-target="pasta">Pasta &amp; Mains</button>
+      <button class="menu-tab-btn" data-target="pastries">Desserts &amp; Pastries</button>
+      <button class="menu-tab-btn" data-target="picapica">Pica Pica</button>
     </div>
   </div>
-</section>
+</div>
 
-<!-- ══ BASK EXCLUSIVES ══ -->
-<section id="exclusives" class="section bg-green">
-  <div class="container">
-    <div class="section-header centered" data-reveal>
-      <span class="eyebrow section-eyebrow-gold">Signature Collection</span>
-      <h2 class="mt-2 text-gold">Bask Exclusives</h2>
-      <div class="divider centered"></div>
-    </div>
-    <div class="row g-0 menu-dark">
-      <div class="col-md-6">
-        <div class="menu-item"><div class="menu-item__info"><div class="menu-item__name"><span class="badge-bask badge-best">SIGNATURE</span>"El Clásico"</div><div class="menu-item__desc">Rich chocolate espresso embodying true coffee culture — bold aroma, full body.</div></div><div class="menu-item__price">₱100</div></div>
-        <div class="menu-item"><div class="menu-item__info"><div class="menu-item__name">Bask Signature™</div><div class="menu-item__desc">House specialty with a unique creamy twist. Perfectly balanced.</div></div><div class="menu-item__price">₱150</div></div>
-        <div class="menu-item"><div class="menu-item__info"><div class="menu-item__name">Vienna Latte</div><div class="menu-item__desc">Espresso, steamed milk, and light whipped cream topping — smooth and elegant.</div></div><div class="menu-item__price">₱150</div></div>
-      </div>
-      <div class="col-md-6 menu-col-offset">
-        <div class="menu-item"><div class="menu-item__info"><div class="menu-item__name">Dolce Cinnamon Latte</div><div class="menu-item__desc">Warm espresso infused with sweet cinnamon and creamy milk. Cozy spiced feel.</div></div><div class="menu-item__price">₱155</div></div>
-        <div class="menu-item"><div class="menu-item__info"><div class="menu-item__name"><span class="badge-bask badge-new">NEW</span>Sea Salt Crème Latte</div><div class="menu-item__desc">Latte topped with velvety sea salt cream — sweet, salty, indulgent.</div></div><div class="menu-item__price">₱155</div></div>
-      </div>
-    </div>
-  </div>
-</section>
+<div class="container py-2">
 
-<!-- ══ MATCHA SERIES ══ -->
-<section id="matcha" class="section bg-white">
-  <div class="container">
-    <div class="section-header centered" data-reveal>
-      <span class="eyebrow">Green &amp; Vibrant</span>
-      <h2 class="mt-2">Matcha Series</h2>
-      <div class="divider centered"></div>
+  <section id="espresso" class="menu-cat">
+    <div class="cat-header">
+      <span class="eyebrow">Beverages</span>
+      <h2>Espresso</h2>
+      <div class="s-rule"></div>
     </div>
-    <div class="row g-0">
-      <div class="col-md-6">
-        <div class="menu-item"><div class="menu-item__info"><div class="menu-item__name"><span class="badge-bask badge-hot">HOT</span>Matcha Latte</div><div class="menu-item__desc">Premium matcha blended with steamed milk — rich, earthy, lightly sweet.</div></div><div class="menu-item__price">₱155</div></div>
-        <div class="menu-item"><div class="menu-item__info"><div class="menu-item__name">Fredo Matcha</div><div class="menu-item__desc">Iced matcha made with espresso, milk, and condensed milk — velvety finish.</div></div><div class="menu-item__price">₱155</div></div>
-        <div class="menu-item"><div class="menu-item__info"><div class="menu-item__name">Cocoa Matcha</div><div class="menu-item__desc">Matcha meets white chocolate — creamy, sweet, and uniquely satisfying.</div></div><div class="menu-item__price">₱150</div></div>
-        <div class="menu-item"><div class="menu-item__info"><div class="menu-item__name">Berry Matcha</div><div class="menu-item__desc">Aromatic matcha infused with berry — sweet and fragrant.</div></div><div class="menu-item__price">₱150</div></div>
-      </div>
-      <div class="col-md-6 menu-col-offset">
-        <div class="menu-item"><div class="menu-item__info"><div class="menu-item__name">Ube Matcha</div><div class="menu-item__desc">Matcha meets bold ube — deep, slightly bittersweet with a Filipino twist.</div></div><div class="menu-item__price">₱155</div></div>
-        <div class="menu-item"><div class="menu-item__info"><div class="menu-item__name">Matcha Oatcho</div><div class="menu-item__desc">Layered matcha over oat milk with caramel — balanced and bold.</div></div><div class="menu-item__price">₱150</div></div>
-        <div class="menu-item"><div class="menu-item__info"><div class="menu-item__name">Dirty Matcha</div><div class="menu-item__desc">Matcha meets espresso shot — the best of both worlds.</div></div><div class="menu-item__price">₱155</div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ FRAPPUCCINO ══ -->
-<section id="frappuccino" class="section bg-green">
-  <div class="container">
-    <div class="section-header centered" data-reveal>
-      <span class="eyebrow section-eyebrow-gold">Blended &amp; Chilled</span>
-      <h2 class="mt-2 text-gold">Frappuccino</h2>
-      <div class="divider centered"></div>
-    </div>
-    <div class="row g-4 mb-5">
-      <div class="col-md-4"><div class="menu-photo-tile menu-photo-tile--square"><img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=400&q=80" class="img-cover" alt="Frappe"/></div></div>
-      <div class="col-md-4"><div class="menu-photo-tile menu-photo-tile--square"><img src="https://images.unsplash.com/photo-1553361371-9b22f78e8b1d?w=400&q=80" class="img-cover" alt="Frappe"/></div></div>
-      <div class="col-md-4"><div class="menu-photo-tile menu-photo-tile--square"><img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=400&q=80" class="img-cover" alt="Frappe"/></div></div>
-    </div>
-    <div class="row g-0 menu-dark">
-      <div class="col-md-6">
-        <div class="menu-item"><div class="menu-item__info"><div class="menu-item__name">Java Chip</div><div class="menu-item__desc">Chocolatey coffee blend with espresso, milk, and chocolate chips — smooth, indulgent.</div></div><div class="menu-item__price">₱250</div></div>
-        <div class="menu-item"><div class="menu-item__info"><div class="menu-item__name">Cookie Macadamia</div><div class="menu-item__desc">Cookies and roasted macadamia — nutty, sweet, satisfying.</div></div><div class="menu-item__price">₱210</div></div>
-        <div class="menu-item"><div class="menu-item__info"><div class="menu-item__name">Strawberry Shortcake</div><div class="menu-item__desc">Sweet strawberries, cream, and cake-like flavors — light and fruity.</div></div><div class="menu-item__price">₱200</div></div>
-      </div>
-      <div class="col-md-6 menu-col-offset">
-        <div class="menu-item"><div class="menu-item__info"><div class="menu-item__name">Biscoff Frappuccino</div><div class="menu-item__desc">Smooth blend infused with Biscoff cookie butter — rich caramelized spice.</div></div><div class="menu-item__price">₱230</div></div>
-        <div class="menu-item"><div class="menu-item__info"><div class="menu-item__name">White Chocolate Matcha</div><div class="menu-item__desc">Earthy matcha and sweet white chocolate — creamy, comforting balance.</div></div><div class="menu-item__price">₱225</div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ BESIDES COFFEE ══ -->
-<section id="besides" class="section bg-white">
-  <div class="container">
-    <div class="section-header centered" data-reveal>
-      <span class="eyebrow">Non-Coffee Options</span>
-      <h2 class="mt-2">Besides Coffee</h2>
-      <div class="divider centered"></div>
-    </div>
-    <h3 class="menu-subheading">Milk Based</h3>
-    <div class="row g-0 mb-5">
-      <div class="col-md-6">
-        <div class="menu-item"><div class="menu-item__info"><div class="menu-item__name">Strawberry Milk</div><div class="menu-item__desc">Sweet strawberries and steamed milk — refreshing and fruity.</div></div><div class="menu-item__price">₱90</div></div>
-        <div class="menu-item"><div class="menu-item__info"><div class="menu-item__name">Biscoff Latte</div><div class="menu-item__desc">Smooth latte infused with Biscoff cookie butter for an indulgent spiced sip.</div></div><div class="menu-item__price">₱160</div></div>
-        <div class="menu-item"><div class="menu-item__info"><div class="menu-item__name">Ube Milk</div><div class="menu-item__desc">Creamy and vibrant — a uniquely Filipino flavored milk drink.</div></div><div class="menu-item__price">₱90</div></div>
-      </div>
-      <div class="col-md-6 menu-col-offset">
-        <div class="menu-item"><div class="menu-item__info"><div class="menu-item__name">Swiss Chocolate (Iced/Hot)</div><div class="menu-item__desc">Rich, velvety chocolate drink — your perfect comfort sip.</div></div><div class="menu-item__price">₱100</div></div>
-        <div class="menu-item"><div class="menu-item__info"><div class="menu-item__name">Strawberry Chocolate</div><div class="menu-item__desc">Sweet strawberries and rich chocolate — blended to smooth indulgence.</div></div><div class="menu-item__price">₱120</div></div>
-        <div class="menu-item"><div class="menu-item__info"><div class="menu-item__name">Milk Dinosaur</div><div class="menu-item__desc">Creamy chocolate milk topped with Milo powder — nostalgic and delightful.</div></div><div class="menu-item__price">₱120</div></div>
-      </div>
-    </div>
-    <h3 class="menu-subheading">Soda Based</h3>
-    <div class="row g-0">
-      <div class="col-md-6">
-        <div class="menu-item"><div class="menu-item__info"><div class="menu-item__name">Soda Lemonade w/ Yakult</div><div class="menu-item__desc">Fizzy lemonade with Yakult — citrusy tang meets creamy tang.</div></div><div class="menu-item__price">₱120</div></div>
-        <div class="menu-item"><div class="menu-item__info"><div class="menu-item__name">Lychee Soda Mogu</div><div class="menu-item__desc">Light and refreshing lychee soda — sweet, tropical, fun.</div></div><div class="menu-item__price">₱120</div></div>
-      </div>
-      <div class="col-md-6 menu-col-offset">
-        <div class="menu-item"><div class="menu-item__info"><div class="menu-item__name">Green Apple Soda Mogu</div><div class="menu-item__desc">Crisp green apple soda with nata bits — refreshing and tangy.</div></div><div class="menu-item__price">₱90</div></div>
-        <div class="menu-item"><div class="menu-item__info"><div class="menu-item__name">Strawberry Soda Mogu</div><div class="menu-item__desc">Strawberry soda with chewy nata — sweet, fun, overflowing.</div></div><div class="menu-item__price">₱90</div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ RICE MEALS ══ -->
-<section id="rice" class="section bg-green">
-  <div class="container">
-    <div class="section-header centered" data-reveal>
-      <span class="eyebrow section-eyebrow-gold">Filipino Favorites</span>
-      <h2 class="mt-2 text-gold">Rice Meals</h2>
-      <div class="divider centered"></div>
-    </div>
-    <div class="row g-4 mb-5">
-      <div class="col-md-4"><div class="menu-photo-tile menu-photo-tile--rect"><img src="images/Karage Don.jpg" class="img-cover" alt="Rice Meal"/></div></div>
-      <div class="col-md-4"><div class="menu-photo-tile menu-photo-tile--rect"><img src="images/Nachos Overload.jpg" class="img-cover" alt="Rice Meal"/></div></div>
-      <div class="col-md-4"><div class="menu-photo-tile menu-photo-tile--rect"><img src="images/Chasudon.jpg" class="img-cover" alt="Rice Meal"/></div></div>
-    </div>
-    <div class="row g-0 menu-dark">
-      <div class="col-md-6">
-        <div class="menu-item"><div class="menu-item__info"><div class="menu-item__name">Boneless Bangus</div><div class="menu-item__desc">Perfectly seasoned and fried to golden perfection with rice and egg.</div></div><div class="menu-item__price">₱125</div></div>
-        <div class="menu-item"><div class="menu-item__info"><div class="menu-item__name">Longganisa</div><div class="menu-item__desc">Sweet and savory Filipino-style sausage — garlicky and loaded.</div></div><div class="menu-item__price">₱125</div></div>
-        <div class="menu-item"><div class="menu-item__info"><div class="menu-item__name">Cheesy Hungerton</div><div class="menu-item__desc">Filipino sausage topped with melted cheese — savory and creamy.</div></div><div class="menu-item__price">₱120</div></div>
-      </div>
-      <div class="col-md-6 menu-col-offset">
-        <div class="menu-item"><div class="menu-item__info"><div class="menu-item__name">Tapsilog</div><div class="menu-item__desc">Beef tapa, garlic fried rice, and a sunny-side egg — the classic Filipino combo.</div></div><div class="menu-item__price">₱150</div></div>
-        <div class="menu-item"><div class="menu-item__info"><div class="menu-item__name">Cornbeef</div><div class="menu-item__desc">Savory corned beef sautéed to perfection — comforting and flavorful.</div></div><div class="menu-item__price">₱140</div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ DESSERT & PASTRIES ══ -->
-<section id="dessert" class="section bg-white">
-  <div class="container">
-    <div class="section-header centered" data-reveal>
-      <span class="eyebrow">Sweet Bites</span>
-      <h2 class="mt-2">Dessert &amp; Pastries</h2>
-      <div class="divider centered"></div>
-    </div>
-    <div class="row g-0">
-      <div class="col-md-6">
-        <div class="menu-item"><div class="menu-item__info"><div class="menu-item__name">Hungarian Sunrise Croissant</div><div class="menu-item__desc">Flaky croissant with Hungarian sausage, egg, honey, and whipped cream.</div></div><div class="menu-item__price">₱175</div></div>
-        <div class="menu-item"><div class="menu-item__info"><div class="menu-item__name">Chix Croissant</div><div class="menu-item__desc">Buttered chicken-stuffed croissant with light whipped topping.</div></div><div class="menu-item__price">₱155</div></div>
-        <div class="menu-item"><div class="menu-item__info"><div class="menu-item__name">Nutella Alquezer Croissant</div><div class="menu-item__desc">Delicate, buttery croissant baked to golden perfection — classic and crisp.</div></div><div class="menu-item__price">₱120</div></div>
-      </div>
-      <div class="col-md-6 menu-col-offset">
-        <div class="menu-item"><div class="menu-item__info"><div class="menu-item__name">Plain Crossaint</div><div class="menu-item__desc">French pastry with soft, flaky layers — sweet and indulgent.</div></div><div class="menu-item__price">₱210</div></div>
-        <div class="menu-item"><div class="menu-item__info"><div class="menu-item__name">Pain Au Chocolat</div><div class="menu-item__desc">Soft, fluffy roll dusted with cinnamon and sugar — warm and comforting.</div></div><div class="menu-item__price">₱155</div></div>
-        <div class="menu-item"><div class="menu-item__info"><div class="menu-item__name">Cinnamon Roll</div><div class="menu-item__desc">Rich croissant filled with Nutella and almond — buttery, smooth topping.</div></div><div class="menu-item__price">₱140</div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ PICA PICA ══ -->
-<section id="picapica" class="section bg-green">
-  <div class="container">
-    <div class="section-header centered" data-reveal>
-      <span class="eyebrow section-eyebrow-gold">Snacks &amp; Sides</span>
-      <h2 class="mt-2 text-gold">Pica Pica</h2>
-      <div class="divider centered"></div>
-    </div>
-    <div class="row g-0 menu-dark">
-      <div class="col-md-6">
-        <div class="menu-item"><div class="menu-item__info"><div class="menu-item__name">Fries</div><div class="menu-item__desc">Crispy golden fries — perfectly seasoned, perfectly satisfying.</div></div><div class="menu-item__price">₱100</div></div>
-        <div class="menu-item"><div class="menu-item__info"><div class="menu-item__name"><span class="badge-bask badge-hot">HOT</span>Cheesy Bacon Fries</div><div class="menu-item__desc">Loaded fries with creamy cheese and crispy bacon bits.</div></div><div class="menu-item__price">₱130</div></div>
-        <div class="menu-item"><div class="menu-item__info"><div class="menu-item__name">Beef Nachos Supreme</div><div class="menu-item__desc">Crunchy nachos topped with seasoned beef and melted cheese.</div></div><div class="menu-item__price">₱200</div></div>
-      </div>
-      <div class="col-md-6 menu-col-offset">
-        <div class="menu-item"><div class="menu-item__info"><div class="menu-item__name">Chicken Poppers</div><div class="menu-item__desc">Bite-sized crispy chicken pieces — juicy inside, crunchy outside.</div></div><div class="menu-item__price">₱130</div></div>
-        <div class="menu-item"><div class="menu-item__info"><div class="menu-item__name">Hashbrown</div><div class="menu-item__desc">Golden crispy outside, soft and fluffy inside — perfect potato.</div></div><div class="menu-item__price">₱50</div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ PASTA ══ -->
-<section id="pasta" class="section bg-white">
-  <div class="container">
-    <div class="section-header centered" data-reveal>
-      <span class="eyebrow">Comfort Bowls</span>
-      <h2 class="mt-2">Pasta</h2>
-      <div class="divider centered"></div>
-    </div>
-    <div class="row g-4 mb-5">
-      <div class="col-md-4"><div class="card-bask"><div class="card-bask__img"><img src="images/pasta.png" alt="Pasta"/></div></div></div>
-      <div class="col-md-4"><div class="card-bask"><div class="card-bask__img"><img src="images/spicychick2.0.png" alt="Pasta"/></div></div></div>
-      <div class="col-md-4"><div class="card-bask"><div class="card-bask__img"><img src="images/pesto.png" alt="Pasta"/></div></div></div>
-    </div>
-    <div class="row g-0 mb-4">
-      <div class="col-md-6">
-        <div class="menu-item"><div class="menu-item__info"><div class="menu-item__name"><span class="badge-bask badge-new">NEW</span>Truffle Pasta</div><div class="menu-item__desc">Buttery, aromatic pasta infused with rich truffle — luxurious dining.</div></div><div class="menu-item__price">₱150</div></div>
-        <div class="menu-item"><div class="menu-item__info"><div class="menu-item__name">Carbonara</div><div class="menu-item__desc">Creamy, rich white sauce pasta — generous and perfectly cheesy.</div></div><div class="menu-item__price">₱150</div></div>
-      </div>
-      <div class="col-md-6 menu-col-offset">
-        <div class="menu-item"><div class="menu-item__info"><div class="menu-item__name">Pesto Pasta</div><div class="menu-item__desc">Fresh pesto tossed with pasta — aromatic, luxurious, and vibrant.</div></div><div class="menu-item__price">₱150</div></div>
-        <div class="menu-item"><div class="menu-item__info"><div class="menu-item__name">Loaded Baked Mac</div><div class="menu-item__desc">Baked macaroni with rich cheese sauce and loaded toppings.</div></div><div class="menu-item__price">₱150</div></div>
-      </div>
-    </div>
-
-    <!-- Karage Don -->
-    <div class="menu-feature-box" data-reveal>
-      <h3 class="menu-feature-box__title">Karage Don</h3>
-      <div class="row">
-        <div class="col-md-6">
-          <div class="menu-item"><div class="menu-item__info"><div class="menu-item__name">Classic</div></div><div class="menu-item__price">₱150</div></div>
-          <div class="menu-item"><div class="menu-item__info"><div class="menu-item__name">Honey Butter</div></div><div class="menu-item__price">₱160</div></div>
-          <div class="menu-item"><div class="menu-item__info"><div class="menu-item__name">Honey Butter Snow</div></div><div class="menu-item__price">₱170</div></div>
-          <div class="menu-item"><div class="menu-item__info"><div class="menu-item__name">Garlic Butter</div></div><div class="menu-item__price">₱155</div></div>
-          <div class="menu-item"><div class="menu-item__info"><div class="menu-item__name">Japanese Teriyaki</div></div><div class="menu-item__price">₱160</div></div>
-          <div class="menu-item"><div class="menu-item__info"><div class="menu-item__name">Soy Garlic</div></div><div class="menu-item__price">₱155</div></div>
+    <div class="feat-grid">
+      <div class="feat-card">
+        <span class="feat-tag">⭐ Featured</span>
+        <img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?w=600&q=80" alt="Vienna Latte"/>
+        <div class="feat-overlay"></div>
+        <div class="feat-info">
+          <div class="feat-name">Vienna Latte</div>
+          <div class="feat-price">₱150</div>
         </div>
-        <div class="col-md-6">
-          <div class="menu-item"><div class="menu-item__info"><div class="menu-item__name"><span class="badge-bask badge-hot">HOT</span>Spicy Chicken Steak</div><div class="menu-item__desc">4 pcs chicken tenders with sour cream mayo + fries</div></div><div class="menu-item__price">₱150</div></div>
-          <div class="menu-item"><div class="menu-item__info"><div class="menu-item__name">Spicy Chicken w/ Fries</div></div><div class="menu-item__price">₱150</div></div>
-          <div class="menu-item"><div class="menu-item__info"><div class="menu-item__name">Bask Burger</div><div class="menu-item__desc">Crispy chicken sandwich (wheat, lettuce &amp; special sauce) + fries</div></div><div class="menu-item__price">₱120</div></div>
+      </div>
+      <div class="feat-card">
+        <span class="feat-tag">⭐ Featured</span>
+        <img src="https://images.unsplash.com/photo-1485808191679-5f86510bd9d3?w=600&q=80" alt="Caramel Macchiato"/>
+        <div class="feat-overlay"></div>
+        <div class="feat-info">
+          <div class="feat-name">Caramel Macchiato</div>
+          <div class="feat-price">₱145</div>
+        </div>
+      </div>
+      <div class="feat-card">
+        <span class="feat-tag">⭐ Featured</span>
+        <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=600&q=80" alt="Spanish Latte"/>
+        <div class="feat-overlay"></div>
+        <div class="feat-info">
+          <div class="feat-name">Spanish Latte</div>
+          <div class="feat-price">₱135</div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+    <div class="menu-section">
+      <div class="menu-section-inner">
+        <div class="row g-0">
+          <div class="col-12 col-md-6 pe-md-4">
+            <div class="menu-item">
+              <div class="d-flex justify-content-between align-items-start gap-3">
+                <div>
+                  <div class="menu-item-name">Caffe Latte</div>
+                  <p class="menu-item-desc">Smooth and creamy espresso blended with steamed milk, creating a mild and comforting coffee flavor.</p>
+                </div>
+                <div class="menu-item-price">₱115</div>
+              </div>
+            </div>
+            <div class="menu-item">
+              <div class="d-flex justify-content-between align-items-start gap-3">
+                <div>
+                  <div class="menu-item-name">Spanish Latte <span class="bestseller-badge">⭐ Best</span></div>
+                  <p class="menu-item-desc">A rich and slightly sweet coffee made with espresso, milk, and condensed milk for a velvety finish.</p>
+                </div>
+                <div class="menu-item-price">₱135</div>
+              </div>
+            </div>
+            <div class="menu-item">
+              <div class="d-flex justify-content-between align-items-start gap-3">
+                <div>
+                  <div class="menu-item-name">White Chocolate Mocha <span class="bestseller-badge">⭐ Best</span></div>
+                  <p class="menu-item-desc">A luxurious mix of espresso, steamed milk, and white chocolate, offering a creamy and sweet taste.</p>
+                </div>
+                <div class="menu-item-price">₱155</div>
+              </div>
+            </div>
+            <div class="menu-item">
+              <div class="d-flex justify-content-between align-items-start gap-3">
+                <div>
+                  <div class="menu-item-name">French Vanilla</div>
+                  <p class="menu-item-desc">Aromatic coffee infused with smooth French vanilla flavor, giving a sweet and fragrant experience.</p>
+                </div>
+                <div class="menu-item-price">₱145</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 ps-md-4 border-start-md">
+            <div class="menu-item">
+              <div class="d-flex justify-content-between align-items-start gap-3">
+                <div>
+                  <div class="menu-item-name">Dark Mocha</div>
+                  <p class="menu-item-desc">Bold espresso combined with rich dark chocolate for a deep, slightly bittersweet flavor.</p>
+                </div>
+                <div class="menu-item-price">₱145</div>
+              </div>
+            </div>
+            <div class="menu-item">
+              <div class="d-flex justify-content-between align-items-start gap-3">
+                <div>
+                  <div class="menu-item-name">Caramel Macchiato</div>
+                  <p class="menu-item-desc">Layered espresso with vanilla milk and a drizzle of caramel for a perfect balance of sweet and bold.</p>
+                </div>
+                <div class="menu-item-price">₱145</div>
+              </div>
+            </div>
+            <div class="menu-item">
+              <div class="d-flex justify-content-between align-items-start gap-3">
+                <div>
+                  <div class="menu-item-name">Biscoff-ee Latte <span class="bestseller-badge">⭐ Best</span></div>
+                  <p class="menu-item-desc">A unique blend of espresso, milk, and Biscoff cookie butter, delivering a rich, caramelized spice flavor.</p>
+                </div>
+                <div class="menu-item-price">₱165</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<!-- ══════════════ FOOTER ══════════════ -->
-<footer class="bask-footer">
+  <section id="exclusives" class="menu-cat">
+    <div class="cat-header">
+      <span class="eyebrow">House Specials</span>
+      <h2>Bask Exclusives</h2>
+      <div class="s-rule"></div>
+    </div>
+    <div class="feat-grid">
+      <div class="feat-card">
+        <span class="feat-tag">⭐ Featured</span>
+        <img src="https://images.unsplash.com/photo-1559496417-e7f25cb247f3?w=600&q=80" alt="El Classico"/>
+        <div class="feat-overlay"></div>
+        <div class="feat-info">
+          <div class="feat-name">'El Classico'</div>
+          <div class="feat-price">₱190</div>
+        </div>
+      </div>
+      <div class="feat-card">
+        <span class="feat-tag">⭐ Featured</span>
+        <img src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=600&q=80" alt="Sea Salt Creme Latte"/>
+        <div class="feat-overlay"></div>
+        <div class="feat-info">
+          <div class="feat-name">Sea Salt Creme Latte</div>
+          <div class="feat-price">₱155</div>
+        </div>
+      </div>
+      <div class="feat-card">
+        <span class="feat-tag">⭐ Featured</span>
+        <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=600&q=80" alt="Bask Signature"/>
+        <div class="feat-overlay"></div>
+        <div class="feat-info">
+          <div class="feat-name">Bask Signature</div>
+          <div class="feat-price">₱180</div>
+        </div>
+      </div>
+    </div>
+    <div class="menu-section">
+      <div class="menu-section-inner">
+        <div class="row g-0">
+          <div class="col-12 col-md-6 pe-md-4">
+            <div class="menu-item">
+              <div class="d-flex justify-content-between align-items-start gap-3">
+                <div>
+                  <div class="menu-item-name">'El Classico'</div>
+                  <p class="menu-item-desc">A bold and timeless espresso drink crafted for true coffee lovers, delivering a rich aroma and full-bodied flavor.</p>
+                </div>
+                <div class="menu-item-price">₱190</div>
+              </div>
+            </div>
+            <div class="menu-item">
+              <div class="d-flex justify-content-between align-items-start gap-3">
+                <div>
+                  <div class="menu-item-name">Bask Signature</div>
+                  <p class="menu-item-desc">Our house specialty blend featuring smooth espresso with a unique creamy twist, perfectly balanced for a signature taste.</p>
+                </div>
+                <div class="menu-item-price">₱180</div>
+              </div>
+            </div>
+            <div class="menu-item">
+              <div class="d-flex justify-content-between align-items-start gap-3">
+                <div>
+                  <div class="menu-item-name">Vienna Latte</div>
+                  <p class="menu-item-desc">A delightful combination of espresso, steamed milk, and a light whipped cream topping for a smooth and indulgent finish.</p>
+                </div>
+                <div class="menu-item-price">₱150</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 ps-md-4">
+            <div class="menu-item">
+              <div class="d-flex justify-content-between align-items-start gap-3">
+                <div>
+                  <div class="menu-item-name">Dolce Cinnamon Latte</div>
+                  <p class="menu-item-desc">Warm and comforting espresso infused with sweet cinnamon and creamy milk, offering a cozy, spiced flavor.</p>
+                </div>
+                <div class="menu-item-price">₱155</div>
+              </div>
+            </div>
+            <div class="menu-item">
+              <div class="d-flex justify-content-between align-items-start gap-3">
+                <div>
+                  <div class="menu-item-name">Sea Salt Creme Latte <span class="bestseller-badge">⭐ Best</span></div>
+                  <p class="menu-item-desc">A rich latte topped with velvety sea salt cream, blending sweet and salty flavors into a smooth, indulgent experience.</p>
+                </div>
+                <div class="menu-item-price">₱155</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="matcha" class="menu-cat">
+    <div class="cat-header">
+      <span class="eyebrow">Green &amp; Earthy</span>
+      <h2>Matcha Series</h2>
+      <div class="s-rule"></div>
+    </div>
+    <div class="feat-grid">
+      <div class="feat-card">
+        <span class="feat-tag">⭐ Featured</span>
+        <img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=600&q=80" alt="Matcha Latte"/>
+        <div class="feat-overlay"></div>
+        <div class="feat-info">
+          <div class="feat-name">Matcha Latte</div>
+          <div class="feat-price">₱135</div>
+        </div>
+      </div>
+      <div class="feat-card">
+        <span class="feat-tag">⭐ Featured</span>
+        <img src="https://images.unsplash.com/photo-1621263764928-df1444c5e859?w=600&q=80" alt="Matcha Oatchata"/>
+        <div class="feat-overlay"></div>
+        <div class="feat-info">
+          <div class="feat-name">Matcha Oatchata</div>
+          <div class="feat-price">₱180</div>
+        </div>
+      </div>
+      <div class="feat-card">
+        <span class="feat-tag">⭐ Featured</span>
+        <img src="https://images.unsplash.com/photo-1536256263959-770b48d82b0a?w=600&q=80" alt="Berry Matcha"/>
+        <div class="feat-overlay"></div>
+        <div class="feat-info">
+          <div class="feat-name">Berry Matcha</div>
+          <div class="feat-price">₱150</div>
+        </div>
+      </div>
+    </div>
+    <div class="menu-section">
+      <div class="menu-section-inner">
+        <div class="row g-0">
+          <div class="col-12 col-md-6 pe-md-4">
+            <div class="menu-item">
+              <div class="d-flex justify-content-between align-items-start gap-3">
+                <div>
+                  <div class="menu-item-name">Matcha Latte <span class="bestseller-badge">⭐ Best</span></div>
+                  <p class="menu-item-desc">Smooth and creamy matcha blended with steamed milk, creating a mild and comforting green tea flavor.</p>
+                </div>
+                <div class="menu-item-price">₱135</div>
+              </div>
+            </div>
+            <div class="menu-item">
+              <div class="d-flex justify-content-between align-items-start gap-3">
+                <div>
+                  <div class="menu-item-name">Freddo Matcha</div>
+                  <p class="menu-item-desc">A rich and slightly sweet matcha drink made with espresso, milk, and condensed milk for a velvety finish.</p>
+                </div>
+                <div class="menu-item-price">₱165</div>
+              </div>
+            </div>
+            <div class="menu-item">
+              <div class="d-flex justify-content-between align-items-start gap-3">
+                <div>
+                  <div class="menu-item-name">Cocoa Matcha</div>
+                  <p class="menu-item-desc">A luxurious mix of matcha, steamed milk, and white chocolate, offering a creamy and sweet taste.</p>
+                </div>
+                <div class="menu-item-price">₱140</div>
+              </div>
+            </div>
+            <div class="menu-item">
+              <div class="d-flex justify-content-between align-items-start gap-3">
+                <div>
+                  <div class="menu-item-name">Berry Matcha</div>
+                  <p class="menu-item-desc">Matcha infused with a fruity berry flavor, giving a sweet, slightly tart, and aromatic experience.</p>
+                </div>
+                <div class="menu-item-price">₱150</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 ps-md-4">
+            <div class="menu-item">
+              <div class="d-flex justify-content-between align-items-start gap-3">
+                <div>
+                  <div class="menu-item-name">Ube Matcha</div>
+                  <p class="menu-item-desc">A Filipino-inspired matcha drink combined with rich ube flavor for a uniquely vibrant and earthy taste.</p>
+                </div>
+                <div class="menu-item-price">₱145</div>
+              </div>
+            </div>
+            <div class="menu-item">
+              <div class="d-flex justify-content-between align-items-start gap-3">
+                <div>
+                  <div class="menu-item-name">Matcha Oatchata <span class="bestseller-badge">⭐ Best</span></div>
+                  <p class="menu-item-desc">Layered matcha with oat milk and a hint of cinnamon for a perfect balance of earthy and sweet.</p>
+                </div>
+                <div class="menu-item-price">₱180</div>
+              </div>
+            </div>
+            <div class="menu-item">
+              <div class="d-flex justify-content-between align-items-start gap-3">
+                <div>
+                  <div class="menu-item-name">Dirty Matcha</div>
+                  <p class="menu-item-desc">A unique blend of matcha and espresso, delivering a rich, bold, and earthy flavor in one cup.</p>
+                </div>
+                <div class="menu-item-price">₱155</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="frappuccino" class="menu-cat">
+    <div class="cat-header">
+      <span class="eyebrow">Blended &amp; Chilled</span>
+      <h2>Frappuccino</h2>
+      <div class="s-rule"></div>
+    </div>
+    <div class="feat-grid">
+      <div class="feat-card">
+        <span class="feat-tag">⭐ Featured</span>
+        <img src="https://images.unsplash.com/photo-1572490122747-3f3400822c2f?w=600&q=80" alt="Java Chip"/>
+        <div class="feat-overlay"></div>
+        <div class="feat-info">
+          <div class="feat-name">Java Chip</div>
+          <div class="feat-price">₱260</div>
+        </div>
+      </div>
+      <div class="feat-card">
+        <span class="feat-tag">⭐ Featured</span>
+        <img src="https://images.unsplash.com/photo-1553361371-9b22f78e8b1d?w=600&q=80" alt="Biscoff Frappuccino"/>
+        <div class="feat-overlay"></div>
+        <div class="feat-info">
+          <div class="feat-name">Biscoff Frappuccino</div>
+          <div class="feat-price">₱240</div>
+        </div>
+      </div>
+      <div class="feat-card">
+        <span class="feat-tag">⭐ Featured</span>
+        <img src="https://images.unsplash.com/photo-1610451051814-9f8720da0659?w=600&q=80" alt="White Chocolate Matcha"/>
+        <div class="feat-overlay"></div>
+        <div class="feat-info">
+          <div class="feat-name">White Choco Matcha</div>
+          <div class="feat-price">₱255</div>
+        </div>
+      </div>
+    </div>
+    <div class="menu-section">
+      <div class="menu-section-inner">
+        <div class="row g-0">
+          <div class="col-12 col-md-6 pe-md-4">
+            <div class="menu-item">
+              <div class="d-flex justify-content-between align-items-start gap-3">
+                <div>
+                  <div class="menu-item-name">Java Chip</div>
+                  <p class="menu-item-desc">A rich chocolatey coffee blend with espresso, milk, and crunchy chocolate chips, blended into a smooth and indulgent drink.</p>
+                </div>
+                <div class="menu-item-price">₱260</div>
+              </div>
+            </div>
+            <div class="menu-item">
+              <div class="d-flex justify-content-between align-items-start gap-3">
+                <div>
+                  <div class="menu-item-name">Cookie Macadamia</div>
+                  <p class="menu-item-desc">A creamy blend of cookies and roasted macadamia flavor, offering a nutty, sweet, and satisfying treat.</p>
+                </div>
+                <div class="menu-item-price">₱240</div>
+              </div>
+            </div>
+            <div class="menu-item">
+              <div class="d-flex justify-content-between align-items-start gap-3">
+                <div>
+                  <div class="menu-item-name">Strawberry Shortcake</div>
+                  <p class="menu-item-desc">A refreshing mix of sweet strawberries, creamy milk, and cake-like flavors, blended into a light and fruity dessert drink.</p>
+                </div>
+                <div class="menu-item-price">₱200</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 ps-md-4">
+            <div class="menu-item">
+              <div class="d-flex justify-content-between align-items-start gap-3">
+                <div>
+                  <div class="menu-item-name">Biscoff Frappuccino</div>
+                  <p class="menu-item-desc">A smooth and creamy drink infused with Biscoff cookie butter, delivering a rich caramelized spice flavor in every sip.</p>
+                </div>
+                <div class="menu-item-price">₱240</div>
+              </div>
+            </div>
+            <div class="menu-item">
+              <div class="d-flex justify-content-between align-items-start gap-3">
+                <div>
+                  <div class="menu-item-name">White Chocolate Matcha</div>
+                  <p class="menu-item-desc">A unique fusion of earthy matcha and sweet white chocolate, creating a perfectly balanced creamy and slightly bitter blend.</p>
+                </div>
+                <div class="menu-item-price">₱255</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="besides" class="menu-cat">
+    <div class="cat-header">
+      <span class="eyebrow">Non-Coffee Drinks</span>
+      <h2>Besides Coffee</h2>
+      <div class="s-rule"></div>
+    </div>
+    <div class="feat-grid">
+      <div class="feat-card">
+        <span class="feat-tag">⭐ Featured</span>
+        <img src="https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=600&q=80" alt="Milo Dinosaur"/>
+        <div class="feat-overlay"></div>
+        <div class="feat-info">
+          <div class="feat-name">Milo Dinosaur</div>
+          <div class="feat-price">₱120</div>
+        </div>
+      </div>
+      <div class="feat-card">
+        <span class="feat-tag">⭐ Featured</span>
+        <img src="https://images.unsplash.com/photo-1553361371-9b22f78e8b1d?w=600&q=80" alt="Biscoff Latte"/>
+        <div class="feat-overlay"></div>
+        <div class="feat-info">
+          <div class="feat-name">Biscoff Latte</div>
+          <div class="feat-price">₱140</div>
+        </div>
+      </div>
+      <div class="feat-card">
+        <span class="feat-tag">⭐ Featured</span>
+        <img src="https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=600&q=80" alt="Strawberry Milk"/>
+        <div class="feat-overlay"></div>
+        <div class="feat-info">
+          <div class="feat-name">Strawberry Milk</div>
+          <div class="feat-price">₱99</div>
+        </div>
+      </div>
+    </div>
+    <div class="menu-section">
+      <div class="menu-section-inner">
+        <h3 class="sub-cat-title">Milk Based</h3>
+        <div class="row g-0">
+          <div class="col-12 col-md-6 pe-md-4">
+            <div class="menu-item">
+              <div class="d-flex justify-content-between align-items-start gap-3">
+                <div>
+                  <div class="menu-item-name">Strawberry Milk</div>
+                  <p class="menu-item-desc">A sweet and refreshing blend of fresh strawberry flavor and creamy milk, perfect for a light and fruity treat.</p>
+                </div>
+                <div class="menu-item-price">₱99</div>
+              </div>
+            </div>
+            <div class="menu-item">
+              <div class="d-flex justify-content-between align-items-start gap-3">
+                <div>
+                  <div class="menu-item-name">Biscoff Latte <span class="bestseller-badge">⭐ Best</span></div>
+                  <p class="menu-item-desc">A smooth latte infused with rich Biscoff cookie butter, offering a warm caramelized spice flavor.</p>
+                </div>
+                <div class="menu-item-price">₱140</div>
+              </div>
+            </div>
+            <div class="menu-item">
+              <div class="d-flex justify-content-between align-items-start gap-3">
+                <div>
+                  <div class="menu-item-name">Ube Milk</div>
+                  <p class="menu-item-desc">A creamy and vibrant drink made with classic ube flavor, delivering a sweet and uniquely Filipino taste.</p>
+                </div>
+                <div class="menu-item-price">₱99</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 ps-md-4">
+            <div class="menu-item">
+              <div class="d-flex justify-content-between align-items-start gap-3">
+                <div>
+                  <div class="menu-item-name">Swiss Chocolate (Iced/Hot)</div>
+                  <p class="menu-item-desc">A rich and velvety chocolate drink made with premium cocoa, served hot or iced for your perfect comfort sip.</p>
+                </div>
+                <div class="menu-item-price">₱99</div>
+              </div>
+            </div>
+            <div class="menu-item">
+              <div class="d-flex justify-content-between align-items-start gap-3">
+                <div>
+                  <div class="menu-item-name">Strawberry Chocolate</div>
+                  <p class="menu-item-desc">A delightful mix of sweet strawberries and rich chocolate, blended into a smooth and indulgent drink.</p>
+                </div>
+                <div class="menu-item-price">₱120</div>
+              </div>
+            </div>
+            <div class="menu-item">
+              <div class="d-flex justify-content-between align-items-start gap-3">
+                <div>
+                  <div class="menu-item-name">Milo Dinosaur</div>
+                  <p class="menu-item-desc">A nostalgic favorite made with creamy chocolate malt and topped with an extra layer of Milo powder for a rich, crunchy finish.</p>
+                </div>
+                <div class="menu-item-price">₱120</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="sub-cat-title">Soda Based</h3>
+        <div class="row g-0">
+          <div class="col-12 col-md-6 pe-md-4">
+            <div class="menu-item">
+              <div class="d-flex justify-content-between align-items-start gap-3">
+                <div>
+                  <div class="menu-item-name">Soda Lemonade w/ Yakult</div>
+                  <p class="menu-item-desc">A fizzy and refreshing lemonade mixed with Yakult, offering a perfect balance of citrusy tang and creamy sweetness.</p>
+                </div>
+                <div class="menu-item-price">₱110</div>
+              </div>
+            </div>
+            <div class="menu-item">
+              <div class="d-flex justify-content-between align-items-start gap-3">
+                <div>
+                  <div class="menu-item-name">Lychee Soda Mogu</div>
+                  <p class="menu-item-desc">A sparkling lychee-flavored soda with chewy nata bits, giving a sweet, tropical, and fun drinking experience.</p>
+                </div>
+                <div class="menu-item-price">₱99</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 ps-md-4">
+            <div class="menu-item">
+              <div class="d-flex justify-content-between align-items-start gap-3">
+                <div>
+                  <div class="menu-item-name">Green Apple Soda Mogu</div>
+                  <p class="menu-item-desc">A crisp and bubbly green apple soda with nata bits, delivering a refreshing sweet-and-tangy flavor.</p>
+                </div>
+                <div class="menu-item-price">₱99</div>
+              </div>
+            </div>
+            <div class="menu-item">
+              <div class="d-flex justify-content-between align-items-start gap-3">
+                <div>
+                  <div class="menu-item-name">Strawberry Soda Mogu</div>
+                  <p class="menu-item-desc">A fruity strawberry soda with chewy nata bits, combining sweetness and fizz for a refreshing treat.</p>
+                </div>
+                <div class="menu-item-price">₱99</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="rice" class="menu-cat">
+    <div class="cat-header">
+      <span class="eyebrow">Filipino Favorites</span>
+      <h2>Rice Meals</h2>
+      <div class="s-rule"></div>
+    </div>
+    <div class="feat-grid">
+      <div class="feat-card">
+        <span class="feat-tag">⭐ Featured</span>
+        <img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=600&q=80" alt="Tapsilog"/>
+        <div class="feat-overlay"></div>
+        <div class="feat-info">
+          <div class="feat-name">Tapsilog</div>
+          <div class="feat-price">₱169</div>
+        </div>
+      </div>
+      <div class="feat-card">
+        <span class="feat-tag">⭐ Featured</span>
+        <img src="https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=600&q=80" alt="Boneless Bangus"/>
+        <div class="feat-overlay"></div>
+        <div class="feat-info">
+          <div class="feat-name">Boneless Bangus</div>
+          <div class="feat-price">₱149</div>
+        </div>
+      </div>
+      <div class="feat-card">
+        <span class="feat-tag">Special</span>
+        <img src="https://images.unsplash.com/photo-1569058242253-92a9c755a0ec?w=600&q=80" alt="Chasudon"/>
+        <div class="feat-overlay"></div>
+        <div class="feat-info">
+          <div class="feat-name">Chasudon</div>
+          <div class="feat-price">₱210</div>
+        </div>
+      </div>
+    </div>
+    <div class="menu-section">
+      <div class="menu-section-inner">
+        <div class="row g-0">
+          <div class="col-12 col-md-6 pe-md-4">
+            <div class="menu-item">
+              <div class="d-flex justify-content-between align-items-start gap-3">
+                <div>
+                  <div class="menu-item-name">Boneless Bangus <span class="bestseller-badge">⭐ Best</span></div>
+                  <p class="menu-item-desc">Crispy and flavorful boneless milkfish, perfectly seasoned and fried to golden perfection, served as a satisfying classic meal.</p>
+                </div>
+                <div class="menu-item-price">₱149</div>
+              </div>
+            </div>
+            <div class="menu-item">
+              <div class="d-flex justify-content-between align-items-start gap-3">
+                <div>
+                  <div class="menu-item-name">Longganisa</div>
+                  <p class="menu-item-desc">Sweet and savory Filipino-style sausage, pan-fried and packed with rich, garlicky flavor.</p>
+                </div>
+                <div class="menu-item-price">₱149</div>
+              </div>
+            </div>
+            <div class="menu-item">
+              <div class="d-flex justify-content-between align-items-start gap-3">
+                <div>
+                  <div class="menu-item-name">Cheesy Hungarian</div>
+                  <p class="menu-item-desc">Juicy Hungarian sausage topped with melted cheese, offering a smoky and creamy combination in every bite.</p>
+                </div>
+                <div class="menu-item-price">₱129</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 ps-md-4">
+            <div class="menu-item">
+              <div class="d-flex justify-content-between align-items-start gap-3">
+                <div>
+                  <div class="menu-item-name">Tapsilog</div>
+                  <p class="menu-item-desc">A hearty Filipino favorite featuring tender beef tapa, garlic fried rice, and a sunny-side-up egg.</p>
+                </div>
+                <div class="menu-item-price">₱169</div>
+              </div>
+            </div>
+            <div class="menu-item">
+              <div class="d-flex justify-content-between align-items-start gap-3">
+                <div>
+                  <div class="menu-item-name">Cornbeef <span class="bestseller-badge">⭐ Best</span></div>
+                  <p class="menu-item-desc">Savory and slightly salty corned beef sautéed to perfection, delivering a comforting and flavorful dish.</p>
+                </div>
+                <div class="menu-item-price">₱149</div>
+              </div>
+            </div>
+            <div class="menu-item">
+              <div class="d-flex justify-content-between align-items-start gap-3">
+                <div>
+                  <div class="menu-item-name">Chasudon <span class="bestseller-badge">Special</span></div>
+                  <p class="menu-item-desc">A Bask Café special — a bowl of braised pork served over rice with egg. Inspired by Japanese chashu don.</p>
+                </div>
+                <div class="menu-item-price">₱210</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="pasta" class="menu-cat">
+    <div class="cat-header">
+      <span class="eyebrow">Hearty Plates</span>
+      <h2>Pasta &amp; Mains</h2>
+      <div class="s-rule"></div>
+    </div>
+    <div class="feat-grid">
+      <div class="feat-card">
+        <span class="feat-tag">⭐ Featured</span>
+        <img src="https://images.unsplash.com/photo-1555949258-eb67b1ef0ceb?w=600&q=80" alt="Truffle Pasta"/>
+        <div class="feat-overlay"></div>
+        <div class="feat-info">
+          <div class="feat-name">Truffle Pasta</div>
+          <div class="feat-price">₱160</div>
+        </div>
+      </div>
+      <div class="feat-card">
+        <span class="feat-tag">⭐ Featured</span>
+        <img src="https://images.unsplash.com/photo-1612874742237-6526221588e3?w=600&q=80" alt="Carbonara"/>
+        <div class="feat-overlay"></div>
+        <div class="feat-info">
+          <div class="feat-name">Carbonara</div>
+          <div class="feat-price">₱160</div>
+        </div>
+      </div>
+      <div class="feat-card">
+        <span class="feat-tag">⭐ Featured</span>
+        <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600&q=80" alt="Bask Burger"/>
+        <div class="feat-overlay"></div>
+        <div class="feat-info">
+          <div class="feat-name">Bask Burger</div>
+          <div class="feat-price">₱150</div>
+        </div>
+      </div>
+    </div>
+    <div class="menu-section">
+      <div class="menu-section-inner">
+        <h3 class="sub-cat-title">Pasta</h3>
+        <div class="row g-0">
+          <div class="col-12 col-md-6 pe-md-4">
+            <div class="menu-item">
+              <div class="d-flex justify-content-between align-items-start gap-3">
+                <div>
+                  <div class="menu-item-name">Truffle Pasta <span class="bestseller-badge">⭐ Best</span></div>
+                  <p class="menu-item-desc">A creamy and aromatic pasta infused with rich truffle flavor, creating a luxurious and savory dining experience.</p>
+                </div>
+                <div class="menu-item-price">₱160</div>
+              </div>
+            </div>
+            <div class="menu-item">
+              <div class="d-flex justify-content-between align-items-start gap-3">
+                <div>
+                  <div class="menu-item-name">Carbonara</div>
+                  <p class="menu-item-desc">Classic creamy pasta made with a rich white sauce, savory meat bits, and a perfectly balanced cheesy flavor.</p>
+                </div>
+                <div class="menu-item-price">₱160</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 ps-md-4">
+            <div class="menu-item">
+              <div class="d-flex justify-content-between align-items-start gap-3">
+                <div>
+                  <div class="menu-item-name">Pesto Pasta</div>
+                  <p class="menu-item-desc">Fresh and flavorful pasta tossed in basil pesto sauce, offering a herby, nutty, and aromatic taste.</p>
+                </div>
+                <div class="menu-item-price">₱160</div>
+              </div>
+            </div>
+            <div class="menu-item">
+              <div class="d-flex justify-content-between align-items-start gap-3">
+                <div>
+                  <div class="menu-item-name">Loaded Baked Mac</div>
+                  <p class="menu-item-desc">Baked macaroni topped with rich cheese and savory meat sauce, baked until golden, gooey, and satisfying.</p>
+                </div>
+                <div class="menu-item-price">₱199</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="sub-cat-title">Other Mains</h3>
+        <div class="row g-0">
+          <div class="col-12 col-md-6 pe-md-4">
+            <div class="menu-item">
+              <div class="d-flex justify-content-between align-items-start gap-3">
+                <div>
+                  <div class="menu-item-name">Karage Don</div>
+                  <p class="menu-item-desc">Crispy karage chicken over rice. Sauce options: Honey Butter, Honey Butter Snow, Japanese Teriyaki, Soy Garlic.</p>
+                </div>
+                <div class="menu-item-price">₱100</div>
+              </div>
+            </div>
+            <div class="menu-item">
+              <div class="d-flex justify-content-between align-items-start gap-3">
+                <div>
+                  <div class="menu-item-name">Spicy Chicken Steak <span class="bestseller-badge">⭐ Best</span></div>
+                  <p class="menu-item-desc">Served with 2 rice &amp; fries.</p>
+                </div>
+                <div class="menu-item-price">₱150</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 ps-md-4">
+            <div class="menu-item">
+              <div class="d-flex justify-content-between align-items-start gap-3">
+                <div>
+                  <div class="menu-item-name">Spicy Chicken w/ Fries</div>
+                  <p class="menu-item-desc">4pcs. Chicken Tenders with SourCream Mayo + Fries.</p>
+                </div>
+                <div class="menu-item-price">₱150</div>
+              </div>
+            </div>
+            <div class="menu-item">
+              <div class="d-flex justify-content-between align-items-start gap-3">
+                <div>
+                  <div class="menu-item-name">Bask Burger</div>
+                  <p class="menu-item-desc">Crispy Chicken Sandwich with Wheat, Lettuce &amp; Special Sauce + Fries.</p>
+                </div>
+                <div class="menu-item-price">₱150</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="pastries" class="menu-cat">
+    <div class="cat-header">
+      <span class="eyebrow">Sweet Treats</span>
+      <h2>Desserts &amp; Pastries</h2>
+      <div class="s-rule"></div>
+    </div>
+    <div class="feat-grid">
+      <div class="feat-card">
+        <span class="feat-tag">⭐ Featured</span>
+        <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=600&q=80" alt="Croissant"/>
+        <div class="feat-overlay"></div>
+        <div class="feat-info">
+          <div class="feat-name">Hungarian Sunrise</div>
+          <div class="feat-price">₱179</div>
+        </div>
+      </div>
+      <div class="feat-card">
+        <span class="feat-tag">⭐ Featured</span>
+        <img src="https://images.unsplash.com/photo-1509365465985-25d11c17e812?w=600&q=80" alt="Cinnamon Roll"/>
+        <div class="feat-overlay"></div>
+        <div class="feat-info">
+          <div class="feat-name">Cinnamon Roll</div>
+          <div class="feat-price">₱140</div>
+        </div>
+      </div>
+      <div class="feat-card">
+        <span class="feat-tag">⭐ Featured</span>
+        <img src="https://images.unsplash.com/photo-1549903072-7e6e0bedb7fb?w=600&q=80" alt="Pain Au Chocolat"/>
+        <div class="feat-overlay"></div>
+        <div class="feat-info">
+          <div class="feat-name">Pain Au Chocolat</div>
+          <div class="feat-price">₱135</div>
+        </div>
+      </div>
+    </div>
+    <div class="menu-section">
+      <div class="menu-section-inner">
+        <div class="row g-0">
+          <div class="col-12 col-md-6 pe-md-4">
+            <div class="menu-item">
+              <div class="d-flex justify-content-between align-items-start gap-3">
+                <div>
+                  <div class="menu-item-name">Hungarian Sunrise Croissant</div>
+                  <p class="menu-item-desc">A buttery croissant filled with savory Hungarian sausage, egg, a touch of honey, and topped with light whipped cream. <em>with Hungarian, Egg, Honey &amp; Whip.</em></p>
+                </div>
+                <div class="menu-item-price">₱179</div>
+              </div>
+            </div>
+            <div class="menu-item">
+              <div class="d-flex justify-content-between align-items-start gap-3">
+                <div>
+                  <div class="menu-item-name">Chick'n Croissant</div>
+                  <p class="menu-item-desc">Flaky croissant stuffed with buttered chicken and finished with a light whipped topping. <em>with Buttered Chicken &amp; Whip.</em></p>
+                </div>
+                <div class="menu-item-price">₱169</div>
+              </div>
+            </div>
+            <div class="menu-item">
+              <div class="d-flex justify-content-between align-items-start gap-3">
+                <div>
+                  <div class="menu-item-name">Nutella Alcapone Croissant</div>
+                  <p class="menu-item-desc">A classic buttery and flaky croissant, baked to golden perfection — simple, light, and delicious.</p>
+                </div>
+                <div class="menu-item-price">₱149</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 ps-md-4">
+            <div class="menu-item">
+              <div class="d-flex justify-content-between align-items-start gap-3">
+                <div>
+                  <div class="menu-item-name">Plain Crossaint</div>
+                  <p class="menu-item-desc">A French pastry made with soft, flaky layers and filled with rich chocolate for a sweet and indulgent treat.</p>
+                </div>
+                <div class="menu-item-price">₱120</div>
+              </div>
+            </div>
+            <div class="menu-item">
+              <div class="d-flex justify-content-between align-items-start gap-3">
+                <div>
+                  <div class="menu-item-name">Pain Au Chocolat</div>
+                  <p class="menu-item-desc">Soft and fluffy roll swirled with cinnamon sugar and glazed for a warm, sweet, and comforting flavor.</p>
+                </div>
+                <div class="menu-item-price">₱135</div>
+              </div>
+            </div>
+            <div class="menu-item">
+              <div class="d-flex justify-content-between align-items-start gap-3">
+                <div>
+                  <div class="menu-item-name">Cinnamon Roll</div>
+                  <p class="menu-item-desc">A rich croissant filled with creamy Nutella and a smooth, buttery topping for an indulgent dessert experience.</p>
+                </div>
+                <div class="menu-item-price">₱140</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="picapica" class="menu-cat">
+    <div class="cat-header">
+      <span class="eyebrow">Shareable Bites</span>
+      <h2>Pica Pica</h2>
+      <div class="s-rule"></div>
+    </div>
+    <div class="feat-grid">
+      <div class="feat-card">
+        <span class="feat-tag">⭐ Featured</span>
+        <img src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=600&q=80" alt="Cheesy Bacon Fries"/>
+        <div class="feat-overlay"></div>
+        <div class="feat-info">
+          <div class="feat-name">Cheesy Bacon Fries</div>
+          <div class="feat-price">₱150</div>
+        </div>
+      </div>
+      <div class="feat-card">
+        <span class="feat-tag">⭐ Featured</span>
+        <img src="https://images.unsplash.com/photo-1513456852971-30c0b8199d4d?w=600&q=80" alt="Beef Nachos Supreme"/>
+        <div class="feat-overlay"></div>
+        <div class="feat-info">
+          <div class="feat-name">Beef Nachos Supreme</div>
+          <div class="feat-price">₱200</div>
+        </div>
+      </div>
+      <div class="feat-card">
+        <span class="feat-tag">⭐ Featured</span>
+        <img src="https://images.unsplash.com/photo-1562967914-608f82629710?w=600&q=80" alt="Chicken Poppers"/>
+        <div class="feat-overlay"></div>
+        <div class="feat-info">
+          <div class="feat-name">Chicken Poppers</div>
+          <div class="feat-price">₱150</div>
+        </div>
+      </div>
+    </div>
+    <div class="menu-section">
+      <div class="menu-section-inner">
+        <div class="row g-0">
+          <div class="col-12 col-md-6 pe-md-4">
+            <div class="menu-item">
+              <div class="d-flex justify-content-between align-items-start gap-3">
+                <div>
+                  <div class="menu-item-name">Fries</div>
+                  <p class="menu-item-desc">Crispy golden fries served hot and perfectly seasoned. Flavors: Salted Parmesan, BBQ, Sourcream, Cheese.</p>
+                </div>
+                <div class="menu-item-price">₱100</div>
+              </div>
+            </div>
+            <div class="menu-item">
+              <div class="d-flex justify-content-between align-items-start gap-3">
+                <div>
+                  <div class="menu-item-name">Cheesy Bacon Fries <span class="bestseller-badge">⭐ Best</span></div>
+                  <p class="menu-item-desc">Loaded fries topped with creamy melted cheese and savory bacon bits for a rich and satisfying snack.</p>
+                </div>
+                <div class="menu-item-price">₱150</div>
+              </div>
+            </div>
+            <div class="menu-item">
+              <div class="d-flex justify-content-between align-items-start gap-3">
+                <div>
+                  <div class="menu-item-name">Beef Nachos Supreme</div>
+                  <p class="menu-item-desc">Crunchy nacho chips topped with seasoned beef and cheese, creating a flavorful and satisfying bite.</p>
+                </div>
+                <div class="menu-item-price">₱200</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 ps-md-4">
+            <div class="menu-item">
+              <div class="d-flex justify-content-between align-items-start gap-3">
+                <div>
+                  <div class="menu-item-name">Chicken Poppers</div>
+                  <p class="menu-item-desc">Bite-sized crispy chicken pieces, juicy on the inside and perfectly fried for a tasty snack.</p>
+                </div>
+                <div class="menu-item-price">₱150</div>
+              </div>
+            </div>
+            <div class="menu-item">
+              <div class="d-flex justify-content-between align-items-start gap-3">
+                <div>
+                  <div class="menu-item-name">Hashbrown</div>
+                  <p class="menu-item-desc">Golden and crispy on the outside, soft and fluffy inside — perfectly fried potato goodness.</p>
+                </div>
+                <div class="menu-item-price">₱50</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<div class="cta-band mt-4">
   <div class="container">
-    <div class="row g-5">
-      <div class="col-lg-4">
-        <div class="footer__brand">
-          <span class="footer__brand-icon"><i class="fas fa-mug-hot"></i></span>
+    <span class="eyebrow" style="color:var(--gold-lt);">Ready to Visit?</span>
+    <h2>Reserve your seat at Bask</h2>
+    <p>Walk in or reserve a table — we always have a spot for you.</p>
+    <div class="d-flex gap-3 justify-content-center flex-wrap">
+      <a href="contact.html" class="btn-gold">Reserve a Table</a>
+      <a href="contact.html" class="btn-outline-cr">Find Us</a>
+    </div>
+  </div>
+</div>
+
+<footer class="bask-footer" id="footer">
+  <div class="container">
+    <div class="row g-4 g-lg-5 pb-5">
+      <div class="col-12 col-sm-6 col-lg-4">
+        <div class="f-brand">
+          <img src="../images/BASKCAFELOGO.png" alt="Bask Café" style="height:44px;width:auto;filter:brightness(0) invert(1);opacity:.82;margin-bottom:10px;display:block;"/>
           Bask Café
         </div>
-        <p class="footer__desc">A community café dedicated to the art of coffee, the warmth of community, and the joy of slowing down over something truly well-made.</p>
-        <div class="footer__socials mt-4">
-          <a href="https://www.facebook.com/profile.php?id=61569599993182" class="footer__social-btn"><i class="fab fa-facebook-f"></i></a>
-          <a href="https://www.instagram.com/baskcafe_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="footer__social-btn"><i class="fab fa-instagram"></i></a>
+        <p class="f-desc">A community café rooted in Villaverde, Valenzuela — dedicated to slow coffee, community, and the joy of slowing down over something truly well-made.</p>
+        <div class="d-flex gap-2 mt-4">
+          <a href="https://www.facebook.com/profile.php?id=61569599993182" class="f-social" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.instagram.com/baskcafe_" class="f-social" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
         </div>
       </div>
-      <div class="col-6 col-lg-2">
-        <h6 class="footer__heading">Navigate</h6>
-        <ul class="footer__links">
-          <li><a href="home.html">Home</a></li>
+      <div class="col-6 col-sm-3 col-lg-2">
+        <h6 class="f-head">About</h6>
+        <ul class="f-links">
           <li><a href="menu.html">Menu</a></li>
-          <li><a href="about.html">About Us</a></li>
-          <li><a href="gallery.html">Gallery</a></li>
-          <li><a href="events.html">Events</a></li>
-          <li><a href="careers.html">Careers</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </div>
-      <div class="col-6 col-lg-2">
-        <h6 class="footer__heading">Visit</h6>
-        <ul class="footer__links">
-          <li><a href="events.html">Sips &amp; Stories</a></li>
-          <li><a href="gallery.html">Community</a></li>
-          <li><a href="careers.html">Join the Team</a></li>
-          <li><a href="environment.html">Sustainability</a></li>
+          <li><a href="events.html">Events &amp; Stories</a></li>
+          <li><a href="bask-moments.html">Bask Moments</a></li>
           <li><a href="contact.html">Help &amp; Support</a></li>
         </ul>
       </div>
-      <div class="col-lg-4">
-        <h6 class="footer__heading">Contact Us</h6>
-        <div class="footer__contact-item">
-          <i class="fas fa-map-marker-alt"></i>
-          <span>4B Little Baguio Street, Marulas, Valenzuela City, Philippines</span>
-        </div>
-        <div class="footer__contact-item">
-          <i class="fas fa-envelope"></i>
-          <span>baskcafe@gmail.com</span>
-        </div>
-        <div class="footer__contact-item">
-          <i class="fas fa-globe"></i>
-          <span>Bask Cafe</span>
-        </div>
-        <div class="footer__contact-item">
-          <i class="fas fa-clock"></i>
-          <span>Mon–Thu: 3PM–12AM &nbsp;|&nbsp; Fri–Sun: 10AM–12AM</span>
-        </div>
+      <div class="col-6 col-sm-3 col-lg-2">
+        <h6 class="f-head">Navigate</h6>
+        <ul class="f-links">
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="bask-moments.html">Bask Moments</a></li>
+          <li><a href="opportunities.html">Opportunities</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="col-12 col-sm-6 col-lg-4">
+        <h6 class="f-head">Contact Us</h6>
+        <div class="f-contact"><i class="fas fa-map-marker-alt"></i><span>4B Little Baguio Street, Marulas, Valenzuela City, Philippines</span></div>
+        <div class="f-contact"><i class="fas fa-phone"></i><span>+120-283-2127</span></div>
+        <div class="f-contact"><i class="fas fa-envelope"></i><span>baskcafe@email.com</span></div>
+        <div class="f-contact mt-2"><i class="fas fa-clock" style="color:var(--gold-lt);"></i><span>Mon–Thu: 3PM–12AM &nbsp;·&nbsp; Fri–Sun: 10AM–12AM</span></div>
       </div>
     </div>
-    <div class="footer__bottom">
-      <p>© 2025 Bask Café. All rights reserved. Crafted with love in Valenzuela City.</p>
-      <p>Built for <a href="https://baskcafe.infinityfreeapp.com" class="footer__credit-link">Bask Cafe</a></p>
-    </div>  
+    <div class="f-bottom">
+      <p class="mb-0">&copy; 2025 Bask Café &middot; 4B Little Baguio Street, Marulas, Valenzuela City &middot; Made with <i class="fas fa-heart text-danger"></i> in the Philippines</p>
+    </div>
   </div>
 </footer>
 
-<button class="back-to-top" id="backToTop" aria-label="Back to top">
-  <i class="fas fa-chevron-up"></i>
-</button>
+<button class="btt" id="btt" aria-label="Back to top"><i class="fas fa-chevron-up"></i></button>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-<script src="main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const nav=document.getElementById('mainNav'),btt=document.getElementById('btt');
+window.addEventListener('scroll',()=>{
+  nav.classList.toggle('scrolled',window.scrollY>50);
+  btt.classList.toggle('on',window.scrollY>400);
+},{passive:true});
+btt.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+
+const tabs=document.querySelectorAll('.menu-tab-btn');
+const cats=document.querySelectorAll('.menu-cat');
+
+function setActive(target){
+  tabs.forEach(t=>t.classList.toggle('active',t.dataset.target===target));
+}
+
+tabs.forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const target=btn.dataset.target;
+    const el=document.getElementById(target);
+    if(el){
+      const offset=96+48;
+      const top=el.getBoundingClientRect().top+window.scrollY-offset;
+      window.scrollTo({top,behavior:'smooth'});
+    }
+  });
+});
+
+const io=new IntersectionObserver(es=>{
+  es.forEach(e=>{
+    if(e.isIntersecting) setActive(e.target.id);
+  });
+},{rootMargin:'-30% 0px -60% 0px',threshold:0});
+cats.forEach(c=>io.observe(c));
+</script>
 </body>
 </html>

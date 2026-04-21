@@ -1,401 +1,217 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bask Café — Welcome</title>
-    <meta name="description" content="Bask Café — A warm corner in Valenzuela City." />
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Bask Café — Welcome</title>
+<meta name="description" content="Bask Café — A warm corner in Valenzuela City where every cup tells a story."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Jost:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --ch:#EDE8DC;
+  --fo:#1D3D2A;
+  --mu:#7A7260;
+  --ff-u:'Jost',sans-serif;
+  --ff-b:'Lora',serif;
+  --ff-h:'Cormorant Garamond',serif;
+}
+html,body{height:100%;font-family:var(--ff-b);font-size:16px;}
+img{max-width:100%;display:block;}
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Jost:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+/* ══ WRAPPER — desktop: side-by-side, fills viewport ══ */
+.wrap{
+  display:flex;
+  width:100%;
+  height:100vh;
+  overflow:hidden;
+  position:relative;
+}
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+/* ══ SEAM FADE — on the wrapper, never clipped ══ */
+.wrap::after{
+  content:'';
+  position:absolute;
+  top:0;
+  left:calc(50% - 56px);
+  width:112px;
+  height:100%;
+  background:linear-gradient(to right,rgba(237,232,220,.82) 0%,rgba(237,232,220,0) 100%);
+  z-index:20;
+  pointer-events:none;
+}
 
-    <style>
-        *,
-        *::before,
-        *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        
-         :root {
-            --champagne: #EDE8DC;
-            --forest: #1D3D2A;
-            --muted: #7A7260;
-            --f-ui: 'Jost', sans-serif;
-            --f-body: 'Lora', serif;
-        }
-        
-        html,
-        body {
-            height: 100%;
-            overflow: hidden;
-        }
-        /* ── WRAPPER ── */
-        
-        .splash-wrap {
-            display: flex;
-            width: 100vw;
-            height: 100vh;
-            position: relative;
-        }
-        /* ── SEAM FADE ──────────────────────────────────────────────────────
-       Sits on the wrapper so it is NEVER clipped by child overflow:hidden.
-       Very soft — only the last ~60px of each panel fades, not a wide bar.
-    ──────────────────────────────────────────────────────────────────── */
-        
-        .splash-wrap::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: calc(50% - 60px);
-            /* 60px left of centre */
-            width: 120px;
-            /* 60px into each panel */
-            height: 100%;
-            /* champagne bleeds gently into the image, then stops */
-            background: linear-gradient( to right, rgba(237, 232, 220, 0.85) 0%, rgba(237, 232, 220, 0.0) 100%);
-            z-index: 10;
-            pointer-events: none;
-        }
-        /* ── LEFT PANEL ── */
-        
-        .panel-left {
-            width: 50%;
-            height: 100%;
-            background: var(--champagne);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            /* keeps the block centred vertically */
-            padding: 48px 52px 80px 60px;
-            /* extra bottom pad pulls block slightly up */
-            position: relative;
-            overflow: hidden;
-        }
-        /* Grain */
-        
-        .panel-left::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-            background-size: 200px;
-            opacity: 0.035;
-            pointer-events: none;
-            z-index: 0;
-        }
-        /* All content above grain */
-        
-        .panel-left__inner {
-            position: relative;
-            z-index: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            /* centres everything on the same axis */
-            text-align: center;
-            gap: 0;
-            width: 100%;
-            max-width: 400px;
-        }
-        /* ── LOGO ── big, no bottom gap yet — gap controlled below ── */
-        
-        .splash-logo-wrap {
-            width: 100%;
-            margin-bottom: 10px;
-            opacity: 0;
-            animation: fadeUp 0.8s ease 0.15s forwards;
-        }
-        
-        .splash-logo-img {
-            width: 100%;
-            max-width: 360px;
-            height: auto;
-            display: block;
-            margin: 0 auto;
-            object-fit: contain;
-            /* minimal drop shadow — soft, not distracting */
-            filter: drop-shadow(0px 6px 14px rgba(0, 0, 0, 0.18));
-            /* bounce starts after fade-in completes (0.95s delay) */
-            animation: logoBounce 3.2s ease-in-out 0.95s infinite;
-        }
-        
-        @keyframes logoBounce {
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-            45% {
-                transform: translateY(-9px);
-            }
-            65% {
-                transform: translateY(-7px);
-            }
-        }
-        /* Text fallback */
-        
-        .splash-logo-title {
-            font-family: 'Dancing Script', cursive;
-            font-size: clamp(5rem, 9vw, 7.5rem);
-            color: var(--forest);
-            line-height: 1;
-            display: block;
-        }
-        
-        .splash-estd {
-            font-family: var(--f-ui);
-            font-size: 0.62rem;
-            font-weight: 600;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            color: var(--forest);
-            opacity: 0.45;
-            margin-top: 6px;
-            display: block;
-        }
-        /* ── LOCATION ── */
-        
-        .splash-location {
-            font-family: var(--f-ui);
-            font-size: 0.67rem;
-            font-weight: 500;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--muted);
-            margin-bottom: 8px;
-            opacity: 0;
-            animation: fadeUp 0.7s ease 0.4s forwards;
-        }
-        
-        .splash-location span {
-            margin: 0 8px;
-            opacity: 0.35;
-        }
-        /* ── RULE ── */
-        
-        .splash-rule {
-            width: 160px;
-            height: 1px;
-            background: var(--muted);
-            margin: 0 auto 12px;
-            opacity: 0;
-            animation: fadeIn 0.5s ease 0.5s forwards;
-        }
-        /* ── TAGLINE — directly after rule, aligned to logo centre ── */
-        
-        .splash-tagline {
-            font-family: var(--f-body);
-            font-style: italic;
-            font-size: clamp(0.84rem, 1.1vw, 0.95rem);
-            color: var(--forest);
-            opacity: 0;
-            line-height: 1.82;
-            max-width: 340px;
-            margin-bottom: 20px;
-            animation: fadeUp 0.8s ease 0.6s forwards;
-        }
-        /* ── BUTTONS — directly under tagline, same centre axis ── */
-        
-        .splash-cta {
-            display: flex;
-            gap: 12px;
-            justify-content: center;
-            flex-wrap: wrap;
-            opacity: 0;
-            animation: fadeUp 0.8s ease 0.78s forwards;
-        }
-        
-        .btn-enter {
-            display: inline-flex;
-            align-items: center;
-            gap: 9px;
-            font-family: var(--f-ui);
-            font-size: 0.68rem;
-            font-weight: 700;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            background: var(--forest);
-            color: #fff;
-            border: 2px solid var(--forest);
-            padding: 12px 24px;
-            border-radius: 4px;
-            text-decoration: none;
-            transition: background 0.22s, color 0.22s;
-        }
-        
-        .btn-enter:hover {
-            background: transparent;
-            color: var(--forest);
-        }
-        
-        .btn-menu {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-family: var(--f-ui);
-            font-size: 0.68rem;
-            font-weight: 700;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            background: transparent;
-            color: var(--forest);
-            border: 2px solid var(--forest);
-            padding: 12px 24px;
-            border-radius: 4px;
-            text-decoration: none;
-            transition: background 0.22s, color 0.22s;
-        }
-        
-        .btn-menu:hover {
-            background: var(--forest);
-            color: #fff;
-        }
-        /* ── RIGHT PANEL ── */
-        
-        .panel-right {
-            width: 50%;
-            height: 100%;
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .panel-right__img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center center;
-            display: block;
-            animation: kenBurns 24s ease-in-out infinite alternate;
-        }
-        
-        @keyframes kenBurns {
-            from {
-                transform: scale(1.00);
-            }
-            to {
-                transform: scale(1.05);
-            }
-        }
-        
-        .panel-right__caption {
-            position: absolute;
-            bottom: 14px;
-            right: 16px;
-            font-family: var(--f-body);
-            font-size: 0.58rem;
-            font-style: italic;
-            color: rgba(255, 255, 255, 0.4);
-            z-index: 2;
-        }
-        /* ── Animations ── */
-        
-        @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(16px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 0.22;
-            }
-        }
-        /* ── Mobile ── */
-        
-        @media (max-width: 767.98px) {
-            html,
-            body {
-                overflow: auto;
-            }
-            .splash-wrap {
-                flex-direction: column;
-                height: auto;
-                min-height: 100vh;
-            }
-            .splash-wrap::after {
-                display: none;
-            }
-            .panel-left {
-                width: 100%;
-                height: auto;
-                padding: 60px 28px 44px;
-            }
-            .panel-right {
-                width: 100%;
-                height: 58vw;
-                min-height: 260px;
-            }
-        }
-    </style>
+/* ══ LEFT PANEL ══ */
+.p-left{
+  width:50%;
+  height:100%;
+  background:var(--ch);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:48px 52px 72px 60px;
+  position:relative;
+  overflow:hidden;
+  flex-shrink:0;
+}
+.p-left::before{
+  content:'';
+  position:absolute;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:200px;opacity:.032;pointer-events:none;z-index:0;
+}
+.p-left__inner{
+  position:relative;z-index:1;
+  display:flex;flex-direction:column;align-items:center;
+  text-align:center;
+  width:100%;max-width:400px;padding:0 16px;
+}
+
+/* ══ LOGO ══ */
+.logo-wrap{width:100%;margin-bottom:12px;opacity:0;animation:fUp .8s ease .15s forwards;}
+.logo-img{
+  width:100%;max-width:clamp(260px,80vw,380px);height:auto;
+  margin:0 auto;object-fit:contain;
+  filter:drop-shadow(0 6px 14px rgba(0,0,0,.18));
+  animation:lBounce 3.2s ease-in-out .95s infinite;
+}
+@keyframes lBounce{0%,100%{transform:translateY(0)}45%{transform:translateY(-9px)}65%{transform:translateY(-7px)}}
+
+/* Fallback text logo */
+.logo-text{font-family:var(--ff-h);font-size:clamp(5.2rem,9vw,7.2rem);color:var(--fo);line-height:1;display:block;}
+.logo-estd{font-family:var(--ff-u);font-size:.65rem;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:var(--fo);opacity:.45;margin-top:8px;display:block;}
+
+/* ══ LOCATION ══ */
+.loc{font-family:var(--ff-u);font-size:clamp(0.6rem,1vw,0.7rem);font-weight:500;letter-spacing:2px;text-transform:uppercase;color:var(--mu);margin-bottom:8px;opacity:0;animation:fUp .7s ease .42s forwards;}
+.loc span{margin:0 8px;opacity:.35;}
+
+/* ══ RULE ══ */
+.rule{width:clamp(120px,30vw,160px);height:1px;background:var(--mu);margin:0 auto 12px;opacity:0;animation:fIn .5s ease .52s forwards;}
+
+/* ══ TAGLINE ══ */
+.tagline{font-family:var(--ff-b);font-style:italic;font-size:clamp(.9rem,1.1vw,1.05rem);color:var(--fo);opacity:0;line-height:1.8;max-width:340px;margin-bottom:26px;animation:fUp .8s ease .62s forwards;}
+
+/* ══ BUTTONS ══ */
+.cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;opacity:0;animation:fUp .8s ease .8s forwards;}
+.btn-enter{display:inline-flex;align-items:center;gap:9px;font-family:var(--ff-u);font-size:.72rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;background:var(--fo);color:#fff;border:2px solid var(--fo);padding:14px 28px;border-radius:4px;text-decoration:none;transition:background .22s,color .22s;}
+.btn-enter:hover{background:transparent;color:var(--fo);}
+.btn-menu{display:inline-flex;align-items:center;gap:8px;font-family:var(--ff-u);font-size:.72rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;background:transparent;color:var(--fo);border:2px solid var(--fo);padding:14px 28px;border-radius:4px;text-decoration:none;transition:background .22s,color .22s;}
+.btn-menu:hover{background:var(--fo);color:#fff;}
+
+/* ══ RIGHT PANEL ══ */
+.p-right{width:50%;height:100%;overflow:hidden;position:relative;flex-shrink:0;}
+.p-right img{width:100%;height:100%;object-fit:cover;object-position:center;animation:kB 24s ease-in-out infinite alternate;}
+@keyframes kB{from{transform:scale(1)}to{transform:scale(1.05)}}
+.caption{position:absolute;bottom:12px;right:14px;font-family:var(--ff-b);font-size:.56rem;font-style:italic;color:rgba(255,255,255,.38);z-index:2;}
+
+/* ══ ANIMATIONS ══ */
+@keyframes fUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fIn{from{opacity:0}to{opacity:.22}}
+
+/* ══ TABLET 768–1023px ══
+   Panels stay side-by-side but shrink proportionally.
+   Left panel reduces padding; logo scales via clamp.
+*/
+@media(min-width:768px)and(max-width:1023.98px){
+  html,body{font-size:15px;}
+  .p-left{padding:40px 32px 60px 40px;}
+  .p-left__inner{max-width:320px;padding:0;}
+  .logo-img{max-width:300px;}
+  .tagline{font-size:0.92rem;line-height:1.8;max-width:100%;}
+  .btn-enter,.btn-menu{padding:11px 22px;font-size:0.66rem;}
+  .wrap::after{width:80px;left:calc(50% - 40px);}
+}
+
+/* ══ MOBILE ≤767px ══
+   Stack vertically: content panel on top, image below.
+   overflow:hidden removed from html/body to allow natural height.
+*/
+@media(max-width:767.98px){
+  html,body{height:auto;overflow:auto;font-size:14px;}
+  .wrap{flex-direction:column;width:100%;height:auto;min-height:100vh;overflow:visible;}
+  .wrap::after{display:none;}
+  .p-left{
+    width:100%;height:auto;
+    padding:48px 24px 36px;
+    align-items:center;
+  }
+  .p-left__inner{max-width:100%;padding:0 8px;}
+  .logo-img{max-width:280px;}
+  .logo-estd{margin-top:6px;}
+  .loc{font-size:0.65rem;margin-bottom:6px;}
+  .rule{width:140px;margin:0 auto 10px;}
+  .tagline{font-size:0.9rem;line-height:1.7;max-width:100%;margin-bottom:20px;}
+  .cta{gap:10px;flex-wrap:wrap;}
+  .btn-enter,.btn-menu{padding:10px 20px;font-size:0.64rem;}
+  .p-right{width:100%;height:50vh;min-height:240px;flex-shrink:0;}
+  .p-right img{animation:none;}
+}
+
+/* ══ SMALL PHONE ≤380px ══ */
+@media(max-width:600px){
+  html,body{font-size:13px;}
+  .p-left{padding:40px 20px 32px;}
+  .p-left__inner{padding:0;}
+  .logo-img{max-width:260px;}
+  .logo-estd{font-size:0.54rem;margin-top:4px;}
+  .loc{font-size:0.6rem;margin-bottom:4px;}
+  .rule{width:120px;margin:0 auto 8px;}
+  .tagline{font-size:0.85rem;margin-bottom:16px;}
+  .btn-enter,.btn-menu{padding:9px 18px;font-size:0.6rem;}
+  .cta{gap:8px;}
+  .p-right{height:45vh;min-height:200px;}
+}
+</style>
 </head>
-
 <body>
 
-    <div class="splash-wrap">
+<div class="wrap">
 
-        <!-- ═══ LEFT ═══ -->
-        <div class="panel-left">
-            <div class="panel-left__inner">
+  <div class="p-left">
+    <div class="p-left__inner">
 
-                <!-- Logo -->
-                <div class="splash-logo-wrap">
-                    <img src="../images/BASKCAFELOGO.png" alt="Bask Café" class="splash-logo-img" onerror="this.style.display='none';document.getElementById('logo-fb').style.display='block';" />
-                    <div id="logo-fb" style="display:none;">
-                        <span class="splash-logo-title">Bask<br>Café</span>
-                        <span class="splash-estd">ESTD 2024</span>
-                    </div>
-                </div>
-
-                <!-- Location -->
-                <p class="splash-location">
-                    Marulas <span>&middot;</span> Valenzuela
-                </p>
-
-                <!-- Rule -->
-                <div class="splash-rule"></div>
-
-                <!-- Tagline -->
-                <p class="splash-tagline">
-                    Elevate your daily ritual with the finest brews, meticulously crafted to bring warmth, depth, and a moment of pure pleasure.
-                </p>
-
-                <!-- Buttons -->
-                <div class="splash-cta">
-                    <a href="home.html" class="btn-enter">
-            Enter <i class="fas fa-arrow-right"></i>
-          </a>
-                    <a href="menu.html" class="btn-menu">
-                        <i class="fas fa-book-open"></i> View Menu
-                    </a>
-                </div>
-
-            </div>
+      <div class="logo-wrap">
+        <img
+          src="../images/BASKCAFELOGO.png"
+          alt="Bask Café"
+          class="logo-img"
+          onerror="this.style.display='none';document.getElementById('logo-fb').style.display='block';"
+        />
+        <div id="logo-fb" style="display:none;">
+          <span class="logo-text">Bask<br>Café</span>
+          <span class="logo-estd">ESTD 2024</span>
         </div>
+      </div>
 
-        <!-- ═══ RIGHT ═══ -->
-        <div class="panel-right">
-            <img class="panel-right__img" src="../images/bask_splash.jpg" alt="Bask Café exterior" />
-            <span class="panel-right__caption">Bask Café &mdash; Artisan Coffee</span>
-        </div>
+      <p class="loc">Marulas <span>&middot;</span> Valenzuela</p>
+
+      <div class="rule"></div>
+
+      <p class="tagline">Elevate your daily ritual with the finest brews, meticulously crafted to bring warmth, depth, and a moment of pure pleasure.</p>
+
+      <div class="cta">
+        <a href="home.html" class="btn-enter">Enter <i class="fas fa-arrow-right"></i></a>
+        <a href="menu.html" class="btn-menu"><i class="fas fa-book-open"></i> View Menu</a>
+      </div>
 
     </div>
+  </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <div class="p-right">
+    <img
+      src="../images/bask_splash.jpg"
+      alt="Bask Café — café exterior"
+      onerror="this.src='https://images.unsplash.com/photo-1445116572660-236099ec97a0?w=1200&q=85';"
+    />
+    <span class="caption">Bask Café &mdash; Artisan Coffee</span>
+  </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>
