@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Bask Café — Loading</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"/>
+<style>
+:root{
+  --df:#102C26;--cr:#F7E7CE;--df-lt:#1B3A2F;
+  --gold:#C9A24A;--gold-lt:#E4C87A;
+  --ff-h:'Cormorant Garamond',serif;
+  --ff-u:'Jost',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;overflow:hidden;}
+body{background:var(--df);display:flex;align-items:center;justify-content:center;font-family:var(--ff-u);}
+
+.loader-wrap{
+  display:flex;flex-direction:column;align-items:center;
+  gap:0;text-align:center;padding:24px;
+}
+
+.loader-logo{
+  width:clamp(160px,40vw,220px);height:auto;
+  filter:drop-shadow(0 8px 28px rgba(0,0,0,.5));
+  animation:breathe 2.2s ease-in-out infinite;
+  margin-bottom:32px;
+}
+@keyframes breathe{0%,100%{transform:scale(1);opacity:.85}50%{transform:scale(1.04);opacity:1}}
+
+.loader-eyebrow{
+  font-size:.62rem;font-weight:600;letter-spacing:4px;text-transform:uppercase;
+  color:var(--gold-lt);margin-bottom:14px;opacity:0;
+  animation:fadeIn .6s ease .3s forwards;
+}
+
+.loader-tagline{
+  font-family:var(--ff-h);font-style:italic;
+  font-size:clamp(1.1rem,3vw,1.4rem);
+  color:rgba(247,231,206,.62);line-height:1.7;
+  max-width:320px;margin:0 auto 36px;
+  opacity:0;animation:fadeIn .7s ease .5s forwards;
+}
+
+.loader-bar-wrap{
+  width:clamp(160px,48vw,260px);height:2px;
+  background:rgba(247,231,206,.1);border-radius:1px;
+  margin-bottom:20px;overflow:hidden;
+  opacity:0;animation:fadeIn .5s ease .7s forwards;
+}
+.loader-bar{
+  height:100%;width:0%;background:var(--gold);border-radius:1px;
+  animation:fill 1.8s cubic-bezier(.4,0,.2,1) .8s forwards;
+}
+@keyframes fill{from{width:0%}to{width:100%}}
+
+.loader-status{
+  font-size:.6rem;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;
+  color:rgba(247,231,206,.28);
+  opacity:0;animation:fadeIn .5s ease .9s forwards;
+}
+
+.steam{position:absolute;top:0;left:50%;transform:translateX(-50%);}
+.bg-noise{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:200px;opacity:.025;
+}
+
+.cup-svg{margin-bottom:4px;opacity:0;animation:fadeIn .6s ease .1s forwards;}
+
+.out{animation:pageOut .5s ease forwards;}
+@keyframes pageOut{to{opacity:0;transform:scale(1.015)}}
+@keyframes fadeIn{to{opacity:1}}
+</style>
+</head>
+<body>
+<div class="bg-noise"></div>
+
+<div class="loader-wrap" id="loaderWrap">
+
+  <svg class="cup-svg" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M10 18h28l-3 18H13L10 18z" stroke="rgba(201,162,74,.55)" stroke-width="1.5" fill="none"/>
+    <path d="M36 22h4a3 3 0 010 6h-4" stroke="rgba(201,162,74,.55)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    <path d="M19 12c0-3 4-3 4-6" stroke="rgba(201,162,74,.35)" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+    <path d="M25 12c0-3 4-3 4-6" stroke="rgba(201,162,74,.35)" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+  </svg>
+
+  <img
+    src="../images/BASKCAFELOGO.png"
+    alt="Bask Café"
+    class="loader-logo"
+    onerror="this.style.display='none';document.getElementById('logo-text-fb').style.display='block';"
+  />
+  <div id="logo-text-fb" style="display:none;font-family:'Cormorant Garamond',serif;font-size:4rem;font-weight:700;color:var(--cr);line-height:1;margin-bottom:32px;">Bask Café</div>
+
+  <p class="loader-eyebrow">Slow Coffee Club &middot; Valenzuela</p>
+
+  <p class="loader-tagline">Preparing your moment of warmth…</p>
+
+  <div class="loader-bar-wrap">
+    <div class="loader-bar" id="loaderBar"></div>
+  </div>
+
+  <p class="loader-status" id="loaderStatus">Brewing something special</p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const dest=new URLSearchParams(location.search).get('to')||'home.html';
+const statuses=['Brewing something special','Setting the mood','Almost there…'];
+let si=0;
+const statusEl=document.getElementById('loaderStatus');
+const int=setInterval(()=>{si=(si+1)%statuses.length;statusEl.textContent=statuses[si];},700);
+setTimeout(()=>{
+  clearInterval(int);
+  document.getElementById('loaderWrap').classList.add('out');
+  setTimeout(()=>location.href=dest,480);
+},2600);
+</script>
+</body>
+</html>

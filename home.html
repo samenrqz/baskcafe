@@ -23,67 +23,96 @@ h1,h2,h3,h4,h5{font-family:var(--ff-h);font-weight:700;color:var(--df);}
 a{text-decoration:none;color:inherit;}
 img{max-width:100%;}
 
-.bask-nav{background:var(--df)!important;position:sticky;top:0;z-index:1050;transition:background .3s;height:96px;}
-.bask-nav.scrolled{background:rgba(16,44,38,.96)!important;backdrop-filter:blur(12px);}
-.bask-nav .navbar-brand img{height:auto;width:240px;}
-.bask-nav .nav-link{font-family:var(--ff-u);font-size:.78rem;font-weight:500;letter-spacing:.7px;text-transform:uppercase;color:rgba(247,231,206,.78)!important;padding:8px 12px!important;transition:color .2s;}
+/* ── NAVBAR ───────────────────────────────────────────────────── */
+/* Navbar is slim and transparent-ish; logo overlays it from below */
+.bask-nav{background:var(--df)!important;position:sticky;top:0;z-index:1050;transition:background .3s;overflow:visible;}
+.bask-nav.scrolled{background:rgba(16,44,38,.97)!important;backdrop-filter:blur(12px);}
+
+/* Logo sits in normal flow but overflows downward — position:relative
+   with a negative margin-bottom pulls the next section up while the
+   logo visually hangs below the bar */
+.nav-logo-wrap{position:relative;display:flex;align-items:center;}
+.nav-logo-img{height:64px;width:auto;position:relative;z-index:1060;filter:drop-shadow(0 4px 16px rgba(0,0,0,.35));transition:height .2s;}
+.bask-nav.scrolled .nav-logo-img{height:48px;}
+
+.bask-nav .nav-link{font-family:var(--ff-u);font-size:.75rem;font-weight:500;letter-spacing:.7px;text-transform:uppercase;color:rgba(247,231,206,.78)!important;padding:6px 0!important;margin:0 10px;transition:color .2s;}
 .bask-nav .nav-link:hover,.bask-nav .nav-link.active{color:var(--gold-lt)!important;}
-.bask-nav .dropdown-menu{background:#fff;border:none;border-top:2px solid var(--gold);border-radius:0 0 8px 8px;box-shadow:0 12px 32px rgba(0,0,0,.12);padding:8px;min-width:190px;}
-.bask-nav .dropdown-item{font-family:var(--ff-u);font-size:.82rem;color:#444;padding:9px 14px;border-radius:4px;transition:background .18s;}
+.bask-nav .dropdown-menu{background:#fff;border:none;border-top:2px solid var(--gold);border-radius:0 0 8px 8px;box-shadow:0 12px 32px rgba(0,0,0,.12);padding:8px;min-width:190px;z-index:1060;}
+.bask-nav .dropdown-item{font-family:var(--ff-u);font-size:.8rem;color:#444;padding:9px 14px;border-radius:4px;transition:background .18s;}
 .bask-nav .dropdown-item:hover{background:var(--cr);color:var(--df);}
-.btn-reserve{font-family:var(--ff-u);font-size:.74rem;font-weight:700;letter-spacing:.7px;text-transform:uppercase;background:var(--gold);color:var(--df)!important;padding:9px 20px;border-radius:4px;border:2px solid var(--gold);transition:all .25s;white-space:nowrap;}
+.btn-reserve{font-family:var(--ff-u);font-size:.72rem;font-weight:700;letter-spacing:.7px;text-transform:uppercase;background:var(--gold);color:var(--df)!important;padding:8px 18px;border-radius:4px;border:2px solid var(--gold);transition:all .25s;white-space:nowrap;}
 .btn-reserve:hover{background:transparent;color:var(--gold)!important;border-color:var(--gold);}
-.navbar-toggler{border-color:rgba(247,231,206,.3);}
-.navbar-toggler-icon{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28247%2C231%2C206%2C.85%29' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");}
+.navbar-toggler{border-color:rgba(247,231,206,.3);padding:4px 8px;}
+.navbar-toggler-icon{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28247%2C231%2C206%2C.85%29' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");width:1.2em;height:1.2em;}
 @media(max-width:991.98px){
-  .bask-nav .navbar-collapse{background:var(--df-lt);padding:12px;margin-top:6px;border-radius:8px;border:1px solid rgba(255,255,255,.06);}
-  .bask-nav .nav-link{padding:10px 8px!important;border-bottom:1px solid rgba(255,255,255,.05);}
+  .bask-nav .navbar-collapse{background:var(--df-lt);padding:12px 16px;margin-top:6px;border-radius:8px;border:1px solid rgba(255,255,255,.06);}
+  .bask-nav .navbar-collapse .navbar-nav{text-align:center;}
+  .bask-nav .nav-link{padding:10px 0!important;margin:0;border-bottom:1px solid rgba(255,255,255,.05);}
   .btn-reserve{margin-top:10px;display:block;text-align:center;}
+  .nav-logo-img{height:52px;}
+  .bask-nav.scrolled .nav-logo-img{height:44px;}
 }
 
-.hero-carousel-wrap{position:relative;}
-.carousel-slide{position:relative;overflow:hidden;height:80vh;}
-.carousel-slide .bg-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;}
-.carousel-slide .overlay{position:absolute;inset:0;background:linear-gradient(160deg,rgba(16,44,38,.68) 0%,rgba(16,44,38,.52) 60%,rgba(16,44,38,.78) 100%);}
-.carousel-slide .content{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:80px 24px 60px;}
+/* ── HERO CAROUSEL ────────────────────────────────────────────── */
+/* Key fix: controls must have z-index HIGHER than .content's z-index:2
+   and must NOT be children of an overflow:hidden element            */
+.hero-wrap{position:relative;}
+.carousel-slide{position:relative;height:82vh;}
+.carousel-slide .bg-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;}
+.carousel-slide .overlay{position:absolute;inset:0;background:linear-gradient(160deg,rgba(16,44,38,.68) 0%,rgba(16,44,38,.52) 60%,rgba(16,44,38,.78) 100%);z-index:1;}
+.carousel-slide .content{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:60px 80px 60px;}
+
+/* Controls sit at z-index:10 — well above slide content */
+#heroCarousel .carousel-control-prev,
+#heroCarousel .carousel-control-next{
+  z-index:10;width:48px;height:48px;
+  top:50%;transform:translateY(-50%);
+  border-radius:50%;
+  background:rgba(247,231,206,.14);
+  border:1.5px solid rgba(247,231,206,.3);
+  margin:0 20px;opacity:1;
+  transition:background .22s,border-color .22s;
+}
+#heroCarousel .carousel-control-prev:hover,
+#heroCarousel .carousel-control-next:hover{background:rgba(201,162,74,.35);border-color:var(--gold-lt);}
+#heroCarousel .carousel-control-prev-icon,
+#heroCarousel .carousel-control-next-icon{width:14px;height:14px;}
+#heroCarousel .carousel-indicators{z-index:10;bottom:24px;margin:0;}
+#heroCarousel .carousel-indicators [data-bs-target]{
+  width:8px;height:8px;border-radius:50%;
+  background:rgba(247,231,206,.4);border:none;
+  margin:0 5px;transition:all .24s;
+}
+#heroCarousel .carousel-indicators .active{background:var(--gold);transform:scale(1.4);}
+
 .c-eyebrow{font-family:var(--ff-u);font-size:.66rem;letter-spacing:5px;text-transform:uppercase;color:var(--gold-lt);margin-bottom:12px;}
 .c-logo{max-width:240px;width:100%;height:auto;display:block;margin:0 auto 18px;filter:drop-shadow(0 4px 20px rgba(0,0,0,.5));animation:lBounce 3.4s ease-in-out infinite;}
 @keyframes lBounce{0%,100%{transform:translateY(0)}45%{transform:translateY(-10px)}65%{transform:translateY(-8px)}}
 .c-badge{display:inline-flex;align-items:center;gap:7px;background:rgba(247,231,206,.1);border:1.5px solid rgba(247,231,206,.28);color:var(--cr);font-family:var(--ff-u);font-size:.65rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;padding:7px 16px;border-radius:4px;margin-bottom:16px;}
 .c-heading{font-family:var(--ff-h);font-size:clamp(2.2rem,5.5vw,4rem);font-weight:700;color:#fff;line-height:1.1;margin-bottom:14px;text-shadow:0 3px 20px rgba(0,0,0,.4);}
-.c-sub{font-family:var(--ff-b);font-style:italic;font-size:clamp(.88rem,1.4vw,1.05rem);color:rgba(255,255,255,.8);max-width:520px;margin:0 auto 28px;line-height:1.85;}
+.c-sub{font-family:var(--ff-b);font-style:italic;font-size:clamp(.88rem,1.4vw,1.05rem);color:rgba(255,255,255,.82);max-width:520px;margin:0 auto 28px;line-height:1.85;}
 .c-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
 .btn-c-white{font-family:var(--ff-u);font-size:.72rem;font-weight:700;letter-spacing:.8px;text-transform:uppercase;background:#fff;color:var(--df)!important;padding:12px 26px;border-radius:4px;border:2px solid #fff;transition:all .25s;display:inline-block;}
 .btn-c-white:hover{background:transparent;color:#fff!important;}
 .btn-c-outline{font-family:var(--ff-u);font-size:.72rem;font-weight:700;letter-spacing:.8px;text-transform:uppercase;background:transparent;color:#fff!important;padding:12px 26px;border-radius:4px;border:2px solid rgba(255,255,255,.6);transition:all .25s;display:inline-block;}
 .btn-c-outline:hover{background:rgba(255,255,255,.12);border-color:#fff;}
-#heroCarousel .carousel-control-prev,
-#heroCarousel .carousel-control-next{width:48px;height:48px;top:50%;transform:translateY(-50%);border-radius:50%;background:rgba(247,231,206,.12);border:1.5px solid rgba(247,231,206,.25);margin:0 16px;opacity:1;transition:background .22s;}
-#heroCarousel .carousel-control-prev:hover,
-#heroCarousel .carousel-control-next:hover{background:rgba(201,162,74,.3);}
-#heroCarousel .carousel-control-prev-icon,
-#heroCarousel .carousel-control-next-icon{width:16px;height:16px;}
-#heroCarousel .carousel-indicators{bottom:20px;margin:0;}
-#heroCarousel .carousel-indicators [data-bs-target]{width:8px;height:8px;border-radius:50%;background:rgba(247,231,206,.45);border:none;margin:0 4px;transition:all .22s;}
-#heroCarousel .carousel-indicators .active{background:var(--gold);transform:scale(1.35);}
-.scroll-hint{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);z-index:5;display:flex;flex-direction:column;align-items:center;gap:5px;font-family:var(--ff-u);font-size:.56rem;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.3);}
-.scroll-line{width:1px;height:36px;background:linear-gradient(to bottom,rgba(201,162,74,.5),transparent);animation:sP 2s ease infinite;}
-@keyframes sP{0%,100%{opacity:.35}50%{opacity:1}}
 
+/* ── COMMON UTILITIES ─────────────────────────────────────────── */
 .btn-df{font-family:var(--ff-u);font-size:.74rem;font-weight:700;letter-spacing:.8px;text-transform:uppercase;background:var(--df);color:var(--cr)!important;padding:12px 28px;border-radius:4px;border:2px solid var(--df);transition:all .25s;display:inline-block;}
 .btn-df:hover{background:transparent;color:var(--df)!important;}
 .btn-outline-df{font-family:var(--ff-u);font-size:.74rem;font-weight:700;letter-spacing:.8px;text-transform:uppercase;background:transparent;color:var(--df)!important;padding:12px 28px;border-radius:4px;border:2px solid var(--df);transition:all .25s;display:inline-block;}
 .btn-outline-df:hover{background:var(--df);color:var(--cr)!important;}
 .btn-gold{font-family:var(--ff-u);font-size:.74rem;font-weight:700;letter-spacing:.8px;text-transform:uppercase;background:var(--gold);color:var(--df)!important;padding:12px 28px;border-radius:4px;border:2px solid var(--gold);transition:all .25s;display:inline-block;}
 .btn-gold:hover{background:transparent;color:var(--gold)!important;}
-
+.btn-outline-cr{font-family:var(--ff-u);font-size:.74rem;font-weight:700;letter-spacing:.8px;text-transform:uppercase;background:transparent;color:var(--cr)!important;padding:12px 28px;border-radius:4px;border:2px solid rgba(247,231,206,.4);transition:all .25s;display:inline-block;}
+.btn-outline-cr:hover{border-color:var(--cr);background:rgba(247,231,206,.08);}
 .eyebrow{font-family:var(--ff-u);font-size:.66rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:10px;}
 .s-rule{width:48px;height:2px;background:var(--gold);border-radius:1px;margin:14px 0;}
 .s-rule-c{margin:14px auto;}
 
+/* ── STORY / HOURS ────────────────────────────────────────────── */
 .about-img{width:100%;height:100%;min-height:340px;object-fit:cover;display:block;}
 .tag-pill{font-family:var(--ff-u);font-size:.68rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;border:1.5px solid var(--df);color:var(--df);padding:7px 14px;border-radius:0;display:inline-flex;align-items:center;gap:7px;}
-
 .hours-card{background:var(--df);padding:36px 32px;}
 .hours-card h4{font-family:var(--ff-h);font-size:1.4rem;color:var(--gold-lt);margin-bottom:3px;}
 .hours-card .sub{font-style:italic;font-size:.86rem;color:rgba(255,255,255,.45);margin-bottom:22px;}
@@ -92,35 +121,106 @@ img{max-width:100%;}
 .h-row .day{color:rgba(255,255,255,.7);font-family:var(--ff-u);}
 .h-row .time{color:var(--gold-lt);font-weight:700;font-family:var(--ff-u);}
 
+/* ── WHAT'S NEW ───────────────────────────────────────────────── */
+.wn-img{width:100%;height:480px;object-fit:cover;display:block;}
+.wn-content{padding:52px 56px;background:#fff;}
+.wn-slide-num{font-family:var(--ff-u);font-size:.6rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(16,44,38,.28);display:block;margin-bottom:8px;}
+.wn-controls{display:flex;align-items:center;gap:10px;margin-top:28px;flex-wrap:wrap;}
+.wn-ctrl{width:40px;height:40px;border-radius:50%;background:var(--df);border:none;color:var(--cr);display:inline-flex;align-items:center;justify-content:center;font-size:.68rem;cursor:pointer;transition:background .22s;flex-shrink:0;}
+.wn-ctrl:hover{background:var(--gold);color:var(--df);}
+.wn-pills{display:flex;gap:8px;flex-wrap:wrap;align-items:center;}
+.wn-pill{font-family:var(--ff-u);font-size:.6rem;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;background:transparent;border:1.5px solid rgba(16,44,38,.18);color:rgba(16,44,38,.42);padding:5px 13px;border-radius:20px;cursor:pointer;transition:all .22s;white-space:nowrap;}
+.wn-pill.active{background:var(--df);border-color:var(--df);color:var(--cr);}
+.wn-pill:hover:not(.active){border-color:var(--df);color:var(--df);}
+
+/* ── OFFERS ───────────────────────────────────────────────────── */
 .o-card{background:#fff;border:1.5px solid rgba(16,44,38,.09);overflow:hidden;transition:transform .28s,box-shadow .28s;}
 .o-card:hover{transform:translateY(-5px);box-shadow:0 14px 40px rgba(0,0,0,.11);}
-.o-card img{width:100%;object-fit:cover;display:block;}
+.o-card img{width:100%;height:200px;object-fit:cover;display:block;}
 .o-card-body{padding:20px 18px;}
 .o-card-body h5{font-family:var(--ff-h);font-size:1.08rem;color:var(--df);margin-bottom:6px;}
 .o-card-body p{font-size:.86rem;color:#666;line-height:1.65;margin:0;}
 
-.stat-block{text-align:center;padding:28px 16px;}
-.stat-num{font-family:var(--ff-h);font-size:clamp(2.4rem,5vw,3.4rem);font-weight:700;color:var(--gold-lt);line-height:1;}
-.stat-label{font-family:var(--ff-u);font-size:.66rem;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.55);margin-top:6px;}
-
+/* ── COMMUNITY ────────────────────────────────────────────────── */
 .comm-section{position:relative;padding:100px 0;text-align:center;overflow:hidden;}
-.comm-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1600&q=80') center/cover;filter:brightness(.28);z-index:0;}
+.comm-bg{position:absolute;inset:0;background:url('/images/Team\ 2.jpg') center/cover;filter:brightness(.28);z-index:0;}
 .comm-inner{position:relative;z-index:2;}
 .comm-inner h2{font-family:var(--ff-h);font-size:clamp(2.2rem,5vw,3.6rem);color:#fff;text-shadow:0 4px 24px rgba(0,0,0,.4);margin-bottom:12px;}
 .comm-inner p{color:rgba(255,255,255,.7);max-width:420px;margin:0 auto 26px;font-size:.96rem;line-height:1.82;}
 .btn-comm{font-family:var(--ff-u);font-size:.74rem;font-weight:700;letter-spacing:.8px;text-transform:uppercase;background:#fff;color:var(--df)!important;padding:12px 28px;border-radius:4px;border:2px solid #fff;transition:all .25s;display:inline-block;}
 .btn-comm:hover{background:transparent;color:#fff!important;}
 
-.rev-card{background:var(--df);padding:36px 30px;}
-.rev-card .stars{color:var(--gold);font-size:1rem;letter-spacing:2px;margin-bottom:14px;}
-.rev-card blockquote{font-style:italic;font-size:.97rem;color:rgba(255,255,255,.87);line-height:1.88;margin-bottom:18px;}
-.rev-card .author{font-family:var(--ff-h);font-size:.97rem;color:var(--gold-lt);font-weight:600;}
-.rev-card .role{font-family:var(--ff-u);font-size:.68rem;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.32);margin-top:3px;}
+/* ── REVIEWS ──────────────────────────────────────────────────── */
+.rev-card{
+  background:#fff;
+  border:1.5px solid rgba(16,44,38,.08);
+  padding:40px 36px;
+  position:relative;
+}
+/* Corner bracket frame instead of gold top border */
+.rev-card::before,.rev-card::after{
+  content:'';position:absolute;
+  width:22px;height:22px;
+}
+.rev-card::before{
+  top:-1px;left:-1px;
+  border-top:2px solid var(--gold);
+  border-left:2px solid var(--gold);
+}
+.rev-card::after{
+  bottom:-1px;right:-1px;
+  border-bottom:2px solid var(--gold);
+  border-right:2px solid var(--gold);
+}
+.rev-card .q-big{font-family:Georgia,serif;font-size:4rem;color:rgba(201,162,74,.14);line-height:.8;display:block;margin-bottom:10px;}
+.rev-card .stars{color:var(--gold);font-size:1rem;letter-spacing:3px;margin-bottom:14px;}
+.rev-card blockquote{font-style:italic;font-size:1rem;color:#444;line-height:1.9;margin-bottom:18px;}
+.rev-card .author{font-family:var(--ff-h);font-size:1rem;color:var(--df);font-weight:600;}
+.rev-card .role{font-family:var(--ff-u);font-size:.66rem;letter-spacing:1px;text-transform:uppercase;color:rgba(16,44,38,.36);margin-top:3px;}
 
+/* Controls for review carousel */
+#revCarousel .carousel-control-prev,
+#revCarousel .carousel-control-next{
+  width:42px;height:42px;border-radius:50%;
+  background:var(--df);opacity:1;
+  top:42%;transform:translateY(-50%);
+  z-index:5;
+}
+#revCarousel .carousel-control-prev{left:-21px;}
+#revCarousel .carousel-control-next{right:-21px;}
+#revCarousel .carousel-control-prev-icon,
+#revCarousel .carousel-control-next-icon{width:13px;height:13px;}
+
+/* 5 dots — BELOW the card, outside carousel-inner */
+#revCarousel .carousel-indicators{
+  position:static;
+  display:flex;justify-content:center;align-items:center;
+  gap:8px;margin:20px 0 0;
+  list-style:none;padding:0;
+}
+#revCarousel .carousel-indicators [data-bs-target]{
+  width:10px;height:10px;border-radius:50%;
+  background:rgba(16,44,38,.18);border:none;
+  margin:0;padding:0;
+  transition:all .26s;opacity:1;
+  flex-shrink:0;cursor:pointer;
+}
+#revCarousel .carousel-indicators .active{
+  background:var(--gold);transform:scale(1.38);
+}
+#revCarousel .carousel-indicators [data-bs-target]:hover{
+  background:rgba(16,44,38,.45);
+}
+
+/* ── MOMENTS ──────────────────────────────────────────────────── */
 .moments-img{width:100%;object-fit:cover;display:block;transition:transform .4s;}
 .moments-img:hover{transform:scale(1.04);}
 .moments-wrap{overflow:hidden;}
 
+/* ── CTA / FOOTER ─────────────────────────────────────────────── */
+.cta-band{background:var(--df-lt);padding:60px 0;text-align:center;}
+.cta-band h2{font-family:var(--ff-h);font-size:clamp(1.8rem,4vw,2.8rem);color:#fff;margin-bottom:10px;}
+.cta-band p{color:rgba(255,255,255,.6);font-size:.93rem;margin-bottom:24px;}
 .bask-footer{background:var(--df);padding:64px 0 0;}
 .f-brand{font-family:var(--ff-h);font-size:1.4rem;font-weight:700;color:#fff;margin-bottom:10px;}
 .f-desc{font-size:.86rem;color:rgba(255,255,255,.5);line-height:1.78;max-width:260px;}
@@ -135,17 +235,18 @@ img{max-width:100%;}
 .f-social{width:34px;height:34px;border-radius:50%;border:1px solid rgba(255,255,255,.14);display:inline-flex;align-items:center;justify-content:center;color:rgba(255,255,255,.44);font-size:.8rem;transition:all .22s;}
 .f-social:hover{background:var(--gold);border-color:var(--gold);color:var(--df);}
 
+/* ── REVEAL / BTT ─────────────────────────────────────────────── */
 [data-reveal]{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease;}
 [data-reveal].revealed{opacity:1;transform:none;}
 [data-reveal-delay="1"]{transition-delay:.1s;}
 [data-reveal-delay="2"]{transition-delay:.2s;}
 [data-reveal-delay="3"]{transition-delay:.3s;}
 [data-reveal-delay="4"]{transition-delay:.42s;}
-
 .btt{position:fixed;bottom:24px;right:24px;width:42px;height:42px;background:var(--gold);color:var(--df);border:none;border-radius:50%;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;z-index:999;cursor:pointer;font-size:.95rem;}
 .btt.on{opacity:1;pointer-events:all;}
 .btt:hover{transform:translateY(-3px);}
 
+/* ── RESPONSIVE ───────────────────────────────────────────────── */
 @media(min-width:768px)and(max-width:991.98px){
   .carousel-slide{height:72vw;min-height:420px;}
   .c-logo{max-width:190px;}
@@ -153,18 +254,20 @@ img{max-width:100%;}
   .o-card img{height:148px;}
   .comm-section{padding:80px 0;}
   .about-img{min-height:280px;}
+  .wn-img{height:360px;}
+  .wn-content{padding:36px 36px;}
 }
 @media(max-width:767.98px){
   .carousel-slide{height:100svh;min-height:520px;}
-  .carousel-slide .content{padding:70px 20px 80px;}
-  .c-logo{max-width:180px;margin-bottom:14px;}
+  .carousel-slide .content{padding:60px 16px 80px;}
+  .c-logo{max-width:170px;margin-bottom:12px;}
   .c-badge{font-size:.58rem;padding:6px 12px;}
-  .c-heading{font-size:1.9rem;}
-  .c-sub{font-size:.88rem;margin-bottom:22px;}
+  .c-heading{font-size:1.85rem;}
+  .c-sub{font-size:.87rem;margin-bottom:20px;}
   .c-btns{gap:10px;}
-  .btn-c-white,.btn-c-outline{padding:10px 20px;font-size:.68rem;}
+  .btn-c-white,.btn-c-outline{padding:10px 18px;font-size:.67rem;}
   #heroCarousel .carousel-control-prev,
-  #heroCarousel .carousel-control-next{display:none;}
+  #heroCarousel .carousel-control-next{width:36px;height:36px;margin:0 8px;}
   .about-img{min-height:220px;height:56vw;}
   .hours-card{padding:26px 20px;}
   .h-row{flex-direction:column;gap:2px;}
@@ -172,25 +275,32 @@ img{max-width:100%;}
   .o-card-body{padding:16px 14px;}
   .comm-section{padding:70px 0;}
   .comm-inner h2{font-size:2rem;}
-  .rev-card{padding:26px 20px;}
   .f-desc{max-width:100%;}
   .bask-footer{padding:48px 0 0;}
-  .scroll-hint{display:none;}
+  .wn-img{height:240px;}
+  .wn-content{padding:28px 22px;}
+  .wn-pills{gap:6px;}
+  .wn-pill{font-size:.55rem;padding:4px 10px;}
+  #revCarousel .carousel-control-prev{left:-6px;}
+  #revCarousel .carousel-control-next{right:-6px;}
+  .rev-card{padding:28px 22px;}
 }
 </style>
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg bask-nav" id="mainNav">
+<!-- ═══ NAVBAR — logo overflows downward ═════════════════════════ -->
+<nav class="navbar navbar-expand-lg bask-nav py-2" id="mainNav">
   <div class="container">
-    <a class="navbar-brand" href="home.html">
-      <img src="../images/BASKCAFENOBG.png" alt="Bask Café"/>
+    <a class="navbar-brand nav-logo-wrap" href="index.html">
+      <img src="../images/BASKCAFENOBG.png" alt="Bask Café" class="nav-logo-img"
+        onerror="this.src='https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=80&q=60';this.style.height='44px';this.style.borderRadius='4px'"/>
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navMenu">
-      <ul class="navbar-nav mx-auto gap-lg-1 py-3 py-lg-0 align-items-lg-center">
+      <ul class="navbar-nav mx-auto py-2 py-lg-0 align-items-lg-center">
         <li class="nav-item"><a class="nav-link active" href="home.html">Home</a></li>
         <li class="nav-item"><a class="nav-link" href="menu.html">Menu</a></li>
         <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
@@ -205,12 +315,15 @@ img{max-width:100%;}
           </ul>
         </li>
       </ul>
-      <a href="contact.html" class="btn-reserve ms-lg-2">Reserve a Table</a>
+      <a href="contact.html" class="btn-reserve ms-lg-3">Reserve a Table</a>
     </div>
   </div>
 </nav>
 
-<div class="hero-carousel-wrap">
+<!-- ═══ HERO CAROUSEL ════════════════════════════════════════════ -->
+<!-- Controls are siblings of carousel-inner, NOT inside it, so they
+     are never blocked by child overflow or z-index stacking -->
+<div class="hero-wrap">
   <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5500">
     <div class="carousel-indicators">
       <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -218,16 +331,15 @@ img{max-width:100%;}
       <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
     </div>
     <div class="carousel-inner">
-
       <div class="carousel-item active">
         <div class="carousel-slide">
-          <img class="bg-img" src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=1920&q=85" alt="Coffee beans and warm light"/>
+          <img class="bg-img" src="/images/hero-sec.png" alt="Coffee beans"/>
           <div class="overlay"></div>
           <div class="content">
             <p class="c-eyebrow">Valenzuela City &middot; Est. 2024</p>
             <div class="c-badge"><span>🐌</span> Slow Coffee Club</div>
             <img src="../images/BASKCAFELOGO.png" alt="Bask Café" class="c-logo"/>
-            <p class="c-sub">Elevate your daily ritual with the finest brews, meticulously crafted to bring warmth, depth, and a moment of pure pleasure.</p>
+            <p class="c-sub">Elevate your daily ritual with the finest brews, crafted to bring warmth, depth, and a moment of pure pleasure.</p>
             <div class="c-btns">
               <a href="menu.html" class="btn-c-white">Explore Menu</a>
               <a href="contact.html" class="btn-c-outline">Reserve a Table</a>
@@ -235,10 +347,9 @@ img{max-width:100%;}
           </div>
         </div>
       </div>
-
       <div class="carousel-item">
         <div class="carousel-slide">
-          <img class="bg-img" src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1920&q=85" alt="Steaming espresso close-up"/>
+          <img class="bg-img" src="/images/random.jpg" alt="Espresso"/>
           <div class="overlay"></div>
           <div class="content">
             <p class="c-eyebrow">Our Signature Series</p>
@@ -250,10 +361,9 @@ img{max-width:100%;}
           </div>
         </div>
       </div>
-
       <div class="carousel-item">
         <div class="carousel-slide">
-          <img class="bg-img" src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=1920&q=85" alt="Warm café community gathering"/>
+          <img class="bg-img" src="/images/everycup.jpg" alt="Community"/>
           <div class="overlay"></div>
           <div class="content">
             <p class="c-eyebrow">Community &middot; Marulas, Valenzuela</p>
@@ -266,7 +376,6 @@ img{max-width:100%;}
           </div>
         </div>
       </div>
-
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -277,12 +386,9 @@ img{max-width:100%;}
       <span class="visually-hidden">Next</span>
     </button>
   </div>
-  <div class="scroll-hint">
-    <div class="scroll-line"></div>
-    <span>Scroll</span>
-  </div>
 </div>
 
+<!-- ═══ OUR STORY ════════════════════════════════════════════════ -->
 <section class="py-5 bg-white" id="story">
   <div class="container py-4">
     <div class="row align-items-center g-5">
@@ -290,7 +396,7 @@ img{max-width:100%;}
         <span class="eyebrow">Our Roots</span>
         <h2 class="mb-2" style="font-size:clamp(1.8rem,3.5vw,2.6rem);">Where it all started</h2>
         <div class="s-rule"></div>
-        <p class="mb-3" style="font-size:.95rem;line-height:1.85;color:#444;">Bask Café was born in the heart of Villaverde — a neighbourhood shaped by warmth, late nights, and the quiet ritual of a well-made cup. We started with a simple idea: coffee should never be rushed. Every blend, every matcha, every pastry carries that same unhurried intention.</p>
+        <p class="mb-3" style="font-size:.95rem;line-height:1.85;color:#444;">Bask Café was born in the heart of Villaverde — a neighbourhood shaped by warmth, late nights, and the quiet ritual of a well-made cup. We started with a simple idea: coffee should never be rushed.</p>
         <p class="mb-4" style="font-size:.95rem;line-height:1.85;color:#444;">From our espresso programme to comfort food rice meals, Bask is built around community. Come as a stranger, leave as a regular. We are your Slow Coffee Club — and there is always a seat for you here.</p>
         <div class="d-flex flex-wrap gap-2 mb-4">
           <span class="tag-pill"><i class="fas fa-coffee"></i>Coffee</span>
@@ -301,59 +407,103 @@ img{max-width:100%;}
         <a href="about.html" class="btn-df">Learn More</a>
       </div>
       <div class="col-lg-6" data-reveal data-reveal-delay="2">
-        <img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=900&q=85" alt="Bask Café origin" class="about-img w-100 mb-4"/>
+        <img src="/images/baskartisan.png" alt="Bask origin" class="about-img w-100 mb-4"/>
         <div class="hours-card">
           <h4>Opening Hours</h4>
           <p class="sub">A great way to start your day.</p>
-          <div class="h-row">
-            <span class="day">Monday – Thursday</span>
-            <span class="time">3:00 PM – 12:00 AM</span>
-          </div>
-          <div class="h-row">
-            <span class="day">Friday – Sunday</span>
-            <span class="time">10:00 AM – 12:00 AM</span>
-          </div>
-          <div class="h-row" style="border-bottom:none;">
-            <span class="day" style="color:rgba(255,255,255,.45);font-size:.78rem;"><i class="fas fa-map-marker-alt me-2" style="color:var(--gold-lt);"></i>4B Little Baguio St, Marulas, Valenzuela</span>
-          </div>
+          <div class="h-row"><span class="day">Monday – Thursday</span><span class="time">3:00 PM – 12:00 AM</span></div>
+          <div class="h-row"><span class="day">Friday – Sunday</span><span class="time">10:00 AM – 12:00 AM</span></div>
+          <div class="h-row" style="border-bottom:none;"><span class="day" style="color:rgba(255,255,255,.45);font-size:.78rem;"><i class="fas fa-map-marker-alt me-2" style="color:var(--gold-lt);"></i>4B Little Baguio St, Marulas, Valenzuela</span></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="py-5" style="background:var(--df);">
-  <div class="container py-3">
-    <div class="row g-0 text-center">
-      <div class="col-6 col-md-3" data-reveal data-reveal-delay="1">
-        <div class="stat-block border-end border-secondary border-opacity-25">
-          <div class="stat-num">500+</div>
-          <div class="stat-label">Happy Regulars</div>
+<!-- ═══ WHAT'S NEW (moved to where stats were) ═══════════════════ -->
+<section id="whats-new" style="background:var(--cr);overflow:hidden;">
+  <div id="whatsNewCarousel" class="carousel slide" data-bs-ride="false">
+    <div class="carousel-inner">
+
+      <div class="carousel-item active">
+        <div class="row g-0 align-items-stretch">
+          <div class="col-md-6">
+            <img src="/images/ramen.png" alt="Ramen at Bask Café" class="wn-img" style="object-position:center top;"/>
+          </div>
+          <div class="col-md-6 wn-content d-flex flex-column justify-content-center" style="background:var(--cr);">
+            <span class="eyebrow">What's New</span>
+            <span class="wn-slide-num">01 &nbsp;/&nbsp; New on the Menu</span>
+            <h2 style="font-size:clamp(1.8rem,3vw,2.6rem);margin-bottom:12px;">Ramen is<br>Now Serving</h2>
+            <div class="s-rule"></div>
+            <p style="font-size:.93rem;line-height:1.85;color:#555;margin-bottom:0;">Fresh noodles, rich &amp; bold broth, tender chashu &amp; egg — comfort in every bowl. Choose from Spicy Tonkotsu, Shoyu Ramen, or Tantanmen. All at ₱180.</p>
+            <div class="wn-controls">
+              <button class="wn-ctrl" type="button" data-bs-target="#whatsNewCarousel" data-bs-slide="prev" aria-label="Prev"><i class="fas fa-chevron-left"></i></button>
+              <button class="wn-ctrl" type="button" data-bs-target="#whatsNewCarousel" data-bs-slide="next" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
+              <div class="wn-pills ms-1">
+                <button class="wn-pill active" type="button" data-bs-target="#whatsNewCarousel" data-bs-slide-to="0">Ramen Drop</button>
+                <button class="wn-pill" type="button" data-bs-target="#whatsNewCarousel" data-bs-slide-to="1">Dubai Sweets</button>
+                <button class="wn-pill" type="button" data-bs-target="#whatsNewCarousel" data-bs-slide-to="2">Gaming Spot</button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="col-6 col-md-3" data-reveal data-reveal-delay="2">
-        <div class="stat-block border-end border-secondary border-opacity-25">
-          <div class="stat-num">40+</div>
-          <div class="stat-label">Menu Items</div>
+
+      <div class="carousel-item">
+        <div class="row g-0 align-items-stretch">
+          <div class="col-md-6" style="display:grid;grid-template-columns:1fr 1fr;gap:0;">
+            <img src="/images/dubaimilk.jpg" alt="Dubai Milky Pistachio" style="width:100%;height:100%;min-height:320px;object-fit:cover;display:block;"/>
+            <img src="/images/dubaichoco.jpg" alt="Dubai Chewy Cookies" style="width:100%;height:100%;min-height:320px;object-fit:cover;display:block;object-position:center top;"/>
+          </div>
+          <div class="col-md-6 wn-content d-flex flex-column justify-content-center" style="background:var(--cr);">
+            <span class="eyebrow">What's New</span>
+            <span class="wn-slide-num">02 &nbsp;/&nbsp; New Pastry Drop</span>
+            <h2 style="font-size:clamp(1.8rem,3vw,2.6rem);margin-bottom:12px;">Dubai Sweets<br>Have Arrived</h2>
+            <div class="s-rule"></div>
+            <p style="font-size:.93rem;line-height:1.85;color:#555;margin-bottom:0;">Taste the hype — our new Dubai Milky Pistachio and Dubai Chewy Cookies are here. Packed with kataifi pistachio filling, these are the bites everyone's been asking for.</p>
+            <div class="wn-controls">
+              <button class="wn-ctrl" type="button" data-bs-target="#whatsNewCarousel" data-bs-slide="prev" aria-label="Prev"><i class="fas fa-chevron-left"></i></button>
+              <button class="wn-ctrl" type="button" data-bs-target="#whatsNewCarousel" data-bs-slide="next" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
+              <div class="wn-pills ms-1">
+                <button class="wn-pill" type="button" data-bs-target="#whatsNewCarousel" data-bs-slide-to="0">Ramen Drop</button>
+                <button class="wn-pill active" type="button" data-bs-target="#whatsNewCarousel" data-bs-slide-to="1">Dubai Sweets</button>
+                <button class="wn-pill" type="button" data-bs-target="#whatsNewCarousel" data-bs-slide-to="2">Gaming Spot</button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="col-6 col-md-3" data-reveal data-reveal-delay="3">
-        <div class="stat-block border-end border-secondary border-opacity-25">
-          <div class="stat-num">1</div>
-          <div class="stat-label">Cozy Location</div>
+
+      <div class="carousel-item">
+        <div class="row g-0 align-items-stretch">
+          <div class="col-md-6">
+            <img src="/images/game.png" alt="PS4 Gaming at Bask Café" class="wn-img" style="object-position:center center;"/>
+          </div>
+          <div class="col-md-6 wn-content d-flex flex-column justify-content-center" style="background:var(--cr);">
+            <span class="eyebrow">What's New</span>
+            <span class="wn-slide-num">03 &nbsp;/&nbsp; New Experience</span>
+            <h2 style="font-size:clamp(1.8rem,3vw,2.6rem);margin-bottom:12px;">PS4 + Coffee?<br>Yes, Please.</h2>
+            <div class="s-rule"></div>
+            <p style="font-size:.93rem;line-height:1.85;color:#555;margin-bottom:0;">Bask just got a gaming corner. Book the PS4 spot, order your favorite brew, and stay a while longer. Available for reservation — ask our staff for rates and availability.</p>
+            <div class="wn-controls">
+              <button class="wn-ctrl" type="button" data-bs-target="#whatsNewCarousel" data-bs-slide="prev" aria-label="Prev"><i class="fas fa-chevron-left"></i></button>
+              <button class="wn-ctrl" type="button" data-bs-target="#whatsNewCarousel" data-bs-slide="next" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
+              <div class="wn-pills ms-1">
+                <button class="wn-pill" type="button" data-bs-target="#whatsNewCarousel" data-bs-slide-to="0">Ramen Drop</button>
+                <button class="wn-pill" type="button" data-bs-target="#whatsNewCarousel" data-bs-slide-to="1">Dubai Sweets</button>
+                <button class="wn-pill active" type="button" data-bs-target="#whatsNewCarousel" data-bs-slide-to="2">Gaming Spot</button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="col-6 col-md-3" data-reveal data-reveal-delay="4">
-        <div class="stat-block">
-          <div class="stat-num">2024</div>
-          <div class="stat-label">Est. Valenzuela</div>
-        </div>
-      </div>
+
     </div>
   </div>
 </section>
 
-<section class="py-5" style="background:var(--cr);" id="offerings">
+<!-- ═══ WHAT WE SERVE ════════════════════════════════════════════ -->
+<section class="py-5 bg-white" id="offerings">
   <div class="container py-4">
     <div class="text-center mb-5" data-reveal>
       <span class="eyebrow">What We Serve</span>
@@ -363,40 +513,16 @@ img{max-width:100%;}
     </div>
     <div class="row g-4">
       <div class="col-6 col-md-3" data-reveal data-reveal-delay="1">
-        <div class="o-card h-100">
-          <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=600&q=80" alt="Signature Beverages" style="height:180px;"/>
-          <div class="o-card-body">
-            <h5>Signature Beverages</h5>
-            <p>Handcrafted espresso, lattes, matcha series and seasonal specials — each cup a slow ritual.</p>
-          </div>
-        </div>
+        <div class="o-card h-100"><img src="/images/baskexclu/basksig.png" alt="Signature Beverages"/><div class="o-card-body"><h5>Signature Beverages</h5><p>Handcrafted espresso, lattes, matcha series and seasonal specials — each cup a slow ritual.</p></div></div>
       </div>
       <div class="col-6 col-md-3" data-reveal data-reveal-delay="2">
-        <div class="o-card h-100">
-          <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=600&q=80" alt="Delicate Pastries" style="height:180px;"/>
-          <div class="o-card-body">
-            <h5>Delicate Pastries</h5>
-            <p>Baked fresh daily — croissants, cinnamon rolls, and pairings that belong beside every cup.</p>
-          </div>
-        </div>
+        <div class="o-card h-100"><img src="/images/pastries/painAu.png" alt="Delicate Pastries"/><div class="o-card-body"><h5>Delicate Pastries</h5><p>Baked fresh daily — croissants, cinnamon rolls, and pairings that belong beside every cup.</p></div></div>
       </div>
       <div class="col-6 col-md-3" data-reveal data-reveal-delay="3">
-        <div class="o-card h-100">
-          <img src="https://images.unsplash.com/photo-1547592180-85f173990554?w=600&q=80" alt="Rice Specialties" style="height:180px;"/>
-          <div class="o-card-body">
-            <h5>Rice Specialties</h5>
-            <p>Filipino comfort food done right — tapsilog, longganisa, bangus and more to fuel your day.</p>
-          </div>
-        </div>
+        <div class="o-card h-100"><img src="/images/RiceM/bangus.png" alt="Rice Specialties"/><div class="o-card-body"><h5>Rice Specialties</h5><p>Filipino comfort food done right — tapsilog, longganisa, bangus and more to fuel your day.</p></div></div>
       </div>
       <div class="col-6 col-md-3" data-reveal data-reveal-delay="4">
-        <div class="o-card h-100">
-          <img src="https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?w=600&q=80" alt="Tasty Appetizers" style="height:180px;"/>
-          <div class="o-card-body">
-            <h5>Tasty Appetizers</h5>
-            <p>Fries, nachos, chicken poppers and pica-pica bites — perfect companions to your afternoon.</p>
-          </div>
-        </div>
+        <div class="o-card h-100"><img src="/images/picapica/baconfries.png" alt="Tasty Appetizers"/><div class="o-card-body"><h5>Tasty Appetizers</h5><p>Fries, nachos, chicken poppers and pica-pica bites — perfect companions to your afternoon.</p></div></div>
       </div>
     </div>
     <div class="text-center mt-5" data-reveal>
@@ -405,7 +531,8 @@ img{max-width:100%;}
   </div>
 </section>
 
-<section class="py-5 bg-white" id="moments">
+<!-- ═══ BASK MOMENTS ═════════════════════════════════════════════ -->
+<section class="py-5" style="background:var(--cr);" id="moments">
   <div class="container py-4">
     <div class="row align-items-end mb-4" data-reveal>
       <div class="col-md-8">
@@ -417,25 +544,14 @@ img{max-width:100%;}
       </div>
     </div>
     <div class="row g-3" data-reveal data-reveal-delay="1">
-      <div class="col-6 col-md-4">
-        <div class="moments-wrap">
-          <img src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?w=600&q=80" alt="Café vibes" class="moments-img" style="height:220px;"/>
-        </div>
-      </div>
-      <div class="col-6 col-md-4">
-        <div class="moments-wrap">
-          <img src="https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=600&q=80" alt="Coffee craft" class="moments-img" style="height:220px;"/>
-        </div>
-      </div>
-      <div class="col-12 col-md-4">
-        <div class="moments-wrap">
-          <img src="https://images.unsplash.com/photo-1485182708500-e8f1f318ba72?w=600&q=80" alt="Bask interiors" class="moments-img" style="height:220px;"/>
-        </div>
-      </div>
+      <div class="col-6 col-md-4"><div class="moments-wrap"><img src="/images/home3.jpg" alt="Café vibes" class="moments-img" style="height:220px;"/></div></div>
+      <div class="col-6 col-md-4"><div class="moments-wrap"><img src="/images/home2.jpg" alt="Coffee craft" class="moments-img" style="height:220px;"/></div></div>
+      <div class="col-12 col-md-4"><div class="moments-wrap"><img src="/images/home1.jpg" alt="Bask interiors" class="moments-img" style="height:220px;"/></div></div>
     </div>
   </div>
 </section>
 
+<!-- ═══ COMMUNITY ════════════════════════════════════════════════ -->
 <section class="comm-section" id="community">
   <div class="comm-bg"></div>
   <div class="container comm-inner" data-reveal>
@@ -446,6 +562,7 @@ img{max-width:100%;}
   </div>
 </section>
 
+<!-- ═══ REVIEWS — 5 slides, smooth fade, dots INSIDE section ═════ -->
 <section class="py-5 bg-white" id="reviews">
   <div class="container py-4">
     <div class="text-center mb-5" data-reveal>
@@ -454,35 +571,81 @@ img{max-width:100%;}
       <div class="s-rule s-rule-c"></div>
       <p class="mx-auto" style="max-width:460px;color:#666;font-size:.91rem;">Real stories from the people who make Bask what it is.</p>
     </div>
-    <div class="row g-4">
-      <div class="col-md-4" data-reveal data-reveal-delay="1">
-        <div class="rev-card h-100">
-          <div class="stars">★★★★★</div>
-          <blockquote>"A cozy little spot that feels like home the moment you walk in. The Vienna Latte is pure magic — smooth, layered, made with so much care. I never want to leave."</blockquote>
-          <div class="author">— Jaymar Lumbang</div>
-          <div class="role">Regular Guest</div>
+    <div class="position-relative px-3 px-md-5" data-reveal>
+      <div id="revCarousel" class="carousel slide carousel-fade" data-bs-ride="false">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="row justify-content-center"><div class="col-md-8 col-lg-7">
+              <div class="rev-card">
+                <span class="q-big">&ldquo;</span>
+                <div class="stars">★★★★★</div>
+                <blockquote>A cozy little spot that feels like home the moment you walk in. The Vienna Latte is pure magic — smooth, layered, made with so much care. I never want to leave.</blockquote>
+                <div class="author">Jaymar Lumbang</div><div class="role">Regular Guest</div>
+              </div>
+            </div></div>
+          </div>
+          <div class="carousel-item">
+            <div class="row justify-content-center"><div class="col-md-8 col-lg-7">
+              <div class="rev-card">
+                <span class="q-big">&ldquo;</span>
+                <div class="stars">★★★★★</div>
+                <blockquote>The Matcha Series completely changed how I think about matcha. The Berry Matcha is absolutely divine. And the staff? Genuinely the warmest people — they remember your name.</blockquote>
+                <div class="author">Anika Reyes</div><div class="role">Weekly Visitor</div>
+              </div>
+            </div></div>
+          </div>
+          <div class="carousel-item">
+            <div class="row justify-content-center"><div class="col-md-8 col-lg-7">
+              <div class="rev-card">
+                <span class="q-big">&ldquo;</span>
+                <div class="stars">★★★★★</div>
+                <blockquote>Came for a quick coffee, stayed three hours. The Biscoff Frappuccino is dangerously good and the Carbonara beats most pasta places. Bask just gets it right.</blockquote>
+                <div class="author">David Lim</div><div class="role">Food Enthusiast</div>
+              </div>
+            </div></div>
+          </div>
+          <div class="carousel-item">
+            <div class="row justify-content-center"><div class="col-md-8 col-lg-7">
+              <div class="rev-card">
+                <span class="q-big">&ldquo;</span>
+                <div class="stars">★★★★★</div>
+                <blockquote>The ambiance alone is worth the trip. Soft lighting, curated music, and a menu that surprises you every visit. Their Ube Latte became my morning ritual — nothing compares.</blockquote>
+                <div class="author">Sofia Magbanua</div><div class="role">First-Time Guest</div>
+              </div>
+            </div></div>
+          </div>
+          <div class="carousel-item">
+            <div class="row justify-content-center"><div class="col-md-8 col-lg-7">
+              <div class="rev-card">
+                <span class="q-big">&ldquo;</span>
+                <div class="stars">★★★★★</div>
+                <blockquote>Brought my whole team here after a long week and everyone left with a smile. The rice meals are filling, the coffee is exceptional, and the service feels genuinely personal. A rare find in Valenzuela.</blockquote>
+                <div class="author">Marco Reyes</div><div class="role">Group Visit</div>
+              </div>
+            </div></div>
+          </div>
         </div>
-      </div>
-      <div class="col-md-4" data-reveal data-reveal-delay="2">
-        <div class="rev-card h-100">
-          <div class="stars">★★★★★</div>
-          <blockquote>"The Matcha Series completely changed how I think about matcha. The Berry Matcha is absolutely divine. And the staff? Genuinely the warmest people — they remember your name."</blockquote>
-          <div class="author">— Anika Reyes</div>
-          <div class="role">Weekly Visitor</div>
-        </div>
-      </div>
-      <div class="col-md-4" data-reveal data-reveal-delay="3">
-        <div class="rev-card h-100">
-          <div class="stars">★★★★★</div>
-          <blockquote>"Came for a quick coffee, stayed three hours. The Biscoff Frappuccino is dangerously good and the Carbonara beats most pasta places. Bask just gets it right."</blockquote>
-          <div class="author">— David Lim</div>
-          <div class="role">Food Enthusiast</div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#revCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#revCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#revCarousel" data-bs-slide-to="0" class="active" aria-label="Review 1"></button>
+          <button type="button" data-bs-target="#revCarousel" data-bs-slide-to="1" aria-label="Review 2"></button>
+          <button type="button" data-bs-target="#revCarousel" data-bs-slide-to="2" aria-label="Review 3"></button>
+          <button type="button" data-bs-target="#revCarousel" data-bs-slide-to="3" aria-label="Review 4"></button>
+          <button type="button" data-bs-target="#revCarousel" data-bs-slide-to="4" aria-label="Review 5"></button>
         </div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- ═══ FIND US ═══════════════════════════════════════════════════ -->
 <section class="py-5" style="background:var(--cr);" id="find-us">
   <div class="container py-4">
     <div class="row align-items-center g-5">
@@ -492,18 +655,9 @@ img{max-width:100%;}
         <div class="s-rule"></div>
         <p class="mb-4" style="font-size:.95rem;line-height:1.85;color:#555;">Located in Marulas, Valenzuela City — a quiet corner made for long conversations and even longer coffee sessions.</p>
         <div class="d-flex flex-column gap-3 mb-4">
-          <div class="d-flex align-items-start gap-3">
-            <i class="fas fa-map-marker-alt mt-1" style="color:var(--gold);width:16px;"></i>
-            <span style="font-size:.9rem;color:#555;">4B Little Baguio Street, Marulas, Valenzuela City, Philippines</span>
-          </div>
-          <div class="d-flex align-items-start gap-3">
-            <i class="fas fa-clock mt-1" style="color:var(--gold);width:16px;"></i>
-            <span style="font-size:.9rem;color:#555;">Mon–Thu: 3PM–12AM &nbsp;·&nbsp; Fri–Sun: 10AM–12AM</span>
-          </div>
-          <div class="d-flex align-items-start gap-3">
-            <i class="fas fa-phone mt-1" style="color:var(--gold);width:16px;"></i>
-            <span style="font-size:.9rem;color:#555;">+120-283-2127</span>
-          </div>
+          <div class="d-flex align-items-start gap-3"><i class="fas fa-map-marker-alt mt-1" style="color:var(--gold);width:16px;"></i><span style="font-size:.9rem;color:#555;">4B Little Baguio Street, Marulas, Valenzuela City, Philippines</span></div>
+          <div class="d-flex align-items-start gap-3"><i class="fas fa-clock mt-1" style="color:var(--gold);width:16px;"></i><span style="font-size:.9rem;color:#555;">Mon–Thu: 3PM–12AM &nbsp;·&nbsp; Fri–Sun: 10AM–12AM</span></div>
+          <div class="d-flex align-items-start gap-3"><i class="fas fa-phone mt-1" style="color:var(--gold);width:16px;"></i><span style="font-size:.9rem;color:#555;">+120-283-2127</span></div>
         </div>
         <div class="d-flex gap-3 flex-wrap">
           <a href="contact.html" class="btn-df">Reserve a Table</a>
@@ -512,20 +666,33 @@ img{max-width:100%;}
       </div>
       <div class="col-lg-6" data-reveal data-reveal-delay="2">
         <div class="ratio ratio-4x3">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3859.329!2d120.9634!3d14.7!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTTCsDQyJzAwLjAiTiAxMjDCsDU3JzQ4LjAiRQ!5e0!3m2!1sen!2sph!4v1234567890" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="rounded-0"></iframe>
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3859.1!2d120.96718!3d14.71043!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397b0e6a3c3b9d3%3A0x0!2s4B%20Little%20Baguio%20St%2C%20Marulas%2C%20Valenzuela%2C%20Metro%20Manila!5e0!3m2!1sen!2sph!4v1700000000001" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- ═══ CTA ═══════════════════════════════════════════════════════ -->
+<section class="cta-band">
+  <div class="container">
+    <span style="font-family:var(--ff-u);font-size:.62rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold-lt);display:block;margin-bottom:10px;">Reserve &middot; Bask Café</span>
+    <h2>Ready for your next slow coffee moment?</h2>
+    <p>Join us in Marulas, Valenzuela — a seat is always waiting for you.</p>
+    <div class="d-flex gap-3 justify-content-center flex-wrap">
+      <a href="contact.html" class="btn-gold">Reserve a Table</a>
+      <a href="menu.html" class="btn-outline-cr">Explore Menu</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ════════════════════════════════════════════════════ -->
 <footer class="bask-footer" id="footer">
   <div class="container">
     <div class="row g-4 g-lg-5 pb-5">
       <div class="col-12 col-sm-6 col-lg-4">
         <div class="f-brand">
           <img src="../images/BASKCAFELOGO.png" alt="Bask Café" style="height:44px;width:auto;filter:brightness(0) invert(1);opacity:.82;margin-bottom:10px;display:block;"/>
-          Bask Café
         </div>
         <p class="f-desc">A community café rooted in Villaverde, Valenzuela — dedicated to slow coffee, community, and the joy of slowing down over something truly well-made.</p>
         <div class="d-flex gap-2 mt-4">
@@ -575,8 +742,18 @@ window.addEventListener('scroll',()=>{
   btt.classList.toggle('on',window.scrollY>400);
 },{passive:true});
 btt.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+
+/* Reveal on scroll */
 const io=new IntersectionObserver((es,o)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('revealed');o.unobserve(e.target);}});},{threshold:.08,rootMargin:'0px 0px -36px 0px'});
 document.querySelectorAll('[data-reveal]').forEach(el=>io.observe(el));
+
+/* ── What's New pill sync ───────────────────── */
+const wnEl=document.getElementById('whatsNewCarousel');
+wnEl.addEventListener('slide.bs.carousel',e=>{
+  document.querySelectorAll('.wn-pill').forEach(p=>{
+    p.classList.toggle('active',parseInt(p.getAttribute('data-bs-slide-to'))===e.to);
+  });
+});
 </script>
 </body>
 </html>

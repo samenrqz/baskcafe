@@ -16,22 +16,30 @@ body{font-family:var(--ff-b);background:var(--cr);color:var(--df);overflow-x:hid
 h1,h2,h3,h4,h5,h6{font-family:var(--ff-h);font-weight:700;color:var(--df);}
 a{text-decoration:none;color:inherit;}
 img{max-width:100%;}
-.bask-nav{background:var(--df)!important;position:sticky;top:0;z-index:1050;transition:background .3s;height:72px;}
-.bask-nav.scrolled{background:rgba(16,44,38,.96)!important;backdrop-filter:blur(12px);}
-.bask-nav .navbar-brand{font-family:var(--ff-h);font-size:1.4rem;font-weight:700;color:#fff!important;display:flex;align-items:center;gap:8px;}
-.bask-nav .navbar-brand i{color:var(--gold);}
-.bask-nav .nav-link{font-family:var(--ff-u);font-size:.78rem;font-weight:500;letter-spacing:.7px;text-transform:uppercase;color:rgba(247,231,206,.78)!important;padding:8px 12px!important;transition:color .2s;}
+.bask-nav{background:var(--df)!important;position:sticky;top:0;z-index:1050;transition:background .3s;overflow:visible;}
+.bask-nav.scrolled{background:rgba(16,44,38,.97)!important;backdrop-filter:blur(12px);}
+.nav-logo-wrap{position:relative;display:flex;align-items:center;}
+.nav-logo-img{height:64px;width:auto;position:relative;z-index:1060;filter:drop-shadow(0 4px 16px rgba(0,0,0,.35));transition:height .2s;}
+.bask-nav.scrolled .nav-logo-img{height:48px;}
+.bask-nav .nav-link{font-family:var(--ff-u);font-size:.75rem;font-weight:500;letter-spacing:.7px;text-transform:uppercase;color:rgba(247,231,206,.78)!important;padding:6px 0!important;margin:0 10px;transition:color .2s;}
 .bask-nav .nav-link:hover,.bask-nav .nav-link.active{color:var(--gold-lt)!important;}
-.bask-nav .dropdown-menu{background:#fff;border:none;border-top:2px solid var(--gold);border-radius:0 0 8px 8px;box-shadow:0 12px 32px rgba(0,0,0,.12);padding:8px;min-width:190px;}
-.bask-nav .dropdown-item{font-family:var(--ff-u);font-size:.82rem;color:#444;padding:9px 14px;border-radius:4px;transition:background .18s;}
+.bask-nav .dropdown-menu{background:#fff;border:none;border-top:2px solid var(--gold);border-radius:0 0 8px 8px;box-shadow:0 12px 32px rgba(0,0,0,.12);padding:8px;min-width:190px;z-index:1060;}
+.bask-nav .dropdown-item{font-family:var(--ff-u);font-size:.8rem;color:#444;padding:9px 14px;border-radius:4px;transition:background .18s;}
 .bask-nav .dropdown-item:hover{background:var(--cr);color:var(--df);}
-.btn-reserve{font-family:var(--ff-u);font-size:.74rem;font-weight:700;letter-spacing:.7px;text-transform:uppercase;background:var(--gold);color:var(--df)!important;padding:9px 20px;border-radius:4px;border:2px solid var(--gold);transition:all .25s;white-space:nowrap;}
+.btn-reserve{font-family:var(--ff-u);font-size:.72rem;font-weight:700;letter-spacing:.7px;text-transform:uppercase;background:var(--gold);color:var(--df)!important;padding:8px 18px;border-radius:4px;border:2px solid var(--gold);transition:all .25s;white-space:nowrap;}
 .btn-reserve:hover{background:transparent;color:var(--gold)!important;border-color:var(--gold);}
-.navbar-toggler{border-color:rgba(247,231,206,.3);}
-.navbar-toggler-icon{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28247%2C231%2C206%2C.85%29' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");}
-@media(max-width:991.98px){.bask-nav .navbar-collapse{background:var(--df-lt);padding:12px;margin-top:6px;border-radius:8px;border:1px solid rgba(255,255,255,.06);}.bask-nav .nav-link{padding:10px 8px!important;border-bottom:1px solid rgba(255,255,255,.05);}.btn-reserve{margin-top:10px;display:block;text-align:center;}}
+.navbar-toggler{border-color:rgba(247,231,206,.3);padding:4px 8px;}
+.navbar-toggler-icon{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28247%2C231%2C206%2C.85%29' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");width:1.2em;height:1.2em;}
+@media(max-width:991.98px){
+  .bask-nav .navbar-collapse{background:var(--df-lt);padding:12px 16px;margin-top:6px;border-radius:8px;border:1px solid rgba(255,255,255,.06);}
+  .bask-nav .navbar-collapse .navbar-nav{text-align:center;}
+  .bask-nav .nav-link{padding:10px 0!important;margin:0;border-bottom:1px solid rgba(255,255,255,.05);}
+  .btn-reserve{margin-top:10px;display:block;text-align:center;}
+  .nav-logo-img{height:52px;}
+  .bask-nav.scrolled .nav-logo-img{height:44px;}
+}
 .page-hero{background:var(--df);padding:100px 0 72px;text-align:center;position:relative;overflow:hidden;}
-.page-hero::before{content:'';position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1600&q=60') center/cover;opacity:.15;}
+.page-hero::before{content:'';position:absolute;inset:0;background:url('/images/bask-hero.png') center/cover;opacity:.15;}
 .page-hero .container{position:relative;z-index:2;}
 .eyebrow{font-family:var(--ff-u);font-size:.66rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:8px;}
 .eyebrow-lt{color:var(--gold-lt);}
@@ -63,7 +71,7 @@ img{max-width:100%;}
 .lightbox img{max-width:90vw;max-height:88vh;object-fit:contain;}
 .lightbox-close{position:absolute;top:20px;right:24px;background:none;border:none;color:#fff;font-size:2rem;cursor:pointer;line-height:1;opacity:.7;transition:opacity .2s;}
 .lightbox-close:hover{opacity:1;}
-.cta-band{background:var(--df);padding:72px 0;text-align:center;}
+.cta-band{background:var(--df-lt);padding:72px 0;text-align:center;}
 .cta-band h2{font-family:var(--ff-h);font-size:clamp(1.8rem,4vw,2.8rem);color:#fff;margin-bottom:10px;}
 .cta-band p{color:rgba(255,255,255,.6);font-size:.93rem;margin-bottom:28px;max-width:400px;margin-left:auto;margin-right:auto;}
 .btn-gold{font-family:var(--ff-u);font-size:.74rem;font-weight:700;letter-spacing:.8px;text-transform:uppercase;background:var(--gold);color:var(--df)!important;padding:12px 28px;border-radius:4px;border:2px solid var(--gold);transition:all .25s;display:inline-block;}
@@ -104,20 +112,23 @@ img{max-width:100%;}
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg bask-nav" id="mainNav">
+<nav class="navbar navbar-expand-lg bask-nav py-2" id="mainNav">
   <div class="container">
-    <a class="navbar-brand" href="home.html"><i class="fas fa-mug-hot"></i>Bask Café</a>
+    <a class="navbar-brand nav-logo-wrap" href="index.html">
+      <img src="../images/BASKCAFENOBG.png" alt="Bask Café" class="nav-logo-img"
+        onerror="this.src='https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=80&q=60';this.style.height='44px';this.style.borderRadius='4px'"/>
+    </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse justify-content-center" id="navMenu">
-      <ul class="navbar-nav gap-1">
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav mx-auto py-2 py-lg-0 align-items-lg-center">
         <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
         <li class="nav-item"><a class="nav-link" href="menu.html">Menu</a></li>
         <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
         <li class="nav-item"><a class="nav-link active" href="bask-moments.html">Bask Moments</a></li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">More</a>
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">More</a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="events.html"><i class="fas fa-calendar-alt me-2 opacity-50"></i>Events &amp; Stories</a></li>
             <li><a class="dropdown-item" href="opportunities.html"><i class="fas fa-briefcase me-2 opacity-50"></i>Opportunities</a></li>
@@ -126,9 +137,7 @@ img{max-width:100%;}
           </ul>
         </li>
       </ul>
-    </div>
-    <div class="d-none d-lg-flex align-items-center">
-      <a href="contact.html" class="btn-reserve">Reserve a Table</a>
+      <a href="contact.html" class="btn-reserve ms-lg-3">Reserve a Table</a>
     </div>
   </div>
 </nav>
@@ -158,60 +167,52 @@ img{max-width:100%;}
       <button class="filter-btn" data-filter="events">Events</button>
     </div>
     <div class="gallery-grid" id="galleryGrid" data-reveal data-reveal-delay="2">
-      <div class="g-item" data-cat="coffee" tabindex="0" data-src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=1200&q=90">
-        <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=600&q=80" alt="Coffee"/>
+      <div class="g-item" data-cat="coffee" tabindex="0" data-src="/images/gallery/coffee1.jfif" alt="Coffee"/>
         <div class="g-overlay"><i class="fas fa-expand g-icon"></i></div>
       </div>
-      <div class="g-item" data-cat="space" tabindex="0" data-src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=1200&q=90">
-        <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=600&q=80" alt="Café"/>
+      <div class="g-item" data-cat="space" tabindex="0" data-src="/images/gallery/space1.png" alt="Café"/>
         <div class="g-overlay"><i class="fas fa-expand g-icon"></i></div>
       </div>
-      <div class="g-item" data-cat="coffee" tabindex="0" data-src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1200&q=90">
-        <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&q=80" alt="Coffee Art"/>
+      <div class="g-item" data-cat="coffee" tabindex="0" data-src="/images/gallery/coffee3.jpg" alt="Coffee Art"/>
         <div class="g-overlay"><i class="fas fa-expand g-icon"></i></div>
       </div>
-      <div class="g-item" data-cat="food" tabindex="0" data-src="https://images.unsplash.com/photo-1567608285969-48e4bbe0d399?w=1200&q=90">
-        <img src="https://images.unsplash.com/photo-1567608285969-48e4bbe0d399?w=600&q=80" alt="Food"/>
+      <div class="g-item" data-cat="food" tabindex="0" data-src="/images/gallery/food1.jpg" alt="Food"/>
         <div class="g-overlay"><i class="fas fa-expand g-icon"></i></div>
       </div>
-      <div class="g-item" data-cat="coffee" tabindex="0" data-src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=1200&q=90">
-        <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=600&q=80" alt="Espresso"/>
+      <div class="g-item" data-cat="coffee" tabindex="0" data-src="/images/gallery/coffee4.jpg" alt="Espresso"/>
         <div class="g-overlay"><i class="fas fa-expand g-icon"></i></div>
       </div>
-      <div class="g-item" data-cat="space" tabindex="0" data-src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=1200&q=90">
-        <img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=600&q=80" alt="Coffee Shop"/>
+      <div class="g-item" data-cat="space" tabindex="0" data-src="/images/gallery/space2.jpg" alt="Coffee Shop"/>
         <div class="g-overlay"><i class="fas fa-expand g-icon"></i></div>
       </div>
-      <div class="g-item" data-cat="events" tabindex="0" data-src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1200&q=90">
-        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&q=80" alt="Cafe Event"/>
+      <div class="g-item" data-cat="events" tabindex="0" data-src="/images/gallery/events1.jpg" alt="Cafe Event"/>
         <div class="g-overlay"><i class="fas fa-expand g-icon"></i></div>
       </div>
-      <div class="g-item" data-cat="coffee" tabindex="0" data-src="https://images.unsplash.com/photo-1515823662972-da6a2e4d3002?w=1200&q=90">
-        <img src="https://images.unsplash.com/photo-1515823662972-da6a2e4d3002?w=600&q=80" alt="Matcha"/>
+      <div class="g-item" data-cat="coffee" tabindex="0" data-src="/images/gallery/coffee5.jpg" alt="Matcha"/>
         <div class="g-overlay"><i class="fas fa-expand g-icon"></i></div>
       </div>
-      <div class="g-item" data-cat="team" tabindex="0" data-src="images/Team%201.jpg">
-        <img src="images/Team%201.jpg" alt="Team 1"/>
+      <div class="g-item" data-cat="team" tabindex="0" data-src="/images/gallery/team1.jpg">
+        <img src="/images/team 1.jpg" alt="Team 1"/>
         <div class="g-overlay"><i class="fas fa-expand g-icon"></i></div>
       </div>
-      <div class="g-item" data-cat="team" tabindex="0" data-src="images/Team%202.jpg">
-        <img src="images/Team%202.jpg" alt="Team 2"/>
+      <div class="g-item" data-cat="team" tabindex="0" data-src="/images/gallery/team2.jpg">
+        <img src="/images/team 2.jpg" alt="Team 2"/>
         <div class="g-overlay"><i class="fas fa-expand g-icon"></i></div>
       </div>
-      <div class="g-item" data-cat="team" tabindex="0" data-src="images/Team%203.jpg">
-        <img src="images/Team%203.jpg" alt="Team 3"/>
+      <div class="g-item" data-cat="team" tabindex="0" data-src="/images/gallery/team3.jpg">
+        <img src="/images/team 3.jpg" alt="Team 3"/>
         <div class="g-overlay"><i class="fas fa-expand g-icon"></i></div>
       </div>
-      <div class="g-item" data-cat="coffee" tabindex="0" data-src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=1200&q=90">
-        <img src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=600&q=80" alt="Coffee Beans"/>
+      <div class="g-item" data-cat="coffee" tabindex="0" data-src="/images/gallery/coffee6.jpg">
+        <img src="/images/gallery/coffee6.jpg" alt="Coffee Beans"/>
         <div class="g-overlay"><i class="fas fa-expand g-icon"></i></div>
       </div>
-      <div class="g-item" data-cat="food" tabindex="0" data-src="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=1200&q=90">
-        <img src="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=600&q=80" alt="Pasta"/>
+      <div class="g-item" data-cat="food" tabindex="0" data-src="/images/gallery/food1.jpg">
+        <img src="/images/gallery/food1.jpg" alt="Pasta"/>
         <div class="g-overlay"><i class="fas fa-expand g-icon"></i></div>
       </div>
-      <div class="g-item" data-cat="events" tabindex="0" data-src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=1200&q=90">
-        <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=600&q=80" alt="Event"/>
+      <div class="g-item" data-cat="events" tabindex="0" data-src="/images/gallery/events2.jpg">
+        <img src="/images/gallery/events1.jpg" alt="Event"/>
         <div class="g-overlay"><i class="fas fa-expand g-icon"></i></div>
       </div>
     </div>
@@ -299,12 +300,14 @@ img{max-width:100%;}
   <img src="" alt="Gallery Image" id="lightboxImg"/>
 </div>
 
-<footer class="bask-footer" data-reveal>
+<footer class="bask-footer" id="footer">
   <div class="container">
     <div class="row g-4 g-lg-5 pb-5">
       <div class="col-12 col-sm-6 col-lg-4">
-        <div class="f-brand"><i class="fas fa-mug-hot"></i>Bask Café</div>
-        <p class="f-desc">A community café rooted in Valenzuela — dedicated to slow coffee, community, and the joy of slowing down over something truly well-made.</p>
+        <div class="f-brand">
+          <img src="../images/BASKCAFELOGO.png" alt="Bask Café" style="height:44px;width:auto;filter:brightness(0) invert(1);opacity:.82;margin-bottom:10px;display:block;" onerror="this.style.display='none'"/>
+        </div>
+        <p class="f-desc">A community café rooted in Villaverde, Valenzuela — dedicated to slow coffee, community, and the joy of slowing down over something truly well-made.</p>
         <div class="d-flex gap-2 mt-4">
           <a href="https://www.facebook.com/profile.php?id=61569599993182" class="f-social" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
           <a href="https://www.instagram.com/baskcafe_" class="f-social" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
@@ -331,9 +334,9 @@ img{max-width:100%;}
       <div class="col-12 col-sm-6 col-lg-4">
         <h6 class="f-head">Contact Us</h6>
         <div class="f-contact"><i class="fas fa-map-marker-alt"></i><span>4B Little Baguio Street, Marulas, Valenzuela City, Philippines</span></div>
-        <div class="f-contact"><i class="fas fa-phone"></i><span>+63 (02) 8XXX-XXXX</span></div>
-        <div class="f-contact"><i class="fas fa-envelope"></i><span>baskcafe@gmail.com</span></div>
-        <div class="f-contact"><i class="fas fa-clock"></i><span>Mon–Thu: 3PM–12AM &nbsp;·&nbsp; Fri–Sun: 10AM–12AM</span></div>
+        <div class="f-contact"><i class="fas fa-phone"></i><span>+120-283-2127</span></div>
+        <div class="f-contact"><i class="fas fa-envelope"></i><span>baskcafe@email.com</span></div>
+        <div class="f-contact mt-2"><i class="fas fa-clock" style="color:var(--gold-lt);"></i><span>Mon–Thu: 3PM–12AM &nbsp;·&nbsp; Fri–Sun: 10AM–12AM</span></div>
       </div>
     </div>
     <div class="f-bottom">

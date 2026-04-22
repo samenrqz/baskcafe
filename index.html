@@ -165,6 +165,32 @@ img{max-width:100%;display:block;}
   .cta{gap:8px;}
   .p-right{height:45vh;min-height:200px;}
 }
+
+/* ══ MOBILE: hide right panel ══ */
+@media(max-width:767.98px){
+  .p-right{display:none!important;}
+  .wrap{height:100vh;min-height:0;}
+  .p-left{width:100%;height:100vh;padding:48px 32px;}
+}
+
+/* ══ LEFT PANEL FRAME AESTHETIC ══ */
+.p-left__frame{
+  position:absolute;inset:24px;
+  border:1px solid rgba(29,61,42,.18);
+  pointer-events:none;z-index:2;
+}
+.p-left__frame::before{
+  content:'';position:absolute;inset:8px;
+  border:1px solid rgba(29,61,42,.08);
+}
+.p-left__corner{
+  position:absolute;width:18px;height:18px;
+  border-color:rgba(29,61,42,.35);border-style:solid;
+}
+.p-left__corner--tl{top:-1px;left:-1px;border-width:2px 0 0 2px;}
+.p-left__corner--tr{top:-1px;right:-1px;border-width:2px 2px 0 0;}
+.p-left__corner--bl{bottom:-1px;left:-1px;border-width:0 0 2px 2px;}
+.p-left__corner--br{bottom:-1px;right:-1px;border-width:0 2px 2px 0;}
 </style>
 </head>
 <body>
@@ -172,6 +198,12 @@ img{max-width:100%;display:block;}
 <div class="wrap">
 
   <div class="p-left">
+    <div class="p-left__frame">
+      <div class="p-left__corner p-left__corner--tl"></div>
+      <div class="p-left__corner p-left__corner--tr"></div>
+      <div class="p-left__corner p-left__corner--bl"></div>
+      <div class="p-left__corner p-left__corner--br"></div>
+    </div>
     <div class="p-left__inner">
 
       <div class="logo-wrap">
@@ -194,8 +226,8 @@ img{max-width:100%;display:block;}
       <p class="tagline">Elevate your daily ritual with the finest brews, meticulously crafted to bring warmth, depth, and a moment of pure pleasure.</p>
 
       <div class="cta">
-        <a href="home.html" class="btn-enter">Enter <i class="fas fa-arrow-right"></i></a>
-        <a href="menu.html" class="btn-menu"><i class="fas fa-book-open"></i> View Menu</a>
+        <a href="loading.html?to=home.html" class="btn-enter">Enter <i class="fas fa-arrow-right"></i></a>
+        <a href="loading.html?to=menu.html" class="btn-menu"><i class="fas fa-book-open"></i> View Menu</a>
       </div>
 
     </div>

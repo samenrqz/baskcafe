@@ -23,26 +23,30 @@ h1,h2,h3,h4,h5,h6{font-family:var(--ff-h);font-weight:700;color:var(--df);}
 a{text-decoration:none;color:inherit;}
 img{max-width:100%;}
 
-.bask-nav{background:var(--df)!important;position:sticky;top:0;z-index:1050;transition:background .3s;height:96px;}
-.bask-nav.scrolled{background:rgba(16,44,38,.96)!important;backdrop-filter:blur(12px);}
-.bask-nav .navbar-brand img{height:auto;width:240px;}
-.bask-nav .nav-link{font-family:var(--ff-u);font-size:.78rem;font-weight:500;letter-spacing:.7px;text-transform:uppercase;color:rgba(247,231,206,.78)!important;padding:8px 12px!important;transition:color .2s;}
+.bask-nav{background:var(--df)!important;position:sticky;top:0;z-index:1050;transition:background .3s;overflow:visible;}
+.bask-nav.scrolled{background:rgba(16,44,38,.97)!important;backdrop-filter:blur(12px);}
+.nav-logo-wrap{position:relative;display:flex;align-items:center;}
+.nav-logo-img{height:64px;width:auto;position:relative;z-index:1060;filter:drop-shadow(0 4px 16px rgba(0,0,0,.35));transition:height .2s;}
+.bask-nav.scrolled .nav-logo-img{height:48px;}
+.bask-nav .nav-link{font-family:var(--ff-u);font-size:.75rem;font-weight:500;letter-spacing:.7px;text-transform:uppercase;color:rgba(247,231,206,.78)!important;padding:6px 0!important;margin:0 10px;transition:color .2s;}
 .bask-nav .nav-link:hover,.bask-nav .nav-link.active{color:var(--gold-lt)!important;}
-.bask-nav .dropdown-menu{background:#fff;border:none;border-top:2px solid var(--gold);border-radius:0 0 8px 8px;box-shadow:0 12px 32px rgba(0,0,0,.12);padding:8px;min-width:190px;}
-.bask-nav .dropdown-item{font-family:var(--ff-u);font-size:.82rem;color:#444;padding:9px 14px;border-radius:4px;transition:background .18s;}
+.bask-nav .dropdown-menu{background:#fff;border:none;border-top:2px solid var(--gold);border-radius:0 0 8px 8px;box-shadow:0 12px 32px rgba(0,0,0,.12);padding:8px;min-width:190px;z-index:1060;}
+.bask-nav .dropdown-item{font-family:var(--ff-u);font-size:.8rem;color:#444;padding:9px 14px;border-radius:4px;transition:background .18s;}
 .bask-nav .dropdown-item:hover{background:var(--cr);color:var(--df);}
-.btn-reserve{font-family:var(--ff-u);font-size:.74rem;font-weight:700;letter-spacing:.7px;text-transform:uppercase;background:var(--gold);color:var(--df)!important;padding:9px 20px;border-radius:4px;border:2px solid var(--gold);transition:all .25s;white-space:nowrap;}
+.btn-reserve{font-family:var(--ff-u);font-size:.72rem;font-weight:700;letter-spacing:.7px;text-transform:uppercase;background:var(--gold);color:var(--df)!important;padding:8px 18px;border-radius:4px;border:2px solid var(--gold);transition:all .25s;white-space:nowrap;}
 .btn-reserve:hover{background:transparent;color:var(--gold)!important;border-color:var(--gold);}
-.navbar-toggler{border-color:rgba(247,231,206,.3);}
-.navbar-toggler-icon{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28247%2C231%2C206%2C.85%29' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");}
+.navbar-toggler{border-color:rgba(247,231,206,.3);padding:4px 8px;}
+.navbar-toggler-icon{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28247%2C231%2C206%2C.85%29' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");width:1.2em;height:1.2em;}
 @media(max-width:991.98px){
-  .bask-nav .navbar-collapse{background:var(--df-lt);padding:12px;margin-top:6px;border-radius:8px;border:1px solid rgba(255,255,255,.06);}
-  .bask-nav .nav-link{padding:10px 8px!important;border-bottom:1px solid rgba(255,255,255,.05);}
+  .bask-nav .navbar-collapse{background:var(--df-lt);padding:12px 16px;margin-top:6px;border-radius:8px;border:1px solid rgba(255,255,255,.06);}
+  .bask-nav .navbar-collapse .navbar-nav{text-align:center;}
+  .bask-nav .nav-link{padding:10px 0!important;margin:0;border-bottom:1px solid rgba(255,255,255,.05);}
   .btn-reserve{margin-top:10px;display:block;text-align:center;}
+  .nav-logo-img{height:52px;}
+  .bask-nav.scrolled .nav-logo-img{height:44px;}
 }
-
 .page-hero{background:var(--df);padding:80px 0 60px;text-align:center;position:relative;overflow:hidden;}
-.page-hero::before{content:'';position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=1600&q=60') center/cover;opacity:.12;}
+.page-hero::before{content:'';position:absolute;inset:0;background:url('/images/about-hero.png') center/cover;opacity:.12;}
 .page-hero .container{position:relative;z-index:2;}
 .page-hero .eyebrow{font-family:var(--ff-u);font-size:.66rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold-lt);display:block;margin-bottom:10px;}
 .page-hero h1{font-family:var(--ff-h);font-size:clamp(2.4rem,6vw,4rem);color:#fff;margin-bottom:10px;}
@@ -95,7 +99,7 @@ img{max-width:100%;}
 .team-role{font-family:var(--ff-u);font-size:.68rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
 .team-bio{font-family:var(--ff-u);font-size:.82rem;color:#666;line-height:1.7;margin:0;}
 
-.cta-band{background:var(--df);padding:72px 0;text-align:center;position:relative;overflow:hidden;}
+.cta-band{background:var(--df-lt);padding:72px 0;text-align:center;position:relative;overflow:hidden;}
 .cta-band::before{content:'';position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1445116572660-236099ec97a0?w=1600&q=50') center/cover;opacity:.1;}
 .cta-band .container{position:relative;z-index:2;}
 .cta-band h2{font-family:var(--ff-h);font-size:clamp(1.9rem,4vw,3rem);color:#fff;margin-bottom:10px;}
@@ -132,16 +136,17 @@ img{max-width:100%;}
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg bask-nav" id="mainNav">
+<nav class="navbar navbar-expand-lg bask-nav py-2" id="mainNav">
   <div class="container">
-    <a class="navbar-brand" href="home.html">
-      <img src="../images/BASKCAFENOBG.png" alt="Bask Café"/>
+    <a class="navbar-brand nav-logo-wrap" href="index.html">
+      <img src="../images/BASKCAFENOBG.png" alt="Bask Café" class="nav-logo-img"
+        onerror="this.src='https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=80&q=60';this.style.height='44px';this.style.borderRadius='4px'"/>
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navMenu">
-      <ul class="navbar-nav mx-auto gap-lg-1 py-3 py-lg-0 align-items-lg-center">
+      <ul class="navbar-nav mx-auto py-2 py-lg-0 align-items-lg-center">
         <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
         <li class="nav-item"><a class="nav-link" href="menu.html">Menu</a></li>
         <li class="nav-item"><a class="nav-link active" href="about.html">About Us</a></li>
@@ -156,7 +161,7 @@ img{max-width:100%;}
           </ul>
         </li>
       </ul>
-      <a href="contact.html" class="btn-reserve ms-lg-2">Reserve a Table</a>
+      <a href="contact.html" class="btn-reserve ms-lg-3">Reserve a Table</a>
     </div>
   </div>
 </nav>
@@ -286,15 +291,21 @@ img{max-width:100%;}
       <div class="s-rule mx-auto"></div>
       <p style="font-family:var(--ff-u);font-size:.9rem;color:#666;max-width:480px;margin:0 auto;">The heart and soul behind every cup.</p>
     </div>
-    <div class="row g-4 justify-content-center mt-2">
-      <div class="col-6 col-md-4 col-lg-3" data-reveal data-reveal-delay="1">
-        <div class="team-card">
-          <img src="images/Ruth_Owner.jpg" alt="Ruth Dominguez" class="team-photo"/>
-          <div class="team-body">
-            <div class="team-name">Ruth Dominguez</div>
-            <div class="team-role">Founder</div>
-            <p class="team-bio">Leads the overall vision of Bask Café, focusing on brand development, menu innovation, and customer experience.</p>
-          </div>
+    <div class="row align-items-stretch g-0 overflow-hidden" style="border:1.5px solid rgba(16,44,38,.1);" data-reveal>
+      <div class="col-md-5">
+        <img src="images/madamruth.jpg" alt="Ruth Dominguez" style="width:100%;height:100%;min-height:320px;object-fit:cover;object-position:top;display:block;"
+          onerror="this.src='https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=600&q=80'"/>
+      </div>
+      <div class="col-md-7 d-flex flex-column justify-content-center p-4 p-lg-5" style="background:var(--df);">
+        <span class="eyebrow" style="color:var(--gold-lt);">Founder &amp; Owner</span>
+        <h2 style="font-family:var(--ff-h);font-size:clamp(2rem,4vw,2.8rem);color:#fff;margin-bottom:4px;">Ruth Dominguez</h2>
+        <div style="width:40px;height:2px;background:var(--gold);margin:12px 0 20px;"></div>
+        <p style="font-family:var(--ff-u);font-size:.9rem;color:rgba(247,231,206,.72);line-height:1.85;margin-bottom:16px;">Ruth is the vision and voice behind Bask Café — a place she built not just as a business, but as a living expression of her love for coffee, community, and the art of slowing down.</p>
+        <p style="font-family:var(--ff-u);font-size:.9rem;color:rgba(247,231,206,.55);line-height:1.85;margin-bottom:24px;">She oversees brand development, menu innovation, and the overall guest experience, ensuring every corner of Bask carries her signature warmth and intentionality.</p>
+        <div class="d-flex flex-wrap gap-2">
+          <span style="font-family:var(--ff-u);font-size:.62rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;border:1.5px solid rgba(247,231,206,.25);color:rgba(247,231,206,.65);padding:6px 14px;">Brand Vision</span>
+          <span style="font-family:var(--ff-u);font-size:.62rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;border:1.5px solid rgba(247,231,206,.25);color:rgba(247,231,206,.65);padding:6px 14px;">Menu Curation</span>
+          <span style="font-family:var(--ff-u);font-size:.62rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;border:1.5px solid rgba(247,231,206,.25);color:rgba(247,231,206,.65);padding:6px 14px;">Guest Experience</span>
         </div>
       </div>
     </div>
@@ -401,15 +412,14 @@ img{max-width:100%;}
   </div>
 </div>
 
-<footer class="bask-footer" id="footer" data-reveal>
+<footer class="bask-footer" id="footer">
   <div class="container">
     <div class="row g-4 g-lg-5 pb-5">
       <div class="col-12 col-sm-6 col-lg-4">
         <div class="f-brand">
-          <img src="../images/BASKCAFELOGO.png" alt="Bask Café" style="height:44px;width:auto;filter:brightness(0) invert(1);opacity:.82;margin-bottom:10px;display:block;"/>
-          Bask Café
+          <img src="../images/BASKCAFELOGO.png" alt="Bask Café" style="height:44px;width:auto;filter:brightness(0) invert(1);opacity:.82;margin-bottom:10px;display:block;" onerror="this.style.display='none'"/>
         </div>
-        <p class="f-desc">A community café dedicated to the art of coffee, the warmth of community, and the joy of slowing down over something truly well-made.</p>
+        <p class="f-desc">A community café rooted in Villaverde, Valenzuela — dedicated to slow coffee, community, and the joy of slowing down over something truly well-made.</p>
         <div class="d-flex gap-2 mt-4">
           <a href="https://www.facebook.com/profile.php?id=61569599993182" class="f-social" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
           <a href="https://www.instagram.com/baskcafe_" class="f-social" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
@@ -437,8 +447,8 @@ img{max-width:100%;}
         <h6 class="f-head">Contact Us</h6>
         <div class="f-contact"><i class="fas fa-map-marker-alt"></i><span>4B Little Baguio Street, Marulas, Valenzuela City, Philippines</span></div>
         <div class="f-contact"><i class="fas fa-phone"></i><span>+120-283-2127</span></div>
-        <div class="f-contact"><i class="fas fa-envelope"></i><span>baskcafe@gmail.com</span></div>
-        <div class="f-contact mt-2"><i class="fas fa-clock"></i><span>Mon–Thu: 3PM–12AM &nbsp;·&nbsp; Fri–Sun: 10AM–12AM</span></div>
+        <div class="f-contact"><i class="fas fa-envelope"></i><span>baskcafe@email.com</span></div>
+        <div class="f-contact mt-2"><i class="fas fa-clock" style="color:var(--gold-lt);"></i><span>Mon–Thu: 3PM–12AM &nbsp;·&nbsp; Fri–Sun: 10AM–12AM</span></div>
       </div>
     </div>
     <div class="f-bottom">
